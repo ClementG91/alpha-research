@@ -5,6 +5,7 @@ import pandas as pd
 import pytest
 
 import cross_asset_research as research
+from cross_asset_research_v3 import vectorized_strategy_from_score
 
 
 def test_projection_enforces_class_and_beta_neutrality() -> None:
@@ -16,6 +17,22 @@ def test_projection_enforces_class_and_beta_neutrality() -> None:
     assert abs(result.groupby(classes).sum()).max() < 1e-10
     assert abs(float((result * beta).sum())) < 1e-10
     assert result.abs().sum() == pytest.approx(1.0)
+
+
+def test_vectorized_portfolio_is_neutral_each_day() -> None:
+    dates = pd.date_range("2022-01-01", periods=80, freq="B")
+    symbols = list("ABCDEFGHIJKL")
+    rng = np.random.default_rng(12)
+    score = pd.DataFrame(rng.normal(size=(len(dates), len(symbols))), index=dates, columns=symbols)
+    execution = pd.DataFrame(rng.normal(0, 0.01, size=score.shape), index=dates, columns=symbols)
+    beta = pd.DataFrame(rng.normal(1, 0.3, size=score.shape), index=dates, columns=symbols)
+    classes = pd.Series({symbol: ("x", "y", "z")[i // 4] for i, symbol in enumerate(symbols)})
+    result = vectorized_strategy_from_score(score, execution, beta, classes, 0.25, 10.0)
+    for class_name in classes.unique():
+        columns = classes.index[classes == class_name]
+        assert result.positions[columns].sum(axis=1).abs().max() < 1e-10
+    assert (result.positions * beta).sum(axis=1).abs().max() < 1e-10
+    assert result.positions.abs().sum(axis=1).replace(0, np.nan).dropna().eq(1.0).all()
 
 
 def test_close_reversal_signal_is_lagged() -> None:
