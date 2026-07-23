@@ -42,34 +42,47 @@ jobs:
         with:
           path: data/cache/alpha_hunt
           key: alpha-hunt-market-data-v1-${{ runner.os }}
+      - name: Prepare diagnostics
+        run: mkdir -p /tmp/alpha_hunt
       - id: lint
         continue-on-error: true
-        run: ruff check --select E9,F alpha_hunt.py alpha_hunt_runner.py tests/test_alpha_hunt.py
+        shell: bash
+        run: |
+          set -o pipefail
+          ruff check --select E9,F alpha_hunt.py alpha_hunt_runner.py tests/test_alpha_hunt.py 2>&1 | tee /tmp/alpha_hunt/ruff.log
       - id: compile
         continue-on-error: true
-        run: python -m compileall -q alpha_hunt.py alpha_hunt_runner.py tests/test_alpha_hunt.py
+        shell: bash
+        run: |
+          set -o pipefail
+          python -m compileall -q alpha_hunt.py alpha_hunt_runner.py tests/test_alpha_hunt.py 2>&1 | tee /tmp/alpha_hunt/compile.log
       - id: tests
         continue-on-error: true
+        shell: bash
         env:
           PYTHONPATH: "."
-        run: pytest -q tests/test_alpha_hunt.py
+        run: |
+          set -o pipefail
+          pytest -q tests/test_alpha_hunt.py 2>&1 | tee /tmp/alpha_hunt/pytest.log
       - name: Record failed quality gates
         if: steps.lint.outcome != 'success' || steps.compile.outcome != 'success' || steps.tests.outcome != 'success'
         run: |
-          mkdir -p /tmp/alpha_hunt
-          cat > /tmp/alpha_hunt/FATAL.txt <<'TXT'
+          cat > /tmp/alpha_hunt/FATAL.txt <<TXT
           Alpha campaign did not run because a code-quality gate failed.
-          Inspect the GitHub Actions step conclusions for Ruff, compileall, and pytest.
+          Ruff: ${{ steps.lint.outcome }}
+          Compile: ${{ steps.compile.outcome }}
+          Pytest: ${{ steps.tests.outcome }}
           TXT
       - name: Run predeclared alpha campaign
         if: steps.lint.outcome == 'success' && steps.compile.outcome == 'success' && steps.tests.outcome == 'success'
         continue-on-error: true
         run: |
-          rm -rf /tmp/alpha_hunt
+          rm -rf /tmp/alpha_hunt/research
           python alpha_hunt_runner.py \
             --prefer-lse \
             --start 2006-01-01 \
-            --output /tmp/alpha_hunt
+            --output /tmp/alpha_hunt/research
+          cp -a /tmp/alpha_hunt/research/. /tmp/alpha_hunt/
       - name: Print final report
         if: always()
         run: |
@@ -92,11 +105,13 @@ jobs:
           allowed = {
               'REPORT.md', 'summary.json', 'selected_returns.csv',
               'core_candidate_returns.csv', 'external_candidate_returns.csv',
+              'ruff.log', 'compile.log', 'pytest.log',
           }
           for name in allowed:
               candidate = source / name
               if candidate.exists():
-                  (target / name).write_bytes(candidate.read_bytes())
+                  content = candidate.read_text(encoding='utf-8', errors='replace')
+                  (target / name).write_text(redact(content), encoding='utf-8')
           plots = source / 'plots'
           if plots.exists():
               for plot in plots.iterdir():
