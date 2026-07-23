@@ -127,7 +127,11 @@ def deflated_sharpe_probability(
 
 
 def probability_of_backtest_overfitting(candidate_returns: pd.DataFrame, partitions: int = 10) -> dict[str, Any]:
-    """CSCV-style PBO estimate across predeclared candidates."""
+    """CSCV-style PBO estimate across predeclared candidates.
+
+    Degenerate folds are treated conservatively as an out-of-sample failure rather
+    than dropped or allowed to crash the validation pipeline.
+    """
     frame = candidate_returns.dropna(how="all").fillna(0.0)
     if frame.shape[1] < 2 or len(frame) < partitions * 20 or partitions % 2:
         return {"pbo": float("nan"), "combinations": 0, "logits": []}
@@ -135,6 +139,7 @@ def probability_of_backtest_overfitting(candidate_returns: pd.DataFrame, partiti
     half = partitions // 2
     logits: list[float] = []
     all_groups = set(range(partitions))
+    worst_percentile = 1e-6
     for train_groups in itertools.combinations(range(partitions), half):
         test_groups = sorted(all_groups.difference(train_groups))
         train_indices = np.concatenate([groups[index] for index in train_groups])
@@ -142,11 +147,19 @@ def probability_of_backtest_overfitting(candidate_returns: pd.DataFrame, partiti
         train = frame.iloc[train_indices]
         test = frame.iloc[test_indices]
         train_sharpes = train.mean().div(train.std(ddof=1).replace(0.0, np.nan))
-        selected = train_sharpes.idxmax()
-        test_sharpes = test.mean().div(test.std(ddof=1).replace(0.0, np.nan)).sort_values()
-        rank = int(np.where(test_sharpes.index == selected)[0][0]) + 1
-        percentile = (rank - 0.5) / len(test_sharpes)
-        percentile = min(max(percentile, 1e-6), 1.0 - 1e-6)
+        train_sharpes = train_sharpes.replace([np.inf, -np.inf], np.nan).dropna()
+        if train_sharpes.empty:
+            percentile = worst_percentile
+        else:
+            selected = train_sharpes.idxmax()
+            test_sharpes = test.mean().div(test.std(ddof=1).replace(0.0, np.nan))
+            test_sharpes = test_sharpes.replace([np.inf, -np.inf], np.nan).dropna().sort_values()
+            if test_sharpes.empty or selected not in test_sharpes.index:
+                percentile = worst_percentile
+            else:
+                rank = int(test_sharpes.index.get_loc(selected)) + 1
+                percentile = (rank - 0.5) / len(test_sharpes)
+                percentile = min(max(percentile, worst_percentile), 1.0 - worst_percentile)
         logits.append(float(math.log(percentile / (1.0 - percentile))))
     pbo = float(np.mean(np.asarray(logits) <= 0.0)) if logits else float("nan")
     return {"pbo": pbo, "combinations": len(logits), "logits": logits}
