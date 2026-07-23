@@ -4,10 +4,10 @@ from run_walk_forward_mean_reversion import (
     FOLDS,
     LEGACY_AUDIT,
     aggregate_fold_metrics,
-    conditional_families,
     consensus_params,
     freeze,
 )
+from run_walk_forward_mean_reversion_v2 import conditional_families
 
 
 def result(sharpe: float, alpha: float, beta: float, trades: int = 30) -> dict:
@@ -35,6 +35,7 @@ def test_conditional_families_use_garch() -> None:
     families = conditional_families()
     assert len(families) == 5
     assert all("garch(" in " ".join(family["signals"].values()) for family in families)
+    assert all("risk_size" in family["signals"] for family in families)
     assert all(family["grid"] for family in families)
 
 
