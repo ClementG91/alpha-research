@@ -16,7 +16,7 @@ on:
     - cron: "17 5 * * 1"
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: causal-alpha-hunt
@@ -61,21 +61,64 @@ jobs:
           key: alpha-hunt-market-data-v1-${{ runner.os }}
       - name: Run predeclared alpha campaign
         run: |
-          rm -rf results/alpha_hunt
+          rm -rf /tmp/alpha_hunt
           python alpha_hunt.py \
             --prefer-lse \
             --start 2006-01-01 \
-            --output results/alpha_hunt
+            --output /tmp/alpha_hunt
       - name: Print final report
         if: always()
         run: |
-          test ! -f results/alpha_hunt/REPORT.md || cat results/alpha_hunt/REPORT.md
-          test ! -f results/alpha_hunt/FATAL.txt || cat results/alpha_hunt/FATAL.txt
+          test ! -f /tmp/alpha_hunt/REPORT.md || cat /tmp/alpha_hunt/REPORT.md
+          test ! -f /tmp/alpha_hunt/FATAL.txt || cat /tmp/alpha_hunt/FATAL.txt
+      - name: Publish sanitized verdict to main
+        if: always()
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from lse_vault import assert_secret_absent, redact
+
+          source = Path('/tmp/alpha_hunt')
+          target = Path('results/alpha_hunt/latest')
+          target.mkdir(parents=True, exist_ok=True)
+          for path in target.rglob('*'):
+              if path.is_file():
+                  path.unlink()
+          allowed = {
+              'REPORT.md', 'summary.json', 'selected_returns.csv',
+              'core_candidate_returns.csv', 'external_candidate_returns.csv',
+          }
+          for name in allowed:
+              candidate = source / name
+              if candidate.exists():
+                  (target / name).write_bytes(candidate.read_bytes())
+          plots = source / 'plots'
+          if plots.exists():
+              for plot in plots.iterdir():
+                  if plot.suffix in {'.svg', '.png'}:
+                      destination = target / 'plots' / plot.name
+                      destination.parent.mkdir(parents=True, exist_ok=True)
+                      destination.write_bytes(plot.read_bytes())
+          fatal = source / 'FATAL.txt'
+          if fatal.exists():
+              (target / 'FATAL.txt').write_text(redact(fatal.read_text(encoding='utf-8')), encoding='utf-8')
+          assert_secret_absent(target)
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add results/alpha_hunt/latest
+          if git diff --cached --quiet; then
+            echo "No result change to commit"
+          else
+            git commit -m "publish latest alpha hunt verdict [skip ci]"
+            git push origin HEAD:main
+          fi
       - name: Upload research artifact
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: causal-alpha-hunt-${{ github.run_number }}
-          path: results/alpha_hunt/
+          path: /tmp/alpha_hunt/
           if-no-files-found: error
           retention-days: 90
