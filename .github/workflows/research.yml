@@ -3,10 +3,12 @@ name: Crypto alpha research
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - "results/**"
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   research:
@@ -31,6 +33,17 @@ jobs:
         run: |
           if [ -f results/REPORT.md ]; then
             cat results/REPORT.md
+          fi
+
+      - name: Persist research results
+        if: success()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add results/
+          if ! git diff --cached --quiet; then
+            git commit -m "record crypto alpha research results"
+            git push
           fi
 
       - name: Upload raw research artifacts
