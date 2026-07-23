@@ -1,12 +1,32 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Any
 
 import pandas as pd
 import pytest
 
 import lse_vault
+from lse_campaign_runner import paged_candles
 from lse_institutional_campaign import standardise_candles
+
+
+class FakeCandleClient:
+    def __init__(self) -> None:
+        self.calls: list[dict[str, Any]] = []
+
+    def candles(self, symbol: str, timeframe: str, **kwargs: Any) -> list[dict[str, Any]]:
+        self.calls.append({"symbol": symbol, "timeframe": timeframe, **kwargs})
+        return [
+            {
+                "ts": "2026-01-02 00:00:00.000000",
+                "open": 10,
+                "high": 12,
+                "low": 9,
+                "close": 11,
+                "volume": 100,
+            }
+        ]
 
 
 def test_secret_scanner_rejects_key_like_material(tmp_path: Path) -> None:
@@ -30,6 +50,24 @@ def test_candle_payload_is_standardised_without_future_fill() -> None:
     assert list(frame.columns) == ["open", "high", "low", "close", "volume"]
     assert frame.index.is_monotonic_increasing
     assert frame.iloc[-1]["close"] == 12
+
+
+def test_daily_candle_request_uses_plain_dates() -> None:
+    client = FakeCandleClient()
+    frame = paged_candles(client, "ES.F", "1d", "2004-01-01", "2026-07-24")
+    assert len(frame) == 1
+    assert client.calls == [
+        {
+            "symbol": "ES.F",
+            "timeframe": "1d",
+            "start": "2004-01-01",
+            "end": "2026-07-24",
+            "limit": 5000,
+            "order": "asc",
+        }
+    ]
+    assert "T" not in client.calls[0]["start"]
+    assert "T" not in client.calls[0]["end"]
 
 
 def test_frame_hash_is_deterministic() -> None:
