@@ -1,0 +1,147 @@
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:252: RuntimeWarning: All-NaN slice encountered
+  float(np.nanmedian(sharpes))
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:254: RuntimeWarning: All-NaN slice encountered
+  + 0.10 * float(np.nanmedian(alpha_ts))
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:255: RuntimeWarning: All-NaN slice encountered
+  - 1.5 * float(np.nanmedian(betas))
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:256: RuntimeWarning: All-NaN slice encountered
+  - 1.0 * float(np.nanmedian(correlations))
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:262: RuntimeWarning: All-NaN slice encountered
+  "median_sharpe": float(np.nanmedian(sharpes)),
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:263: RuntimeWarning: All-NaN slice encountered
+  "median_alpha_t": float(np.nanmedian(alpha_ts)),
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:252: RuntimeWarning: All-NaN slice encountered
+  float(np.nanmedian(sharpes))
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:254: RuntimeWarning: All-NaN slice encountered
+  + 0.10 * float(np.nanmedian(alpha_ts))
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:255: RuntimeWarning: All-NaN slice encountered
+  - 1.5 * float(np.nanmedian(betas))
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:256: RuntimeWarning: All-NaN slice encountered
+  - 1.0 * float(np.nanmedian(correlations))
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:262: RuntimeWarning: All-NaN slice encountered
+  "median_sharpe": float(np.nanmedian(sharpes)),
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:263: RuntimeWarning: All-NaN slice encountered
+  "median_alpha_t": float(np.nanmedian(alpha_ts)),
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:252: RuntimeWarning: All-NaN slice encountered
+  float(np.nanmedian(sharpes))
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:254: RuntimeWarning: All-NaN slice encountered
+  + 0.10 * float(np.nanmedian(alpha_ts))
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:255: RuntimeWarning: All-NaN slice encountered
+  - 1.5 * float(np.nanmedian(betas))
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:256: RuntimeWarning: All-NaN slice encountered
+  - 1.0 * float(np.nanmedian(correlations))
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:262: RuntimeWarning: All-NaN slice encountered
+  "median_sharpe": float(np.nanmedian(sharpes)),
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:263: RuntimeWarning: All-NaN slice encountered
+  "median_alpha_t": float(np.nanmedian(alpha_ts)),
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:252: RuntimeWarning: All-NaN slice encountered
+  float(np.nanmedian(sharpes))
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:254: RuntimeWarning: All-NaN slice encountered
+  + 0.10 * float(np.nanmedian(alpha_ts))
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:255: RuntimeWarning: All-NaN slice encountered
+  - 1.5 * float(np.nanmedian(betas))
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:256: RuntimeWarning: All-NaN slice encountered
+  - 1.0 * float(np.nanmedian(correlations))
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:262: RuntimeWarning: All-NaN slice encountered
+  "median_sharpe": float(np.nanmedian(sharpes)),
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:263: RuntimeWarning: All-NaN slice encountered
+  "median_alpha_t": float(np.nanmedian(alpha_ts)),
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:252: RuntimeWarning: All-NaN slice encountered
+  float(np.nanmedian(sharpes))
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:254: RuntimeWarning: All-NaN slice encountered
+  + 0.10 * float(np.nanmedian(alpha_ts))
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:255: RuntimeWarning: All-NaN slice encountered
+  - 1.5 * float(np.nanmedian(betas))
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:256: RuntimeWarning: All-NaN slice encountered
+  - 1.0 * float(np.nanmedian(correlations))
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:262: RuntimeWarning: All-NaN slice encountered
+  "median_sharpe": float(np.nanmedian(sharpes)),
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:263: RuntimeWarning: All-NaN slice encountered
+  "median_alpha_t": float(np.nanmedian(alpha_ts)),
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:252: RuntimeWarning: All-NaN slice encountered
+  float(np.nanmedian(sharpes))
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:254: RuntimeWarning: All-NaN slice encountered
+  + 0.10 * float(np.nanmedian(alpha_ts))
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:255: RuntimeWarning: All-NaN slice encountered
+  - 1.5 * float(np.nanmedian(betas))
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:256: RuntimeWarning: All-NaN slice encountered
+  - 1.0 * float(np.nanmedian(correlations))
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:262: RuntimeWarning: All-NaN slice encountered
+  "median_sharpe": float(np.nanmedian(sharpes)),
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:263: RuntimeWarning: All-NaN slice encountered
+  "median_alpha_t": float(np.nanmedian(alpha_ts)),
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:252: RuntimeWarning: All-NaN slice encountered
+  float(np.nanmedian(sharpes))
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:254: RuntimeWarning: All-NaN slice encountered
+  + 0.10 * float(np.nanmedian(alpha_ts))
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:255: RuntimeWarning: All-NaN slice encountered
+  - 1.5 * float(np.nanmedian(betas))
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:256: RuntimeWarning: All-NaN slice encountered
+  - 1.0 * float(np.nanmedian(correlations))
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:262: RuntimeWarning: All-NaN slice encountered
+  "median_sharpe": float(np.nanmedian(sharpes)),
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:263: RuntimeWarning: All-NaN slice encountered
+  "median_alpha_t": float(np.nanmedian(alpha_ts)),
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:252: RuntimeWarning: All-NaN slice encountered
+  float(np.nanmedian(sharpes))
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:254: RuntimeWarning: All-NaN slice encountered
+  + 0.10 * float(np.nanmedian(alpha_ts))
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:255: RuntimeWarning: All-NaN slice encountered
+  - 1.5 * float(np.nanmedian(betas))
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:256: RuntimeWarning: All-NaN slice encountered
+  - 1.0 * float(np.nanmedian(correlations))
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:262: RuntimeWarning: All-NaN slice encountered
+  "median_sharpe": float(np.nanmedian(sharpes)),
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:263: RuntimeWarning: All-NaN slice encountered
+  "median_alpha_t": float(np.nanmedian(alpha_ts)),
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:252: RuntimeWarning: All-NaN slice encountered
+  float(np.nanmedian(sharpes))
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:254: RuntimeWarning: All-NaN slice encountered
+  + 0.10 * float(np.nanmedian(alpha_ts))
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:255: RuntimeWarning: All-NaN slice encountered
+  - 1.5 * float(np.nanmedian(betas))
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:256: RuntimeWarning: All-NaN slice encountered
+  - 1.0 * float(np.nanmedian(correlations))
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:262: RuntimeWarning: All-NaN slice encountered
+  "median_sharpe": float(np.nanmedian(sharpes)),
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:263: RuntimeWarning: All-NaN slice encountered
+  "median_alpha_t": float(np.nanmedian(alpha_ts)),
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:252: RuntimeWarning: All-NaN slice encountered
+  float(np.nanmedian(sharpes))
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:254: RuntimeWarning: All-NaN slice encountered
+  + 0.10 * float(np.nanmedian(alpha_ts))
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:255: RuntimeWarning: All-NaN slice encountered
+  - 1.5 * float(np.nanmedian(betas))
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:256: RuntimeWarning: All-NaN slice encountered
+  - 1.0 * float(np.nanmedian(correlations))
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:262: RuntimeWarning: All-NaN slice encountered
+  "median_sharpe": float(np.nanmedian(sharpes)),
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:263: RuntimeWarning: All-NaN slice encountered
+  "median_alpha_t": float(np.nanmedian(alpha_ts)),
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:252: RuntimeWarning: All-NaN slice encountered
+  float(np.nanmedian(sharpes))
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:254: RuntimeWarning: All-NaN slice encountered
+  + 0.10 * float(np.nanmedian(alpha_ts))
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:255: RuntimeWarning: All-NaN slice encountered
+  - 1.5 * float(np.nanmedian(betas))
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:256: RuntimeWarning: All-NaN slice encountered
+  - 1.0 * float(np.nanmedian(correlations))
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:262: RuntimeWarning: All-NaN slice encountered
+  "median_sharpe": float(np.nanmedian(sharpes)),
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:263: RuntimeWarning: All-NaN slice encountered
+  "median_alpha_t": float(np.nanmedian(alpha_ts)),
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:252: RuntimeWarning: All-NaN slice encountered
+  float(np.nanmedian(sharpes))
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:254: RuntimeWarning: All-NaN slice encountered
+  + 0.10 * float(np.nanmedian(alpha_ts))
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:255: RuntimeWarning: All-NaN slice encountered
+  - 1.5 * float(np.nanmedian(betas))
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:256: RuntimeWarning: All-NaN slice encountered
+  - 1.0 * float(np.nanmedian(correlations))
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:262: RuntimeWarning: All-NaN slice encountered
+  "median_sharpe": float(np.nanmedian(sharpes)),
+/home/runner/work/alpha-research/alpha-research/alpha_hunt.py:263: RuntimeWarning: All-NaN slice encountered
+  "median_alpha_t": float(np.nanmedian(alpha_ts)),
+/home/runner/work/alpha-research/alpha-research/quant_validation.py:145: FutureWarning: The behavior of Series.idxmax with all-NA values, or any-NA and skipna=False, is deprecated. In a future version this will raise ValueError
+  selected = train_sharpes.idxmax()
+fatal: index 0 is out of bounds for axis 0 with size 0
