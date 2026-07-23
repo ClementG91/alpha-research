@@ -1,0 +1,28 @@
+{
+  "generated_at": "2026-07-23T16:08:56.835552+00:00",
+  "accepted": false,
+  "family": "liquidity_exhaustion_snapback",
+  "interval": "4h",
+  "params": {
+    "window": 144,
+    "size": 0.08,
+    "rebound_floor": 0.03,
+    "min_natr": 5.0,
+    "mfi_low": 30.0,
+    "mfi_high": 80.0,
+    "horizon": 6,
+    "entry": 0.14
+  },
+  "periods": {
+    "Train": {"sharpe": 0.480486080408464, "alpha": 0.007420324123976307, "beta": 0.025507210273621454, "tstat_alpha": 0.1848910944832995, "total_return": 0.1011570417857417, "max_drawdown": -0.0774143575621683, "trades": 500},
+    "Validation": {"sharpe": 0.2299070070074879, "alpha": 0.008290766188489701, "beta": 0.00015564006104297622, "tstat_alpha": 0.22416656843087243, "total_return": 0.0077748863238238375, "max_drawdown": -0.041015295334449475, "trades": 134},
+    "Holdout": {"sharpe": 0.9097317526615343, "alpha": 0.03059797073068939, "beta": 0.008712477628835529, "tstat_alpha": 1.2348846201923003, "total_return": 0.04182682416022243, "max_drawdown": -0.012795935281345039, "trades": 44},
+    "2025": {"sharpe": 1.4134343840903068, "alpha": 0.008140925859389093, "beta": 0.0011170267322081861, "tstat_alpha": 1.4250896138587672, "total_return": 0.008069541116432655, "max_drawdown": -0.00831010641622898, "trades": 26},
+    "2026 YTD": {"sharpe": -1.738673000216694, "alpha": -0.005562879116006764, "beta": 0.0013910524617116989, "tstat_alpha": -1.010106350679112, "total_return": -0.003347090957164456, "max_drawdown": -0.004467175144526325, "trades": 6}
+  },
+  "stress": {"double_cost_sharpe": 0.894297115831694, "extra_delay_sharpe": 0.9128933780457051},
+  "portfolio": {"sharpe": 0.6430575301052293, "total_return": 0.03432507150492281, "max_drawdown": -0.025807818157828954, "volatility": 0.03618925131934335},
+  "monte_carlo": {"prob_of_ruin": 0.11, "prob_of_wipeout": 0.0, "mean_return": 0.041951812405700034},
+  "validation_gate_passes": 0,
+  "used_gate_fallback": true
+}
