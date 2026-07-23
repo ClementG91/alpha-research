@@ -1,38 +1,9 @@
-# Mean-reversion alpha research — ManifoldBT
+# Mean-reversion research history
 
-Generated from ManifoldBT MCP on 23 July 2026.
+The first beta-neutral experiment selected `liquidity_exhaustion_snapback` with a 0.910 Sharpe and 0.0087 beta on the previously designated 2025–1 July 2026 holdout. That result was rejected because validation was weak and 2026 deteriorated.
 
-## Verdict
+The current reviewed protocol supersedes that single-split result with expanding walk-forward folds, GARCH conditional-volatility risk sizing and a frozen forward paper monitor.
 
-**Rejected as validated alpha.** The research successfully reduced the available market-factor beta, but did not reach the required Sharpe or statistical-strength gates.
+See [`results/walk_forward/REPORT.md`](results/walk_forward/REPORT.md) for the current verdict.
 
-- Selected family: `liquidity_exhaustion_snapback` (4h).
-- Frozen holdout Sharpe: **0.910**.
-- Holdout alpha: **0.0306**.
-- Holdout beta: **0.0087**.
-- Alpha t-stat: **1.235**.
-- Holdout return: **4.18%**.
-- Maximum drawdown: **-1.28%**.
-- 2026 YTD Sharpe: **-1.739**.
-- Strict validation-gate passes: **0**.
-
-The result is close to market neutral under Manifold's available beta metric, but 2026 deterioration and weak validation prevent acceptance. SPY cannot be loaded on this public MCP server, so direct S&P 500 beta is not measurable here.
-
-## Plots
-
-![Sharpe by period](results/mean_reversion/period_metrics.svg)
-
-![Alpha and beta](results/mean_reversion/alpha_beta.svg)
-
-![Validation frontier](results/mean_reversion/beta_frontier.svg)
-
-![Execution stress](results/mean_reversion/stress_tests.svg)
-
-## Stress and portfolio
-
-- Double-slippage Sharpe: `0.894`.
-- Two-bar-delay Sharpe: `0.913`.
-- Equal-weight three-sleeve portfolio Sharpe: `0.643`.
-- Monte Carlo probability of ruin: `11.0%`.
-
-The full raw MCP payload and nine original SVG plots remain available in GitHub Actions artifact `manifold-mean-reversion-79`.
+Current status: **rejected as validated alpha**.
