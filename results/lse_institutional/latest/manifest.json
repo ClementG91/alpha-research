@@ -1,5 +1,5 @@
 {
-  "dataset_count": 25,
+  "dataset_count": 37,
   "datasets": [
     {
       "category": "discovery",
@@ -18,6 +18,114 @@
       "path": "data/discovery/catalog.json",
       "rows": 22851,
       "sha256": "0ded70c9f44f0ae9065fe3db87d47d1e48fa2c018d4801776e241b9b145d909c"
+    },
+    {
+      "category": "futures_candles",
+      "first": "2016-05-29 00:00:00+00:00",
+      "last": "2026-07-22 00:00:00+00:00",
+      "name": "ES.F",
+      "path": "data/futures_candles/ES.F.parquet",
+      "rows": 3160,
+      "sha256": "2dcbe8188ced6afaaef79915433e934eace810ee016ed8ceca3a63b988d77c6c"
+    },
+    {
+      "category": "futures_candles",
+      "first": "2016-05-29 00:00:00+00:00",
+      "last": "2026-07-22 00:00:00+00:00",
+      "name": "NQ.F",
+      "path": "data/futures_candles/NQ.F.parquet",
+      "rows": 3157,
+      "sha256": "637b317b3e5eb786bedd29c4b069d2131bbed09e7731dcbef43c6e0b36c012c6"
+    },
+    {
+      "category": "futures_candles",
+      "first": "2016-05-01 00:00:00+00:00",
+      "last": "2026-07-22 00:00:00+00:00",
+      "name": "GC.F",
+      "path": "data/futures_candles/GC.F.parquet",
+      "rows": 3180,
+      "sha256": "c6657890df28d3ba68f11f5c476d8abf1aa2538d116a0275899e6f20d9e87c64"
+    },
+    {
+      "category": "futures_candles",
+      "first": "2016-03-27 00:00:00+00:00",
+      "last": "2026-07-22 00:00:00+00:00",
+      "name": "SI.F",
+      "path": "data/futures_candles/SI.F.parquet",
+      "rows": 3209,
+      "sha256": "e9ceef2813db9080cb0de75fa599f0d0c66c79451a3ce071d5ae5e972cbee0c4"
+    },
+    {
+      "category": "benchmark_candles",
+      "first": "2004-01-02 00:00:00+00:00",
+      "last": "2026-07-22 00:00:00+00:00",
+      "name": "SPY",
+      "path": "data/benchmark_candles/SPY.parquet",
+      "rows": 5683,
+      "sha256": "562cf522f06468a940783772c20b26f47210918aa944edcefa3d6c64b66678ee"
+    },
+    {
+      "category": "fx_candles",
+      "first": "2004-01-01 00:00:00+00:00",
+      "last": "2026-07-22 00:00:00+00:00",
+      "name": "EUR/USD",
+      "path": "data/fx_candles/EUR_USD.parquet",
+      "rows": 7209,
+      "sha256": "02d48a0638f644e90b1c0da1d9f45e011baa6a5c11fa35c4a406fc7a9aa8e39d"
+    },
+    {
+      "category": "fx_candles",
+      "first": "2004-01-01 00:00:00+00:00",
+      "last": "2026-07-22 00:00:00+00:00",
+      "name": "GBP/USD",
+      "path": "data/fx_candles/GBP_USD.parquet",
+      "rows": 7184,
+      "sha256": "01fa56e58d11c2d1d3eab542dbccd44ccc6877025b8bedde4ec4348c41d56f9d"
+    },
+    {
+      "category": "fx_candles",
+      "first": "2004-01-01 00:00:00+00:00",
+      "last": "2026-07-22 00:00:00+00:00",
+      "name": "USD/JPY",
+      "path": "data/fx_candles/USD_JPY.parquet",
+      "rows": 7184,
+      "sha256": "aae5b8600c94ff66d25edb5d7b576167662ed81437a4354f93553d69392fffe6"
+    },
+    {
+      "category": "fx_candles",
+      "first": "2004-01-01 00:00:00+00:00",
+      "last": "2026-07-22 00:00:00+00:00",
+      "name": "AUD/USD",
+      "path": "data/fx_candles/AUD_USD.parquet",
+      "rows": 7190,
+      "sha256": "f37ad014b86c78282f26bdc33c01c4f1026ad61009cd8fcf3ea8f708c82b45b3"
+    },
+    {
+      "category": "fx_candles",
+      "first": "2004-01-01 00:00:00+00:00",
+      "last": "2026-07-22 00:00:00+00:00",
+      "name": "USD/CAD",
+      "path": "data/fx_candles/USD_CAD.parquet",
+      "rows": 7170,
+      "sha256": "58918fa2a929a7e1b6db1f6bcec8bd1c633fc807387d8761b1519df8c09c24aa"
+    },
+    {
+      "category": "fx_candles",
+      "first": "2004-01-01 00:00:00+00:00",
+      "last": "2026-07-22 00:00:00+00:00",
+      "name": "USD/CHF",
+      "path": "data/fx_candles/USD_CHF.parquet",
+      "rows": 7234,
+      "sha256": "1d4cbb6329b2f44d5532b2a6192f4166b1b726462dca889fcbc8b5f6855ce2dc"
+    },
+    {
+      "category": "fx_candles",
+      "first": "2004-01-01 00:00:00+00:00",
+      "last": "2026-07-22 00:00:00+00:00",
+      "name": "NZD/USD",
+      "path": "data/fx_candles/NZD_USD.parquet",
+      "rows": 7174,
+      "sha256": "b45b55ab8955ab25ae1c79067723a26cf0c55abb3a3694ab2fe8711c4b3959a9"
     },
     {
       "category": "cot",
@@ -228,5 +336,5 @@
     }
   ],
   "strict_lse_only": true,
-  "total_rows": 73405
+  "total_rows": 142139
 }

@@ -1,2 +1,8 @@
-.......                                                                  [100%]
-7 passed in 3.27s
+........                                                                 [100%]
+=============================== warnings summary ===============================
+tests/test_lse_vault.py::test_daily_candle_request_uses_plain_dates
+  /home/runner/work/alpha-research/alpha-research/lse_campaign_runner.py:20: DeprecationWarning: The 'generic' unit for NumPy timedelta is deprecated, and will raise an error in the future. This includes implicit conversion of bare integers (e.g. `+ 1`).Please use a specific unit instead.
+    step = pd.Timedelta(days=1) if daily else pd.Timedelta(seconds=1)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+8 passed, 1 warning in 3.19s

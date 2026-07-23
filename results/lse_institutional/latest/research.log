@@ -22,6 +22,114 @@
           "path": "data/discovery/catalog.json"
         },
         {
+          "name": "ES.F",
+          "category": "futures_candles",
+          "rows": 3160,
+          "first": "2016-05-29 00:00:00+00:00",
+          "last": "2026-07-22 00:00:00+00:00",
+          "sha256": "2dcbe8188ced6afaaef79915433e934eace810ee016ed8ceca3a63b988d77c6c",
+          "path": "data/futures_candles/ES.F.parquet"
+        },
+        {
+          "name": "NQ.F",
+          "category": "futures_candles",
+          "rows": 3157,
+          "first": "2016-05-29 00:00:00+00:00",
+          "last": "2026-07-22 00:00:00+00:00",
+          "sha256": "637b317b3e5eb786bedd29c4b069d2131bbed09e7731dcbef43c6e0b36c012c6",
+          "path": "data/futures_candles/NQ.F.parquet"
+        },
+        {
+          "name": "GC.F",
+          "category": "futures_candles",
+          "rows": 3180,
+          "first": "2016-05-01 00:00:00+00:00",
+          "last": "2026-07-22 00:00:00+00:00",
+          "sha256": "c6657890df28d3ba68f11f5c476d8abf1aa2538d116a0275899e6f20d9e87c64",
+          "path": "data/futures_candles/GC.F.parquet"
+        },
+        {
+          "name": "SI.F",
+          "category": "futures_candles",
+          "rows": 3209,
+          "first": "2016-03-27 00:00:00+00:00",
+          "last": "2026-07-22 00:00:00+00:00",
+          "sha256": "e9ceef2813db9080cb0de75fa599f0d0c66c79451a3ce071d5ae5e972cbee0c4",
+          "path": "data/futures_candles/SI.F.parquet"
+        },
+        {
+          "name": "SPY",
+          "category": "benchmark_candles",
+          "rows": 5683,
+          "first": "2004-01-02 00:00:00+00:00",
+          "last": "2026-07-22 00:00:00+00:00",
+          "sha256": "562cf522f06468a940783772c20b26f47210918aa944edcefa3d6c64b66678ee",
+          "path": "data/benchmark_candles/SPY.parquet"
+        },
+        {
+          "name": "EUR/USD",
+          "category": "fx_candles",
+          "rows": 7209,
+          "first": "2004-01-01 00:00:00+00:00",
+          "last": "2026-07-22 00:00:00+00:00",
+          "sha256": "02d48a0638f644e90b1c0da1d9f45e011baa6a5c11fa35c4a406fc7a9aa8e39d",
+          "path": "data/fx_candles/EUR_USD.parquet"
+        },
+        {
+          "name": "GBP/USD",
+          "category": "fx_candles",
+          "rows": 7184,
+          "first": "2004-01-01 00:00:00+00:00",
+          "last": "2026-07-22 00:00:00+00:00",
+          "sha256": "01fa56e58d11c2d1d3eab542dbccd44ccc6877025b8bedde4ec4348c41d56f9d",
+          "path": "data/fx_candles/GBP_USD.parquet"
+        },
+        {
+          "name": "USD/JPY",
+          "category": "fx_candles",
+          "rows": 7184,
+          "first": "2004-01-01 00:00:00+00:00",
+          "last": "2026-07-22 00:00:00+00:00",
+          "sha256": "aae5b8600c94ff66d25edb5d7b576167662ed81437a4354f93553d69392fffe6",
+          "path": "data/fx_candles/USD_JPY.parquet"
+        },
+        {
+          "name": "AUD/USD",
+          "category": "fx_candles",
+          "rows": 7190,
+          "first": "2004-01-01 00:00:00+00:00",
+          "last": "2026-07-22 00:00:00+00:00",
+          "sha256": "f37ad014b86c78282f26bdc33c01c4f1026ad61009cd8fcf3ea8f708c82b45b3",
+          "path": "data/fx_candles/AUD_USD.parquet"
+        },
+        {
+          "name": "USD/CAD",
+          "category": "fx_candles",
+          "rows": 7170,
+          "first": "2004-01-01 00:00:00+00:00",
+          "last": "2026-07-22 00:00:00+00:00",
+          "sha256": "58918fa2a929a7e1b6db1f6bcec8bd1c633fc807387d8761b1519df8c09c24aa",
+          "path": "data/fx_candles/USD_CAD.parquet"
+        },
+        {
+          "name": "USD/CHF",
+          "category": "fx_candles",
+          "rows": 7234,
+          "first": "2004-01-01 00:00:00+00:00",
+          "last": "2026-07-22 00:00:00+00:00",
+          "sha256": "1d4cbb6329b2f44d5532b2a6192f4166b1b726462dca889fcbc8b5f6855ce2dc",
+          "path": "data/fx_candles/USD_CHF.parquet"
+        },
+        {
+          "name": "NZD/USD",
+          "category": "fx_candles",
+          "rows": 7174,
+          "first": "2004-01-01 00:00:00+00:00",
+          "last": "2026-07-22 00:00:00+00:00",
+          "sha256": "b45b55ab8955ab25ae1c79067723a26cf0c55abb3a3694ab2fe8711c4b3959a9",
+          "path": "data/fx_candles/NZD_USD.parquet"
+        },
+        {
           "name": "ES",
           "category": "cot",
           "rows": 602,
@@ -229,59 +337,10 @@
           "path": "data/options_flow/QQQ.parquet"
         }
       ],
-      "dataset_count": 25,
-      "total_rows": 73405
+      "dataset_count": 37,
+      "total_rows": 142139
     },
-    "errors": [
-      {
-        "dataset": "futures_candles:ES.F",
-        "error": "[400] {\"detail\":\"invalid date '2004-01-01T00:00:00+00:00' (use YYYY-MM-DD)\"}"
-      },
-      {
-        "dataset": "futures_candles:NQ.F",
-        "error": "[400] {\"detail\":\"invalid date '2004-01-01T00:00:00+00:00' (use YYYY-MM-DD)\"}"
-      },
-      {
-        "dataset": "futures_candles:GC.F",
-        "error": "[400] {\"detail\":\"invalid date '2004-01-01T00:00:00+00:00' (use YYYY-MM-DD)\"}"
-      },
-      {
-        "dataset": "futures_candles:SI.F",
-        "error": "[400] {\"detail\":\"invalid date '2004-01-01T00:00:00+00:00' (use YYYY-MM-DD)\"}"
-      },
-      {
-        "dataset": "benchmark_candles:SPY",
-        "error": "[400] {\"detail\":\"invalid date '2004-01-01T00:00:00+00:00' (use YYYY-MM-DD)\"}"
-      },
-      {
-        "dataset": "fx_candles:EUR/USD",
-        "error": "[400] {\"detail\":\"invalid date '2004-01-01T00:00:00+00:00' (use YYYY-MM-DD)\"}"
-      },
-      {
-        "dataset": "fx_candles:GBP/USD",
-        "error": "[400] {\"detail\":\"invalid date '2004-01-01T00:00:00+00:00' (use YYYY-MM-DD)\"}"
-      },
-      {
-        "dataset": "fx_candles:USD/JPY",
-        "error": "[400] {\"detail\":\"invalid date '2004-01-01T00:00:00+00:00' (use YYYY-MM-DD)\"}"
-      },
-      {
-        "dataset": "fx_candles:AUD/USD",
-        "error": "[400] {\"detail\":\"invalid date '2004-01-01T00:00:00+00:00' (use YYYY-MM-DD)\"}"
-      },
-      {
-        "dataset": "fx_candles:USD/CAD",
-        "error": "[400] {\"detail\":\"invalid date '2004-01-01T00:00:00+00:00' (use YYYY-MM-DD)\"}"
-      },
-      {
-        "dataset": "fx_candles:USD/CHF",
-        "error": "[400] {\"detail\":\"invalid date '2004-01-01T00:00:00+00:00' (use YYYY-MM-DD)\"}"
-      },
-      {
-        "dataset": "fx_candles:NZD/USD",
-        "error": "[400] {\"detail\":\"invalid date '2004-01-01T00:00:00+00:00' (use YYYY-MM-DD)\"}"
-      }
-    ],
+    "errors": [],
     "selected_futures": [
       "ES.F",
       "NQ.F",
@@ -291,7 +350,7 @@
   }
 }
 Traceback (most recent call last):
-  File "/home/runner/work/alpha-research/alpha-research/lse_campaign_runner.py", line 44, in <module>
+  File "/home/runner/work/alpha-research/alpha-research/lse_campaign_runner.py", line 84, in <module>
     raise SystemExit(campaign.main())
                      ^^^^^^^^^^^^^^^
   File "/home/runner/work/alpha-research/alpha-research/lse_institutional_campaign.py", line 359, in main
@@ -299,16 +358,8 @@ Traceback (most recent call last):
                                   ^^^^^^^^^^^^^^^^^^^^^
   File "/home/runner/work/alpha-research/alpha-research/lse_institutional_campaign.py", line 304, in research
     base = [futures_trend(futures), cot_relative_value(cot, futures), fx_carry(fx, yields)]
-            ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/alpha-research/alpha-research/lse_institutional_campaign.py", line 179, in futures_trend
-    closes = pd.concat({name: frame["close"] for name, frame in frames.items()}, axis=1).sort_index().ffill(limit=3)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/pandas/core/reshape/concat.py", line 382, in concat
-    op = _Concatenator(
-         ^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/pandas/core/reshape/concat.py", line 445, in __init__
-    objs, keys = self._clean_keys_and_objs(objs, keys)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/pandas/core/reshape/concat.py", line 507, in _clean_keys_and_objs
-    raise ValueError("No objects to concatenate")
-ValueError: No objects to concatenate
+                                                                      ^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/alpha-research/alpha-research/lse_institutional_campaign.py", line 245, in fx_carry
+    base, quote = pair.split("/")
+    ^^^^^^^^^^^
+ValueError: not enough values to unpack (expected 2, got 1)
