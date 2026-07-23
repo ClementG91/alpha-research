@@ -5,6 +5,7 @@ import pandas as pd
 
 import alpha_hunt
 import alpha_hunt_runner  # noqa: F401  # installs the sparse target-weight implementation
+import quant_validation
 
 
 def test_candidate_protocol_is_small_and_frozen() -> None:
@@ -58,3 +59,19 @@ def test_signal_enters_at_next_open_and_costs_use_turnover() -> None:
         -result.turnover * 5.0 / 10_000.0,
         check_names=False,
     )
+
+
+def test_pbo_treats_degenerate_folds_as_failure_instead_of_crashing() -> None:
+    dates = pd.date_range("2010-01-01", periods=1000, freq="B")
+    rng = np.random.default_rng(91)
+    candidates = pd.DataFrame(
+        {
+            "active": rng.normal(0.0, 0.01, len(dates)),
+            "flat_a": 0.0,
+            "flat_b": 0.0,
+        },
+        index=dates,
+    )
+    result = quant_validation.probability_of_backtest_overfitting(candidates)
+    assert result["combinations"] > 0
+    assert 0.0 <= result["pbo"] <= 1.0
