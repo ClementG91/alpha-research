@@ -1,4 +1,5 @@
 -r requirements-manifold.txt
 -r requirements-cross-asset.txt
+-r requirements-institutional.txt
 pytest>=8.3,<10
 ruff>=0.9,<1
