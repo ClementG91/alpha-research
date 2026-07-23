@@ -1,3 +1,4 @@
 -r requirements-manifold.txt
-pytest>=8.3,<9
+-r requirements-cross-asset.txt
+pytest>=8.3,<10
 ruff>=0.9,<1
