@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="440" viewBox="0 0 900 440" role="img" aria-labelledby="title desc">
+  <title id="title">Secondary historical audit and execution stress</title>
+  <desc id="desc">All three Sharpe ratios were slightly negative: minus 0.089 for the legacy audit, minus 0.098 with doubled slippage, and minus 0.089 with two-bar delay.</desc>
+  <rect width="900" height="440" fill="white"/>
+  <g font-family="Arial, sans-serif" fill="#111">
+    <text x="450" y="34" text-anchor="middle" font-size="22" font-weight="700">Secondary historical audit and stress</text>
+    <text x="450" y="58" text-anchor="middle" font-size="13" fill="#555">2025–1 July 2026 was already consumed and is not a pristine holdout</text>
+    <line x1="90" y1="170" x2="850" y2="170" stroke="#222"/>
+    <line x1="90" y1="90" x2="90" y2="360" stroke="#222"/>
+    <rect x="170" y="170" width="140" height="108" rx="4" fill="#666"/>
+    <rect x="380" y="170" width="140" height="118" rx="4" fill="#999"/>
+    <rect x="590" y="170" width="140" height="108" rx="4" fill="#777"/>
+    <text x="240" y="300" text-anchor="middle" font-size="15">−0.089</text>
+    <text x="450" y="310" text-anchor="middle" font-size="15">−0.098</text>
+    <text x="660" y="300" text-anchor="middle" font-size="15">−0.089</text>
+    <text x="240" y="390" text-anchor="middle" font-size="14">Legacy audit</text>
+    <text x="450" y="390" text-anchor="middle" font-size="14">Double slippage</text>
+    <text x="660" y="390" text-anchor="middle" font-size="14">Two-bar delay</text>
+  </g>
+</svg>
