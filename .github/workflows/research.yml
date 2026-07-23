@@ -6,6 +6,7 @@ on:
     paths:
       - "manifold_research.py"
       - "run_walk_forward_mean_reversion.py"
+      - "run_walk_forward_mean_reversion_v2.py"
       - "requirements-manifold.txt"
       - ".github/workflows/research.yml"
   workflow_dispatch:
@@ -42,7 +43,7 @@ jobs:
           MANIFOLDBT_MCP_URL: https://mcp.manifoldbt.com/mcp
         run: |
           rm -rf results/walk_forward
-          python run_walk_forward_mean_reversion.py --output results/walk_forward
+          python run_walk_forward_mean_reversion_v2.py --output results/walk_forward
 
       - name: Print research report or fatal error
         if: always()
