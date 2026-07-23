@@ -28,19 +28,19 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Syntax check
-        run: python -m py_compile campaign.py generation4.py
+        run: python -m py_compile campaign.py generation5.py
 
-      - name: Run crypto anomaly and volatility campaign
+      - name: Run thresholded volatility momentum campaign
         run: |
           rm -rf results
           mkdir -p results
-          python generation4.py
+          python generation5.py
 
       - name: Print research summary
         if: always()
         run: |
-          if [ -f results/GENERATION4.md ]; then
-            cat results/GENERATION4.md
+          if [ -f results/GENERATION5.md ]; then
+            cat results/GENERATION5.md
           fi
           if [ -f results/FATAL.txt ]; then
             cat results/FATAL.txt
