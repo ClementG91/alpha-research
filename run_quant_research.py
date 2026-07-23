@@ -77,6 +77,32 @@ def download_prices(tickers: list[str], retries: int = 3) -> pd.DataFrame:
     )
 
 
+def enforce_minimum_history(
+    prices: pd.DataFrame,
+    minimum_daily_observations: int = 504,
+) -> pd.DataFrame:
+    """Hide each asset until roughly two trading years of history exist.
+
+    This prevents a newly launched ETF or crypto asset from being scored from
+    imputed features before a realistic live model could have estimated its
+    momentum, volatility and covariance structure.
+    """
+    eligible = prices.copy()
+    for symbol in eligible.columns:
+        valid_dates = eligible[symbol].dropna().index
+        if len(valid_dates) < minimum_daily_observations:
+            eligible[symbol] = float("nan")
+            continue
+        eligibility_date = valid_dates[minimum_daily_observations - 1]
+        eligible.loc[eligible.index < eligibility_date, symbol] = float("nan")
+    eligible = eligible.dropna(axis=1, how="all")
+    if eligible.shape[1] < 8:
+        raise RuntimeError(
+            "fewer than eight assets remain after the minimum-history guard"
+        )
+    return eligible
+
+
 def fmt(value: object, percentage: bool = False) -> str:
     try:
         number = float(value)
@@ -106,6 +132,7 @@ def build_markdown(result: ResearchResult) -> str:
         "",
         f"- Data range: `{diagnostics['data_start']}` to `{diagnostics['data_end']}`",
         f"- Assets: `{', '.join(diagnostics['assets'])}`",
+        "- Point-in-time eligibility: `minimum two years of prior history`",
         (
             "- Anti-lookahead audit: `"
             f"{'PASS' if diagnostics['anti_lookahead_pass'] else 'FAIL'}`"
@@ -223,7 +250,7 @@ def main() -> int:
 
     out = Path(args.output)
     out.mkdir(parents=True, exist_ok=True)
-    prices = download_prices(DEFAULT_TICKERS)
+    prices = enforce_minimum_history(download_prices(DEFAULT_TICKERS))
     prices.to_csv(out / "prices_daily.csv")
 
     config = ResearchConfig(
