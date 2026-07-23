@@ -1,5 +1,6 @@
 name: Fresh-universe residual-momentum validation
 
+# Generation 2: parameters are selected on core assets before the external universe is evaluated.
 on:
   pull_request:
     branches: [main]
