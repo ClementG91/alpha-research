@@ -1,5 +1,6 @@
 name: Persistent factor-neutral cross-asset research
 
+# Generation 3: persistent positions and costs charged only on actual turnover.
 on:
   pull_request:
     branches: [main]
