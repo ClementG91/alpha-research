@@ -1,0 +1,57 @@
+name: Frozen strategy paper monitor
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 4 * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: manifold-paper-monitor
+  cancel-in-progress: true
+
+jobs:
+  paper:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements-manifold.txt
+
+      - name: Install dependencies
+        run: python -m pip install --upgrade pip && pip install -r requirements-manifold.txt
+
+      - name: Check frozen strategy exists
+        run: test -f results/walk_forward/locked_strategy.json
+
+      - name: Run forward-only paper monitor
+        env:
+          MANIFOLDBT_MCP_URL: https://mcp.manifoldbt.com/mcp
+        run: |
+          rm -rf results/paper_monitor
+          python run_paper_monitor.py \
+            --strategy results/walk_forward/locked_strategy.json \
+            --start 2026-07-02 \
+            --output results/paper_monitor
+
+      - name: Print paper report
+        if: always()
+        run: |
+          test ! -f results/paper_monitor/REPORT.md || cat results/paper_monitor/REPORT.md
+          test ! -f results/paper_monitor/FATAL.txt || cat results/paper_monitor/FATAL.txt
+
+      - name: Upload paper-monitor artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: manifold-paper-monitor-${{ github.run_number }}
+          path: results/paper_monitor/
+          if-no-files-found: warn
+          retention-days: 90
