@@ -1,2 +1,4 @@
 Alpha campaign did not run because a code-quality gate failed.
-Inspect the GitHub Actions step conclusions for Ruff, compileall, and pytest.
+Ruff: failure
+Compile: success
+Pytest: success
