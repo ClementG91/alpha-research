@@ -1,0 +1,16 @@
+.env
+.env.*
+!.env.example
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+*.py[cod]
+.venv/
+venv/
+
+data/cache/
+data/lse/
+results/lse_institutional/data/
+results/lse_institutional/*.parquet
+results/lse_institutional/manifest.json
+results/lse_institutional/collection_errors.json
