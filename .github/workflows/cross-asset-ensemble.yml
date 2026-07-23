@@ -1,5 +1,6 @@
 name: Fixed multi-premia cross-asset ensemble
 
+# Final fixed protocol: no parameter search and equal sleeve weights.
 on:
   pull_request:
     branches: [main]
