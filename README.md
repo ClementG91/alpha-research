@@ -1,83 +1,104 @@
 # Alpha Research — ManifoldBT MCP only
 
-Every market calculation in the active pipeline is executed by the remote **ManifoldBT MCP engine**. Python only orchestrates the MCP calls, preserves the raw payloads and renders SVG files from the numerical series returned by ManifoldBT.
+Every market calculation in the active pipeline is executed by the remote **ManifoldBT MCP engine**. Python orchestrates calls, freezes reviewed parameters and renders plots from Manifold payloads; it does not recalculate strategy performance.
 
-The previous `yfinance`/scikit-learn multi-asset engine is no longer part of the active research path.
+## Current research direction — conditional-volatility mean reversion
 
-## Current reviewed result — 23 July 2026
+The active candidate search is symmetrical long/short and aims for positive alpha with minimal exposure to Manifold's available market-factor beta.
 
-ManifoldBT Community 0.14.0 selected the `return_vol_long_cash` family on BTCUSDT, ETHUSDT, SOLUSDT, BNBUSDT and XRPUSDT using 4-hour bars.
+The final protocol uses:
 
-| Period | Sharpe | Return | Max drawdown | Trades |
-|---|---:|---:|---:|---:|
-| Train 2021–2023 | 1.480 | +359.19% | -46.43% | 271 |
-| Validation 2024 | 0.959 | +26.27% | -25.31% | 96 |
-| Frozen holdout 2025–1 Jul 2026 | **0.320** | +7.14% | -22.81% | 130 |
-| 2025 | 0.895 | +21.01% | -13.40% | 76 |
-| 2026 YTD | **-1.007** | **-4.90%** | -7.31% | 30 |
+- five mean-reversion families with GARCH conditional-volatility regime sizing;
+- 4-hour bars across ten Binance CryptoSpot proxies;
+- three expanding walk-forward folds with unseen calendar years 2022, 2023 and 2024;
+- Binance-perps fee preset, 3 bps slippage and one-bar `AtOpen` execution delay;
+- full active-grid enumeration through Manifold `run_batch`;
+- parameter consensus across folds rather than selection on the later audit period;
+- a frozen forward paper monitor starting 2 July 2026.
 
-**Decision: rejected.** The required net holdout Sharpe of 1.5 is not reached and the 2026 subperiod is negative.
+## Reviewed result — 23 July 2026
 
-Frozen parameters: `fast=12`, `slow=240`, `vol_window=120`, `risk_z=1.25`, `base_long=0.15`, `risk_long=0.15`, with no short exposure.
+Selected family: `dual_garch_exhaustion`.
 
-## Manifold-derived plots
+| Unseen fold | Sharpe | Alpha | Beta | Return | Max drawdown | Trades |
+|---|---:|---:|---:|---:|---:|---:|
+| 2022 | 0.165 | 0.0031 | -0.0055 | +0.64% | -5.44% | 23 |
+| 2023 | 0.985 | 0.0390 | -0.0084 | +3.06% | -2.17% | 44 |
+| 2024 | **-0.527** | **-0.0109** | -0.0021 | **-1.31%** | -4.05% | 89 |
 
-These SVG files are rendered only from ManifoldBT MCP payloads. The complete source payload is committed as [`results/manifold/raw.json`](results/manifold/raw.json).
+Aggregate:
 
-### Frozen holdout equity
+- median unseen Sharpe: **0.165**;
+- worst unseen Sharpe: **-0.527**;
+- maximum absolute beta: **0.0084**;
+- positive-alpha folds: **2/3**;
+- total unseen trades: **156**.
 
-![Frozen holdout equity](results/manifold/plots/equity_curve.svg)
+**Decision: rejected as validated alpha.** The low-beta objective worked, but alpha changed sign in 2024 and the historical multi-fold gate failed.
 
-### Frozen holdout drawdown
+The secondary 2025–1 July 2026 audit was also negative: Sharpe **-0.089**, alpha **-0.0021**, return **-0.23%**. That period was consumed by previous research and is not treated as a pristine holdout.
 
-![Frozen holdout drawdown](results/manifold/plots/drawdown.svg)
+Full reviewed report: [`results/walk_forward/REPORT.md`](results/walk_forward/REPORT.md).
 
-### Sharpe by chronological period
+## Walk-forward plots
 
-![Sharpe by period](results/manifold/plots/period_metrics.svg)
+### Unseen-year Sharpe
 
-### Training parameter surface
+![Walk-forward Sharpe](results/walk_forward/plots/fold_sharpe.svg)
 
-![Parameter heatmap](results/manifold/plots/parameter_heatmap.svg)
+### Unseen-year alpha and beta
 
-### Validation parameter stability
+![Walk-forward alpha and beta](results/walk_forward/plots/fold_alpha_beta.svg)
 
-![Parameter stability](results/manifold/plots/stability.svg)
+### Family selection scores
 
-The tested `risk_z` values all returned approximately 0.964 validation Sharpe. That flat line is not automatically proof of robustness; it may mean the parameter did not materially alter positions over this validation window.
+![Family scores](results/walk_forward/plots/family_scores.svg)
 
-### Monte Carlo risk
+### Secondary audit and execution stress
 
-![Monte Carlo risk](results/manifold/plots/monte_carlo.svg)
+![Legacy stress](results/walk_forward/plots/legacy_stress.svg)
 
-Manifold's 1,000-path block bootstrap reports:
+### Forward paper monitor
 
-- mean terminal return: +11.32%;
-- `prob_of_ruin`: 39.9%;
-- 95th-percentile maximum drawdown: 35.20%;
-- 99th-percentile maximum drawdown: 42.19%;
-- no wipeout observed in 1,000 paths, which must not be read as zero wipeout risk.
+![Paper monitor](results/walk_forward/plots/paper_equity.svg)
 
-## What actually comes from ManifoldBT
+## Frozen paper validation
 
-- strategy validation;
-- symbol discovery from the server datastore;
-- parameter sweeps and overfitting correction;
-- train, validation and frozen holdout backtests;
-- equity curve and daily returns;
-- two-dimensional parameter surface;
-- parameter stability analysis;
-- Monte Carlo risk simulation.
+[`results/walk_forward/locked_strategy.json`](results/walk_forward/locked_strategy.json) contains the reviewed DSL specification and fixed parameters. The daily paper workflow recompiles that specification but cannot alter the values.
 
-The CI runs Ruff, compilation and tests on Python 3.11 and 3.12. The research workflow uploads a complete artifact; committing a new result snapshot remains a reviewed, explicit action rather than an automatic bot mutation.
+A strategy cannot be labelled validated until the forward window contains at least:
+
+- 90 calendar days;
+- 20 trades;
+- Sharpe of 0.75 or more;
+- positive alpha;
+- absolute beta no greater than 0.15.
+
+At the reviewed snapshot, the paper window contained only 21 days and zero trades, so its status is **collecting**, not validated.
+
+## Monte Carlo risk
+
+The 1,000-path development block bootstrap reports:
+
+- mean terminal return: +1.58%;
+- probability of ruin: 44.7%;
+- 95% return CVaR: -24.11%;
+- 99% return CVaR: -31.21%;
+- mean maximum drawdown: 13.17%;
+- 95th-percentile maximum drawdown: 26.33%;
+- 99th-percentile maximum drawdown: 32.63%.
+
+No wipeout was observed in 1,000 paths; this is not evidence of zero wipeout risk.
+
+## Archived directional result
+
+The earlier `return_vol_long_cash` research remains under [`results/manifold`](results/manifold), but it is no longer the active direction. Its frozen holdout Sharpe was 0.320 and its 2026 YTD Sharpe was -1.007, so it was rejected.
 
 ## Real blocking limitations
 
-- The server reports the **Community** licence and refuses native `run_walk_forward`, which requires Pro.
-- The exposed MCP toolset has no `ingest_data`, so this pipeline cannot add equities, futures or custom datasets.
-- The preloaded datastore contains 50 Binance **CryptoSpot** proxies, not complete perpetual-contract history.
-- Historical funding, basis, open interest and liquidation data are unavailable.
+- Native `run_walk_forward` is Pro-only; expanding folds are orchestrated through separate Manifold calls.
+- The MCP cannot ingest SPY, so reported beta is not a direct S&P 500 regression beta.
+- The datastore contains Binance CryptoSpot proxies, not genuine perpetual history.
+- Funding, basis, open interest and liquidation data are unavailable.
 - Community Monte Carlo is capped at 1,000 paths.
-- The `binance_perps` fee preset can model fees, but it does not turn spot proxy bars into genuine perpetual-market data.
-
-The chronological train/validation/holdout split is genuinely separated, but it is orchestrated through independent MCP calls rather than ManifoldBT's native Pro walk-forward engine.
+- The 2025–2026 audit is already consumed and cannot legitimately be reused as an optimisation target.
