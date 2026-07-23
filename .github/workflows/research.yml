@@ -1,25 +1,30 @@
-name: Crypto alpha research
+name: Multi-asset quant research
 
 on:
-  push:
-    branches: [main]
-    paths-ignore:
-      - "results/**"
-  pull_request:
-    branches: [main]
   workflow_dispatch:
-
-concurrency:
-  group: alpha-research-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: true
+    inputs:
+      monte_carlo_paths:
+        description: Block-bootstrap paths
+        required: false
+        default: "5000"
+      permutation_trials:
+        description: Cross-sectional permutation trials
+        required: false
+        default: "1000"
+  schedule:
+    - cron: "17 3 * * 0"
 
 permissions:
-  contents: write
+  contents: read
+
+concurrency:
+  group: multi-asset-quant-research
+  cancel-in-progress: true
 
 jobs:
   research:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
 
@@ -27,45 +32,40 @@ jobs:
         with:
           python-version: "3.12"
           cache: pip
+          cache-dependency-path: requirements-quant.txt
 
-      - name: Install dependencies
-        run: pip install -r requirements.txt
+      - name: Install quant dependencies
+        run: python -m pip install --upgrade pip && pip install -r requirements-quant.txt
 
-      - name: Syntax check
-        run: python -m py_compile campaign.py generation7.py verify_candidate.py
+      - name: Compile research engine
+        run: python -m compileall -q quant_research run_quant_research.py
 
-      - name: Verify selected volatility candidate
+      - name: Run maximum-history walk-forward research
+        env:
+          PYTHONHASHSEED: "0"
+          MC_PATHS: ${{ inputs.monte_carlo_paths || '5000' }}
+          PERMUTATION_TRIALS: ${{ inputs.permutation_trials || '1000' }}
         run: |
-          rm -rf results
-          mkdir -p results
-          python verify_candidate.py
+          rm -rf results/quant
+          python run_quant_research.py \
+            --output results/quant \
+            --mc-paths "$MC_PATHS" \
+            --permutation-trials "$PERMUTATION_TRIALS" \
+            --holdout-months 36
 
-      - name: Print verification summary
+      - name: Print report
         if: always()
         run: |
-          if [ -f results/VERIFIED_CANDIDATE.md ]; then
-            cat results/VERIFIED_CANDIDATE.md
-          fi
-          if [ -f results/FATAL.txt ]; then
-            cat results/FATAL.txt
-          fi
+          test ! -f results/quant/REPORT.md || cat results/quant/REPORT.md
+          test ! -f results/FATAL.txt || cat results/FATAL.txt
 
-      - name: Persist research results on main
-        if: success() && github.event_name == 'push' && github.ref == 'refs/heads/main'
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add results/
-          if ! git diff --cached --quiet; then
-            git commit -m "record crypto alpha research results"
-            git push
-          fi
-
-      - name: Upload raw research artifacts
+      - name: Upload complete research bundle
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: alpha-research-results
-          path: results/
+          name: multi-asset-quant-research-${{ github.run_number }}
+          path: |
+            results/quant/
+            results/FATAL.txt
           if-no-files-found: warn
           retention-days: 30
