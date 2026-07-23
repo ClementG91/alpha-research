@@ -1,57 +1,17 @@
-name: Cross-asset statistical-arbitrage research
+name: Archived daily mean-reversion experiment
 
 on:
-  pull_request:
-    branches: [main]
-    paths:
-      - "cross_asset_research.py"
-      - "cross_asset_research_v2.py"
-      - "cross_asset_research_v3.py"
-      - "cross_asset_research_v4.py"
-      - "requirements-cross-asset.txt"
-      - "tests/test_cross_asset_research.py"
-      - ".github/workflows/cross-asset-research.yml"
   workflow_dispatch:
-  schedule:
-    - cron: "37 3 * * 0"
 
 permissions:
   contents: read
 
-concurrency:
-  group: cross-asset-research-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: true
-
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        python-version: ["3.11", "3.12"]
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.head_ref || github.ref_name }}
-      - uses: actions/setup-python@v5
-        with:
-          python-version: ${{ matrix.python-version }}
-          cache: pip
-          cache-dependency-path: requirements-cross-asset.txt
-      - run: python -m pip install --upgrade pip && pip install -r requirements-cross-asset.txt
-      - run: ruff check --select E9,F cross_asset_research.py cross_asset_research_v2.py cross_asset_research_v3.py cross_asset_research_v4.py tests/test_cross_asset_research.py
-      - run: python -m compileall -q cross_asset_research.py cross_asset_research_v2.py cross_asset_research_v3.py cross_asset_research_v4.py tests/test_cross_asset_research.py
-      - run: pytest -q tests/test_cross_asset_research.py
-        env:
-          PYTHONPATH: "."
-
   research:
     runs-on: ubuntu-latest
     timeout-minutes: 180
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.head_ref || github.ref_name }}
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -62,8 +22,7 @@ jobs:
         with:
           path: data/cache/stooq
           key: market-daily-v2-${{ runner.os }}
-      - name: Run nested walk-forward research
-        id: research
+      - name: Reproduce rejected experiment
         env:
           LSE_API_KEY: ${{ secrets.LSE_API_KEY }}
         run: |
@@ -72,20 +31,14 @@ jobs:
           python cross_asset_research_v4.py --output results/cross_asset --cost-bps 5
           code=$?
           set -e
-          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
           if [ "$code" -eq 1 ]; then
             exit 1
           fi
-      - name: Print report or fatal diagnostics
-        if: always()
-        run: |
-          test ! -f results/cross_asset/REPORT.md || cat results/cross_asset/REPORT.md
-          test ! -f results/cross_asset/FATAL.txt || cat results/cross_asset/FATAL.txt
-      - name: Upload data provenance, results and plots
+      - name: Upload reproduction artifact
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: cross-asset-research-${{ github.run_number }}
+          name: archived-mean-reversion-${{ github.run_number }}
           path: results/cross_asset/
           if-no-files-found: warn
-          retention-days: 90
+          retention-days: 30
