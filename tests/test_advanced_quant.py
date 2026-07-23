@@ -3,7 +3,7 @@ from __future__ import annotations
 import numpy as np
 import pandas as pd
 
-from quant_research.advanced_v2 import run_advanced_walk_forward
+from quant_research.advanced_v3 import run_advanced_walk_forward
 from quant_research.core import ResearchConfig
 
 
@@ -70,4 +70,6 @@ def test_advanced_sleeves_are_purged_and_constrained() -> None:
         "ml_3m",
         "ml_6m",
         "statistical_trend",
+        "pca_residual_momentum",
+        "macro_defensive_risk_parity",
     }
