@@ -9,6 +9,7 @@ on:
       - "run_walk_forward_mean_reversion_v2.py"
       - "run_walk_forward_mean_reversion_v3.py"
       - "run_walk_forward_mean_reversion_v4.py"
+      - "run_walk_forward_mean_reversion_v5.py"
       - "requirements-manifold.txt"
       - ".github/workflows/research.yml"
   workflow_dispatch:
@@ -45,13 +46,15 @@ jobs:
           MANIFOLDBT_MCP_URL: https://mcp.manifoldbt.com/mcp
         run: |
           rm -rf results/walk_forward
-          python run_walk_forward_mean_reversion_v4.py --output results/walk_forward
+          python run_walk_forward_mean_reversion_v5.py --output results/walk_forward
 
-      - name: Print research report or fatal error
+      - name: Print research diagnostics
         if: always()
         run: |
           test ! -f results/walk_forward/REPORT.md || cat results/walk_forward/REPORT.md
           test ! -f results/walk_forward/FATAL.txt || cat results/walk_forward/FATAL.txt
+          test ! -f results/walk_forward/fold-diagnostics.jsonl || cat results/walk_forward/fold-diagnostics.jsonl
+          test ! -f results/walk_forward/call-errors.jsonl || cat results/walk_forward/call-errors.jsonl
 
       - name: Upload locked strategy, raw MCP payloads and plots
         if: always()
