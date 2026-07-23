@@ -5,6 +5,7 @@ import pandas as pd
 
 import alpha_hunt
 import alpha_hunt_runner  # noqa: F401  # installs the hedged target-weight implementation
+import cross_asset_research as engine
 import quant_validation
 
 
@@ -52,6 +53,25 @@ def test_candidate_protocol_is_small_and_frozen() -> None:
     candidates = alpha_hunt.make_candidates()
     assert len(candidates) == 12
     assert len({candidate.key for candidate in candidates}) == 12
+
+
+def test_mixed_provider_timestamps_align_to_one_session() -> None:
+    columns = {
+        "Open": [100.0],
+        "High": [101.0],
+        "Low": [99.0],
+        "Close": [100.5],
+        "Volume": [1_000.0],
+    }
+    midnight = pd.DataFrame(columns, index=[pd.Timestamp("2020-01-02 00:00:00")])
+    market_open = pd.DataFrame(columns, index=[pd.Timestamp("2020-01-02 14:30:00+00:00")])
+    data = {
+        "A": alpha_hunt_runner.normalize_session_frame(midnight),
+        "B": alpha_hunt_runner.normalize_session_frame(market_open),
+    }
+    panel = engine.align_panel(data)
+    assert len(panel["close"]) == 1
+    assert panel["close"].notna().all(axis=1).iloc[0]
 
 
 def test_prior_zscore_is_unchanged_by_future_mutation() -> None:
