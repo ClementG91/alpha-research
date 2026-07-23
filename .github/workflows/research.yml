@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - "manifold_research.py"
+      - "run_manifold_research.py"
       - "requirements-manifold.txt"
       - ".github/workflows/research.yml"
   workflow_dispatch:
@@ -42,7 +43,7 @@ jobs:
           MANIFOLDBT_MCP_URL: https://mcp.manifoldbt.com/mcp
         run: |
           rm -rf results/manifold
-          python manifold_research.py --output results/manifold
+          python run_manifold_research.py --output results/manifold
 
       - name: Publish report and plots to the branch
         if: success()
