@@ -32,19 +32,19 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Syntax check
-        run: python -m py_compile campaign.py generation7.py
+        run: python -m py_compile campaign.py generation7.py verify_candidate.py
 
-      - name: Run native volatility overlay campaign
+      - name: Verify selected volatility candidate
         run: |
           rm -rf results
           mkdir -p results
-          python generation7.py
+          python verify_candidate.py
 
-      - name: Print research summary
+      - name: Print verification summary
         if: always()
         run: |
-          if [ -f results/GENERATION7.md ]; then
-            cat results/GENERATION7.md
+          if [ -f results/VERIFIED_CANDIDATE.md ]; then
+            cat results/VERIFIED_CANDIDATE.md
           fi
           if [ -f results/FATAL.txt ]; then
             cat results/FATAL.txt
