@@ -1,0 +1,102 @@
+{
+  "protocol_version": "1.0.0",
+  "frozen_before_authenticated_data_access": true,
+  "frozen_date": "2026-07-23",
+  "principles": [
+    "No ICT, SMC, order blocks, chart patterns or discretionary labels.",
+    "No parameter is selected on the final evaluation segment.",
+    "Signals are formed only from information timestamped as available before execution.",
+    "Publication lags are explicit for COT, macro releases and financial reports.",
+    "All costs are charged on actual turnover; futures include roll costs and options include spread and delta-hedge costs.",
+    "Instrument trades are not treated as independent statistical observations.",
+    "A failed final segment is consumed and cannot be recycled as a fresh holdout."
+  ],
+  "hypotheses": [
+    {
+      "id": "futures_trend",
+      "economic_rationale": "Slow-moving hedging demand, behavioural under-reaction and institutional position adjustment create persistent trends across unrelated futures markets.",
+      "universe": "Liquid equity-index, rate, FX, energy, metal and agricultural futures discovered from the LSE catalog.",
+      "signal": "Equal-weighted signs of 1, 3, 6 and 12 month excess returns, scaled by 36 month realised volatility.",
+      "rebalance": "Weekly",
+      "execution_lag": "One full session",
+      "search_space": 1
+    },
+    {
+      "id": "futures_curve_carry",
+      "economic_rationale": "Roll yield compensates inventory, convenience-yield and financing imbalances and is distinct from outright direction.",
+      "universe": "Futures roots with at least two simultaneously traded contracts and reliable expiry metadata.",
+      "signal": "Annualised front-to-next log-price slope, winsorised cross-sectionally within asset class; hold until the earlier of monthly rebalance or roll window.",
+      "rebalance": "Monthly",
+      "execution_lag": "One full session",
+      "search_space": 1
+    },
+    {
+      "id": "cot_commercial_pressure",
+      "economic_rationale": "Commercial hedgers and leveraged funds carry different information and risk premia; extreme positioning can forecast medium-horizon returns.",
+      "universe": "Futures roots with COT history and tradeable price history.",
+      "signal": "Commercial net-position percentile minus managed-money percentile over a fixed 156-week window.",
+      "rebalance": "Weekly after release",
+      "execution_lag": "Next Monday close after the CFTC publication timestamp",
+      "search_space": 1
+    },
+    {
+      "id": "fx_carry_value",
+      "economic_rationale": "Currency risk premia are related to interest-rate differentials, external balances and long-run valuation, but crash risk must be explicitly controlled.",
+      "universe": "G10 USD crosses with matching policy-rate or two-year-yield series.",
+      "signal": "50% lagged yield differential and 50% five-year real-exchange-rate deviation; volatility and global-risk scaling fixed ex ante.",
+      "rebalance": "Monthly",
+      "execution_lag": "One full session after all macro inputs are available",
+      "search_space": 1
+    },
+    {
+      "id": "options_variance_risk_premium",
+      "economic_rationale": "Index option sellers are compensated for warehousing crash and convexity risk; the premium should be measured against subsequently realised variance, not option direction.",
+      "universe": "SPX/SPY and other index underlyings with historical option prints, IV, greeks and contract candles.",
+      "signal": "Sell delta-hedged 30-to-45 DTE variance only when model-free implied variance exceeds trailing 21-day realised variance by a fixed volatility-scaled threshold.",
+      "rebalance": "Weekly",
+      "execution_lag": "Next tradable quote after signal timestamp",
+      "search_space": 1
+    },
+    {
+      "id": "index_dispersion",
+      "economic_rationale": "Index correlation risk is priced differently from single-name variance, creating a diversified relative-value premium.",
+      "universe": "Index and liquid constituents with simultaneous option history.",
+      "signal": "Long constituent variance and short index variance at matched vega when implied correlation exceeds its expanding historical median.",
+      "rebalance": "Weekly",
+      "execution_lag": "Next tradable quote",
+      "search_space": 1
+    },
+    {
+      "id": "macro_surprise_relative_value",
+      "economic_rationale": "The market response to standardised macro surprises differs across rates, FX and equity futures and can be traded cross-sectionally after release.",
+      "universe": "US, euro-area and UK CPI, labour, growth and central-bank events with forecast and actual values plus intraday futures data.",
+      "signal": "Expanding-window standardised actual-minus-consensus surprise mapped to a predeclared cross-asset response matrix.",
+      "rebalance": "Per event",
+      "execution_lag": "Thirty minutes after the recorded release time",
+      "search_space": 1
+    }
+  ],
+  "validation": {
+    "minimum_history_years": 8,
+    "minimum_daily_portfolio_observations": 1500,
+    "purged_combinatorial_cross_validation": true,
+    "embargo_sessions": 21,
+    "hansen_spa_or_white_reality_check": true,
+    "deflated_sharpe_ratio": true,
+    "probability_of_backtest_overfitting": true,
+    "hac_alpha_regression": true,
+    "block_bootstrap": true,
+    "acceptance_gates": {
+      "net_sharpe": 0.8,
+      "hac_alpha_t_stat": 2.0,
+      "deflated_sharpe_probability": 0.95,
+      "maximum_pbo": 0.10,
+      "maximum_spa_pvalue": 0.05,
+      "maximum_absolute_spy_beta": 0.10,
+      "maximum_absolute_spy_correlation": 0.20,
+      "positive_after_double_costs": true,
+      "positive_after_extra_delay": true,
+      "positive_in_at_least_70_percent_of_subperiods": true
+    }
+  }
+}
