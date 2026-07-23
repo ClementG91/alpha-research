@@ -1,0 +1,232 @@
+{
+  "dataset_count": 25,
+  "datasets": [
+    {
+      "category": "discovery",
+      "first": null,
+      "last": null,
+      "name": "usage",
+      "path": "data/discovery/usage.json",
+      "rows": 1,
+      "sha256": "84589264ee9a5a2a3704506cc0bd2572f1c043960bf283f25f062ed863540553"
+    },
+    {
+      "category": "discovery",
+      "first": null,
+      "last": null,
+      "name": "catalog",
+      "path": "data/discovery/catalog.json",
+      "rows": 22851,
+      "sha256": "0ded70c9f44f0ae9065fe3db87d47d1e48fa2c018d4801776e241b9b145d909c"
+    },
+    {
+      "category": "cot",
+      "first": "2015-01-06 00:00:00+00:00",
+      "last": "2026-07-14 00:00:00+00:00",
+      "name": "ES",
+      "path": "data/cot/ES.parquet",
+      "rows": 602,
+      "sha256": "ac599d2b0e98e66c01ad51120294946640707cd3cd5e92ae82e2f08b014d7fd6"
+    },
+    {
+      "category": "cot",
+      "first": "2020-08-04 00:00:00+00:00",
+      "last": "2026-07-14 00:00:00+00:00",
+      "name": "NQ",
+      "path": "data/cot/NQ.parquet",
+      "rows": 296,
+      "sha256": "b227f3240a84fb203c87a52d28d348e53df041fb16e5317ce54ef193d8fe21cb"
+    },
+    {
+      "category": "cot",
+      "first": "2015-01-06 00:00:00+00:00",
+      "last": "2026-07-14 00:00:00+00:00",
+      "name": "ZN",
+      "path": "data/cot/ZN.parquet",
+      "rows": 602,
+      "sha256": "39706b7aa3b928d5cb2dc490286a50b3e2e1a78cdcf1f5b924b5396eb04990a4"
+    },
+    {
+      "category": "cot",
+      "first": "2015-01-06 00:00:00+00:00",
+      "last": "2026-07-14 00:00:00+00:00",
+      "name": "ZB",
+      "path": "data/cot/ZB.parquet",
+      "rows": 602,
+      "sha256": "fb86d77f759437a2181746e1bb9ba7f7ec49af7ef6d2dd645c9f85c59d8846a7"
+    },
+    {
+      "category": "cot",
+      "first": "2015-01-06 00:00:00+00:00",
+      "last": "2026-07-14 00:00:00+00:00",
+      "name": "CL",
+      "path": "data/cot/CL.parquet",
+      "rows": 587,
+      "sha256": "b0183bf048b4ea996aacd43abbc9bef7848288fdcac5390ac851ca4bd4abd28f"
+    },
+    {
+      "category": "cot",
+      "first": "2022-02-08 00:00:00+00:00",
+      "last": "2026-07-14 00:00:00+00:00",
+      "name": "NG",
+      "path": "data/cot/NG.parquet",
+      "rows": 232,
+      "sha256": "78d0711a7d32f8658e6780fbc501804108e0dc128c2d5bb1a4c78e8ac9d443c6"
+    },
+    {
+      "category": "cot",
+      "first": "2015-01-06 00:00:00+00:00",
+      "last": "2026-07-14 00:00:00+00:00",
+      "name": "GC",
+      "path": "data/cot/GC.parquet",
+      "rows": 602,
+      "sha256": "2b8c242f310950ab57b35435ed99508ba9a650a7a058b677df0915d9634c4d64"
+    },
+    {
+      "category": "cot",
+      "first": "2015-01-06 00:00:00+00:00",
+      "last": "2026-07-14 00:00:00+00:00",
+      "name": "SI",
+      "path": "data/cot/SI.parquet",
+      "rows": 602,
+      "sha256": "6b4c24cf1ebc740a53f7401ef3eb80cac9b270224436be884425c02c9f3d3514"
+    },
+    {
+      "category": "cot",
+      "first": "2015-01-06 00:00:00+00:00",
+      "last": "2026-07-14 00:00:00+00:00",
+      "name": "HG",
+      "path": "data/cot/HG.parquet",
+      "rows": 602,
+      "sha256": "bfd6b549249197a817725d34fd3aa09614334845244bbb87bdbcd33605a3230b"
+    },
+    {
+      "category": "cot",
+      "first": "2015-01-06 00:00:00+00:00",
+      "last": "2026-07-14 00:00:00+00:00",
+      "name": "ZC",
+      "path": "data/cot/ZC.parquet",
+      "rows": 602,
+      "sha256": "8374fefce08cd5077eff0689f75c4f5371f7a709f34f7f380559246160d6523d"
+    },
+    {
+      "category": "cot",
+      "first": "2015-01-06 00:00:00+00:00",
+      "last": "2026-07-14 00:00:00+00:00",
+      "name": "ZS",
+      "path": "data/cot/ZS.parquet",
+      "rows": 602,
+      "sha256": "77e029cbb489901a1bc2d279e4e919fed3980043d1600f43befdc48bd49a8e60"
+    },
+    {
+      "category": "two_year_yields",
+      "first": "2012-09-24 00:00:00+00:00",
+      "last": "2026-07-02 00:00:00+00:00",
+      "name": "USD",
+      "path": "data/two_year_yields/USD.parquet",
+      "rows": 3467,
+      "sha256": "84aaee7fa754f0b4c31bfb9465441e9649b3cb4a4039b7ada11bdcf70b2e7200"
+    },
+    {
+      "category": "two_year_yields",
+      "first": "2006-03-01 00:00:00+00:00",
+      "last": "2025-07-07 00:00:00+00:00",
+      "name": "EUR",
+      "path": "data/two_year_yields/EUR.parquet",
+      "rows": 5000,
+      "sha256": "146b3bd3da6c6587279d05ad52276fad0e3c93a0651c6517a358240848b6044a"
+    },
+    {
+      "category": "two_year_yields",
+      "first": "2006-03-01 00:00:00+00:00",
+      "last": "2025-11-21 00:00:00+00:00",
+      "name": "JPY",
+      "path": "data/two_year_yields/JPY.parquet",
+      "rows": 5000,
+      "sha256": "b63f8c14f6f9f81035c1eb2e606418dcc5f8220c574886a643a42ed48856d863"
+    },
+    {
+      "category": "two_year_yields",
+      "first": "2006-03-01 00:00:00+00:00",
+      "last": "2025-09-03 00:00:00+00:00",
+      "name": "AUD",
+      "path": "data/two_year_yields/AUD.parquet",
+      "rows": 5000,
+      "sha256": "9552ee576968d70d647464ccba238273281aab01ec697a0ae6d3c917f50fb991"
+    },
+    {
+      "category": "two_year_yields",
+      "first": "2010-01-01 00:00:00+00:00",
+      "last": "2026-07-03 00:00:00+00:00",
+      "name": "CAD",
+      "path": "data/two_year_yields/CAD.parquet",
+      "rows": 4172,
+      "sha256": "5538dbf3c03f024dcb99787ecd4ffc08f9730ea94e5acf9851cf32c13629cc02"
+    },
+    {
+      "category": "two_year_yields",
+      "first": "2004-01-05 00:00:00+00:00",
+      "last": "2024-07-23 00:00:00+00:00",
+      "name": "CHF",
+      "path": "data/two_year_yields/CHF.parquet",
+      "rows": 5000,
+      "sha256": "d8c1287d4726116de536b4ced46a136b4cfc6ee8f117e27b428e9237fe606f2d"
+    },
+    {
+      "category": "two_year_yields",
+      "first": "2004-01-05 00:00:00+00:00",
+      "last": "2026-07-03 00:00:00+00:00",
+      "name": "NZD",
+      "path": "data/two_year_yields/NZD.parquet",
+      "rows": 4981,
+      "sha256": "35a2475210532b77985d7fbee91b72f6b9bf41871cdbc529630892d9e2023684"
+    },
+    {
+      "category": "economic_calendar",
+      "first": "2015-01-02 00:00:00+00:00",
+      "last": "2017-04-05 00:00:00+00:00",
+      "name": "US",
+      "path": "data/economic_calendar/US.parquet",
+      "rows": 572,
+      "sha256": "2fb896181066b3bb501cd2bcc892b7d27f3afdebf4a8a71f4510c8e032e8ab4d"
+    },
+    {
+      "category": "economic_calendar",
+      "first": "2025-09-17 00:00:00+00:00",
+      "last": "2026-07-21 00:00:00+00:00",
+      "name": "EU",
+      "path": "data/economic_calendar/EU.parquet",
+      "rows": 137,
+      "sha256": "7b80a8229da4e0658c073673d81917811e24e121b2acf06e9198dc2c22db2caa"
+    },
+    {
+      "category": "economic_calendar",
+      "first": "2015-01-02 00:00:00+00:00",
+      "last": "2021-09-06 00:00:00+00:00",
+      "name": "GB",
+      "path": "data/economic_calendar/GB.parquet",
+      "rows": 1293,
+      "sha256": "cb74978d1b9576bf13ccf6f0025fc06cedc9b0d44cbcaf6d3e235a1a168bdfb2"
+    },
+    {
+      "category": "options_flow",
+      "first": "2026-07-22 20:08:59.260780+00:00",
+      "last": "2026-07-22 20:15:00.231558+00:00",
+      "name": "SPY",
+      "path": "data/options_flow/SPY.parquet",
+      "rows": 5000,
+      "sha256": "361bec4a15c6daef2930949c1bcbfa5e1b176a1f597e66197a5e89b78099b302"
+    },
+    {
+      "category": "options_flow",
+      "first": "2026-07-22 20:05:43.144033+00:00",
+      "last": "2026-07-22 20:15:01.126503+00:00",
+      "name": "QQQ",
+      "path": "data/options_flow/QQQ.parquet",
+      "rows": 5000,
+      "sha256": "46b47089645c1a2bab6aae4aa53036b8d3b6bc7502ae7b4f2e4145aecff140e4"
+    }
+  ],
+  "strict_lse_only": true,
+  "total_rows": 73405
+}

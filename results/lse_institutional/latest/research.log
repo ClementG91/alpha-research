@@ -1,0 +1,314 @@
+{
+  "collection": {
+    "manifest": {
+      "strict_lse_only": true,
+      "datasets": [
+        {
+          "name": "usage",
+          "category": "discovery",
+          "rows": 1,
+          "first": null,
+          "last": null,
+          "sha256": "84589264ee9a5a2a3704506cc0bd2572f1c043960bf283f25f062ed863540553",
+          "path": "data/discovery/usage.json"
+        },
+        {
+          "name": "catalog",
+          "category": "discovery",
+          "rows": 22851,
+          "first": null,
+          "last": null,
+          "sha256": "0ded70c9f44f0ae9065fe3db87d47d1e48fa2c018d4801776e241b9b145d909c",
+          "path": "data/discovery/catalog.json"
+        },
+        {
+          "name": "ES",
+          "category": "cot",
+          "rows": 602,
+          "first": "2015-01-06 00:00:00+00:00",
+          "last": "2026-07-14 00:00:00+00:00",
+          "sha256": "ac599d2b0e98e66c01ad51120294946640707cd3cd5e92ae82e2f08b014d7fd6",
+          "path": "data/cot/ES.parquet"
+        },
+        {
+          "name": "NQ",
+          "category": "cot",
+          "rows": 296,
+          "first": "2020-08-04 00:00:00+00:00",
+          "last": "2026-07-14 00:00:00+00:00",
+          "sha256": "b227f3240a84fb203c87a52d28d348e53df041fb16e5317ce54ef193d8fe21cb",
+          "path": "data/cot/NQ.parquet"
+        },
+        {
+          "name": "ZN",
+          "category": "cot",
+          "rows": 602,
+          "first": "2015-01-06 00:00:00+00:00",
+          "last": "2026-07-14 00:00:00+00:00",
+          "sha256": "39706b7aa3b928d5cb2dc490286a50b3e2e1a78cdcf1f5b924b5396eb04990a4",
+          "path": "data/cot/ZN.parquet"
+        },
+        {
+          "name": "ZB",
+          "category": "cot",
+          "rows": 602,
+          "first": "2015-01-06 00:00:00+00:00",
+          "last": "2026-07-14 00:00:00+00:00",
+          "sha256": "fb86d77f759437a2181746e1bb9ba7f7ec49af7ef6d2dd645c9f85c59d8846a7",
+          "path": "data/cot/ZB.parquet"
+        },
+        {
+          "name": "CL",
+          "category": "cot",
+          "rows": 587,
+          "first": "2015-01-06 00:00:00+00:00",
+          "last": "2026-07-14 00:00:00+00:00",
+          "sha256": "b0183bf048b4ea996aacd43abbc9bef7848288fdcac5390ac851ca4bd4abd28f",
+          "path": "data/cot/CL.parquet"
+        },
+        {
+          "name": "NG",
+          "category": "cot",
+          "rows": 232,
+          "first": "2022-02-08 00:00:00+00:00",
+          "last": "2026-07-14 00:00:00+00:00",
+          "sha256": "78d0711a7d32f8658e6780fbc501804108e0dc128c2d5bb1a4c78e8ac9d443c6",
+          "path": "data/cot/NG.parquet"
+        },
+        {
+          "name": "GC",
+          "category": "cot",
+          "rows": 602,
+          "first": "2015-01-06 00:00:00+00:00",
+          "last": "2026-07-14 00:00:00+00:00",
+          "sha256": "2b8c242f310950ab57b35435ed99508ba9a650a7a058b677df0915d9634c4d64",
+          "path": "data/cot/GC.parquet"
+        },
+        {
+          "name": "SI",
+          "category": "cot",
+          "rows": 602,
+          "first": "2015-01-06 00:00:00+00:00",
+          "last": "2026-07-14 00:00:00+00:00",
+          "sha256": "6b4c24cf1ebc740a53f7401ef3eb80cac9b270224436be884425c02c9f3d3514",
+          "path": "data/cot/SI.parquet"
+        },
+        {
+          "name": "HG",
+          "category": "cot",
+          "rows": 602,
+          "first": "2015-01-06 00:00:00+00:00",
+          "last": "2026-07-14 00:00:00+00:00",
+          "sha256": "bfd6b549249197a817725d34fd3aa09614334845244bbb87bdbcd33605a3230b",
+          "path": "data/cot/HG.parquet"
+        },
+        {
+          "name": "ZC",
+          "category": "cot",
+          "rows": 602,
+          "first": "2015-01-06 00:00:00+00:00",
+          "last": "2026-07-14 00:00:00+00:00",
+          "sha256": "8374fefce08cd5077eff0689f75c4f5371f7a709f34f7f380559246160d6523d",
+          "path": "data/cot/ZC.parquet"
+        },
+        {
+          "name": "ZS",
+          "category": "cot",
+          "rows": 602,
+          "first": "2015-01-06 00:00:00+00:00",
+          "last": "2026-07-14 00:00:00+00:00",
+          "sha256": "77e029cbb489901a1bc2d279e4e919fed3980043d1600f43befdc48bd49a8e60",
+          "path": "data/cot/ZS.parquet"
+        },
+        {
+          "name": "USD",
+          "category": "two_year_yields",
+          "rows": 3467,
+          "first": "2012-09-24 00:00:00+00:00",
+          "last": "2026-07-02 00:00:00+00:00",
+          "sha256": "84aaee7fa754f0b4c31bfb9465441e9649b3cb4a4039b7ada11bdcf70b2e7200",
+          "path": "data/two_year_yields/USD.parquet"
+        },
+        {
+          "name": "EUR",
+          "category": "two_year_yields",
+          "rows": 5000,
+          "first": "2006-03-01 00:00:00+00:00",
+          "last": "2025-07-07 00:00:00+00:00",
+          "sha256": "146b3bd3da6c6587279d05ad52276fad0e3c93a0651c6517a358240848b6044a",
+          "path": "data/two_year_yields/EUR.parquet"
+        },
+        {
+          "name": "JPY",
+          "category": "two_year_yields",
+          "rows": 5000,
+          "first": "2006-03-01 00:00:00+00:00",
+          "last": "2025-11-21 00:00:00+00:00",
+          "sha256": "b63f8c14f6f9f81035c1eb2e606418dcc5f8220c574886a643a42ed48856d863",
+          "path": "data/two_year_yields/JPY.parquet"
+        },
+        {
+          "name": "AUD",
+          "category": "two_year_yields",
+          "rows": 5000,
+          "first": "2006-03-01 00:00:00+00:00",
+          "last": "2025-09-03 00:00:00+00:00",
+          "sha256": "9552ee576968d70d647464ccba238273281aab01ec697a0ae6d3c917f50fb991",
+          "path": "data/two_year_yields/AUD.parquet"
+        },
+        {
+          "name": "CAD",
+          "category": "two_year_yields",
+          "rows": 4172,
+          "first": "2010-01-01 00:00:00+00:00",
+          "last": "2026-07-03 00:00:00+00:00",
+          "sha256": "5538dbf3c03f024dcb99787ecd4ffc08f9730ea94e5acf9851cf32c13629cc02",
+          "path": "data/two_year_yields/CAD.parquet"
+        },
+        {
+          "name": "CHF",
+          "category": "two_year_yields",
+          "rows": 5000,
+          "first": "2004-01-05 00:00:00+00:00",
+          "last": "2024-07-23 00:00:00+00:00",
+          "sha256": "d8c1287d4726116de536b4ced46a136b4cfc6ee8f117e27b428e9237fe606f2d",
+          "path": "data/two_year_yields/CHF.parquet"
+        },
+        {
+          "name": "NZD",
+          "category": "two_year_yields",
+          "rows": 4981,
+          "first": "2004-01-05 00:00:00+00:00",
+          "last": "2026-07-03 00:00:00+00:00",
+          "sha256": "35a2475210532b77985d7fbee91b72f6b9bf41871cdbc529630892d9e2023684",
+          "path": "data/two_year_yields/NZD.parquet"
+        },
+        {
+          "name": "US",
+          "category": "economic_calendar",
+          "rows": 572,
+          "first": "2015-01-02 00:00:00+00:00",
+          "last": "2017-04-05 00:00:00+00:00",
+          "sha256": "2fb896181066b3bb501cd2bcc892b7d27f3afdebf4a8a71f4510c8e032e8ab4d",
+          "path": "data/economic_calendar/US.parquet"
+        },
+        {
+          "name": "EU",
+          "category": "economic_calendar",
+          "rows": 137,
+          "first": "2025-09-17 00:00:00+00:00",
+          "last": "2026-07-21 00:00:00+00:00",
+          "sha256": "7b80a8229da4e0658c073673d81917811e24e121b2acf06e9198dc2c22db2caa",
+          "path": "data/economic_calendar/EU.parquet"
+        },
+        {
+          "name": "GB",
+          "category": "economic_calendar",
+          "rows": 1293,
+          "first": "2015-01-02 00:00:00+00:00",
+          "last": "2021-09-06 00:00:00+00:00",
+          "sha256": "cb74978d1b9576bf13ccf6f0025fc06cedc9b0d44cbcaf6d3e235a1a168bdfb2",
+          "path": "data/economic_calendar/GB.parquet"
+        },
+        {
+          "name": "SPY",
+          "category": "options_flow",
+          "rows": 5000,
+          "first": "2026-07-22 20:08:59.260780+00:00",
+          "last": "2026-07-22 20:15:00.231558+00:00",
+          "sha256": "361bec4a15c6daef2930949c1bcbfa5e1b176a1f597e66197a5e89b78099b302",
+          "path": "data/options_flow/SPY.parquet"
+        },
+        {
+          "name": "QQQ",
+          "category": "options_flow",
+          "rows": 5000,
+          "first": "2026-07-22 20:05:43.144033+00:00",
+          "last": "2026-07-22 20:15:01.126503+00:00",
+          "sha256": "46b47089645c1a2bab6aae4aa53036b8d3b6bc7502ae7b4f2e4145aecff140e4",
+          "path": "data/options_flow/QQQ.parquet"
+        }
+      ],
+      "dataset_count": 25,
+      "total_rows": 73405
+    },
+    "errors": [
+      {
+        "dataset": "futures_candles:ES.F",
+        "error": "[400] {\"detail\":\"invalid date '2004-01-01T00:00:00+00:00' (use YYYY-MM-DD)\"}"
+      },
+      {
+        "dataset": "futures_candles:NQ.F",
+        "error": "[400] {\"detail\":\"invalid date '2004-01-01T00:00:00+00:00' (use YYYY-MM-DD)\"}"
+      },
+      {
+        "dataset": "futures_candles:GC.F",
+        "error": "[400] {\"detail\":\"invalid date '2004-01-01T00:00:00+00:00' (use YYYY-MM-DD)\"}"
+      },
+      {
+        "dataset": "futures_candles:SI.F",
+        "error": "[400] {\"detail\":\"invalid date '2004-01-01T00:00:00+00:00' (use YYYY-MM-DD)\"}"
+      },
+      {
+        "dataset": "benchmark_candles:SPY",
+        "error": "[400] {\"detail\":\"invalid date '2004-01-01T00:00:00+00:00' (use YYYY-MM-DD)\"}"
+      },
+      {
+        "dataset": "fx_candles:EUR/USD",
+        "error": "[400] {\"detail\":\"invalid date '2004-01-01T00:00:00+00:00' (use YYYY-MM-DD)\"}"
+      },
+      {
+        "dataset": "fx_candles:GBP/USD",
+        "error": "[400] {\"detail\":\"invalid date '2004-01-01T00:00:00+00:00' (use YYYY-MM-DD)\"}"
+      },
+      {
+        "dataset": "fx_candles:USD/JPY",
+        "error": "[400] {\"detail\":\"invalid date '2004-01-01T00:00:00+00:00' (use YYYY-MM-DD)\"}"
+      },
+      {
+        "dataset": "fx_candles:AUD/USD",
+        "error": "[400] {\"detail\":\"invalid date '2004-01-01T00:00:00+00:00' (use YYYY-MM-DD)\"}"
+      },
+      {
+        "dataset": "fx_candles:USD/CAD",
+        "error": "[400] {\"detail\":\"invalid date '2004-01-01T00:00:00+00:00' (use YYYY-MM-DD)\"}"
+      },
+      {
+        "dataset": "fx_candles:USD/CHF",
+        "error": "[400] {\"detail\":\"invalid date '2004-01-01T00:00:00+00:00' (use YYYY-MM-DD)\"}"
+      },
+      {
+        "dataset": "fx_candles:NZD/USD",
+        "error": "[400] {\"detail\":\"invalid date '2004-01-01T00:00:00+00:00' (use YYYY-MM-DD)\"}"
+      }
+    ],
+    "selected_futures": [
+      "ES.F",
+      "NQ.F",
+      "GC.F",
+      "SI.F"
+    ]
+  }
+}
+Traceback (most recent call last):
+  File "/home/runner/work/alpha-research/alpha-research/lse_campaign_runner.py", line 44, in <module>
+    raise SystemExit(campaign.main())
+                     ^^^^^^^^^^^^^^^
+  File "/home/runner/work/alpha-research/alpha-research/lse_institutional_campaign.py", line 359, in main
+    print(json.dumps({"research": research(args.output)}, indent=2, default=str))
+                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/alpha-research/alpha-research/lse_institutional_campaign.py", line 304, in research
+    base = [futures_trend(futures), cot_relative_value(cot, futures), fx_carry(fx, yields)]
+            ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/alpha-research/alpha-research/lse_institutional_campaign.py", line 179, in futures_trend
+    closes = pd.concat({name: frame["close"] for name, frame in frames.items()}, axis=1).sort_index().ffill(limit=3)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/pandas/core/reshape/concat.py", line 382, in concat
+    op = _Concatenator(
+         ^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/pandas/core/reshape/concat.py", line 445, in __init__
+    objs, keys = self._clean_keys_and_objs(objs, keys)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/pandas/core/reshape/concat.py", line 507, in _clean_keys_and_objs
+    raise ValueError("No objects to concatenate")
+ValueError: No objects to concatenate

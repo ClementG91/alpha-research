@@ -1,0 +1,50 @@
+[
+  {
+    "dataset": "futures_candles:ES.F",
+    "error": "[400] {\"detail\":\"invalid date '2004-01-01T00:00:00+00:00' (use YYYY-MM-DD)\"}"
+  },
+  {
+    "dataset": "futures_candles:NQ.F",
+    "error": "[400] {\"detail\":\"invalid date '2004-01-01T00:00:00+00:00' (use YYYY-MM-DD)\"}"
+  },
+  {
+    "dataset": "futures_candles:GC.F",
+    "error": "[400] {\"detail\":\"invalid date '2004-01-01T00:00:00+00:00' (use YYYY-MM-DD)\"}"
+  },
+  {
+    "dataset": "futures_candles:SI.F",
+    "error": "[400] {\"detail\":\"invalid date '2004-01-01T00:00:00+00:00' (use YYYY-MM-DD)\"}"
+  },
+  {
+    "dataset": "benchmark_candles:SPY",
+    "error": "[400] {\"detail\":\"invalid date '2004-01-01T00:00:00+00:00' (use YYYY-MM-DD)\"}"
+  },
+  {
+    "dataset": "fx_candles:EUR/USD",
+    "error": "[400] {\"detail\":\"invalid date '2004-01-01T00:00:00+00:00' (use YYYY-MM-DD)\"}"
+  },
+  {
+    "dataset": "fx_candles:GBP/USD",
+    "error": "[400] {\"detail\":\"invalid date '2004-01-01T00:00:00+00:00' (use YYYY-MM-DD)\"}"
+  },
+  {
+    "dataset": "fx_candles:USD/JPY",
+    "error": "[400] {\"detail\":\"invalid date '2004-01-01T00:00:00+00:00' (use YYYY-MM-DD)\"}"
+  },
+  {
+    "dataset": "fx_candles:AUD/USD",
+    "error": "[400] {\"detail\":\"invalid date '2004-01-01T00:00:00+00:00' (use YYYY-MM-DD)\"}"
+  },
+  {
+    "dataset": "fx_candles:USD/CAD",
+    "error": "[400] {\"detail\":\"invalid date '2004-01-01T00:00:00+00:00' (use YYYY-MM-DD)\"}"
+  },
+  {
+    "dataset": "fx_candles:USD/CHF",
+    "error": "[400] {\"detail\":\"invalid date '2004-01-01T00:00:00+00:00' (use YYYY-MM-DD)\"}"
+  },
+  {
+    "dataset": "fx_candles:NZD/USD",
+    "error": "[400] {\"detail\":\"invalid date '2004-01-01T00:00:00+00:00' (use YYYY-MM-DD)\"}"
+  }
+]
