@@ -28,19 +28,19 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Syntax check
-        run: python -m py_compile campaign.py stateful_campaign.py
+        run: python -m py_compile campaign.py generation3.py
 
-      - name: Run stateful ManifoldBT MCP alpha campaign
+      - name: Run ensemble and BTC-regime alpha campaign
         run: |
           rm -rf results
           mkdir -p results
-          python stateful_campaign.py
+          python generation3.py
 
       - name: Print research summary
         if: always()
         run: |
-          if [ -f results/CAMPAIGN.md ]; then
-            cat results/CAMPAIGN.md
+          if [ -f results/GENERATION3.md ]; then
+            cat results/GENERATION3.md
           fi
           if [ -f results/FATAL.txt ]; then
             cat results/FATAL.txt
