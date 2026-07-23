@@ -32,7 +32,8 @@ def test_vectorized_portfolio_is_neutral_each_day() -> None:
         columns = classes.index[classes == class_name]
         assert result.positions[columns].sum(axis=1).abs().max() < 1e-10
     assert (result.positions * beta).sum(axis=1).abs().max() < 1e-10
-    assert result.positions.abs().sum(axis=1).replace(0, np.nan).dropna().eq(1.0).all()
+    gross = result.positions.abs().sum(axis=1).replace(0, np.nan).dropna()
+    assert (gross - 1.0).abs().max() < 1e-12
 
 
 def test_close_reversal_signal_is_lagged() -> None:
