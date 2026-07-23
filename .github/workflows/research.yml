@@ -9,6 +9,10 @@ on:
     branches: [main]
   workflow_dispatch:
 
+concurrency:
+  group: alpha-research-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: write
 
@@ -28,13 +32,13 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Syntax check
-        run: python -m py_compile campaign.py generation5.py
+        run: python -m py_compile campaign.py generation5.py generation5_fast.py
 
-      - name: Run thresholded volatility momentum campaign
+      - name: Run focused volatility momentum campaign
         run: |
           rm -rf results
           mkdir -p results
-          python generation5.py
+          python generation5_fast.py
 
       - name: Print research summary
         if: always()
