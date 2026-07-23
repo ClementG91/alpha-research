@@ -1,0 +1,5142 @@
+{
+  "generated_at": "2026-07-23T14:05:23.773006+00:00",
+  "mcp_url": "https://mcp.manifoldbt.com/mcp",
+  "engine_only": true,
+  "train": [
+    "2021-01-01",
+    "2023-12-31"
+  ],
+  "validation": [
+    "2024-01-01",
+    "2024-12-31"
+  ],
+  "holdout": [
+    "2025-01-01",
+    "2026-07-01"
+  ],
+  "target": 1.5,
+  "families": [
+    {
+      "name": "return_vol_long_short",
+      "compile": {
+        "ok": true,
+        "plan": {
+          "name": "return_vol_long_short",
+          "signal_names": [
+            "fast",
+            "slow",
+            "vol_z",
+            "volatility"
+          ],
+          "required_columns": [
+            "close"
+          ],
+          "required_features": [],
+          "parameters": [
+            "base_long",
+            "base_short",
+            "fast",
+            "risk_long",
+            "risk_short",
+            "risk_z",
+            "slow",
+            "vol_window"
+          ]
+        }
+      },
+      "sweep": {
+        "total": 216,
+        "rank_metric": "sharpe",
+        "device": "auto",
+        "top": [
+          {
+            "strategy_name": "return_vol_long_short",
+            "final_equity": 62284.6976170525,
+            "trade_count": 849,
+            "metrics": {
+              "total_return": 5.2284697617052505,
+              "cagr": 0.8427228061932897,
+              "volatility": 0.4488602307360937,
+              "sharpe": 1.5900930489609675,
+              "sortino": 2.0166633668884786,
+              "calmar": 2.519194660103668,
+              "max_drawdown": -0.3362698005703105,
+              "skewness": -0.6754710078947018,
+              "kurtosis": 11.903343385146542,
+              "tail_ratio": 1.332987977028398,
+              "omega_ratio": 1.3006137752934859,
+              "ulcer_index": 0.1917430523206068,
+              "best_day": 0.09618612321112296,
+              "worst_day": -0.2398584592830485,
+              "avg_daily_return": 0.0019540849633086343,
+              "pct_positive_days": 0.4784995425434584,
+              "max_drawdown_duration_days": 737.0,
+              "tstat_sharpe": 2.750663773271905,
+              "alpha": 0.5914348114346402,
+              "beta": 0.11369633608308287,
+              "tstat_alpha": 2.3213355528273887
+            },
+            "params": {
+              "vol_window": 120,
+              "slow": 240,
+              "risk_z": 0.75,
+              "risk_short": 0.0,
+              "risk_long": 0.15,
+              "fast": 12,
+              "base_short": 0.15,
+              "base_long": 0.15
+            }
+          },
+          {
+            "strategy_name": "return_vol_long_short",
+            "final_equity": 62707.865010594025,
+            "trade_count": 988,
+            "metrics": {
+              "total_return": 5.270786501059402,
+              "cagr": 0.8468970824500826,
+              "volatility": 0.4567252211977609,
+              "sharpe": 1.5756113472476614,
+              "sortino": 2.004035072326371,
+              "calmar": 2.473783698595454,
+              "max_drawdown": -0.3437837828176586,
+              "skewness": -0.6617868828529498,
+              "kurtosis": 12.110013643256861,
+              "tail_ratio": 1.319723289072844,
+              "omega_ratio": 1.2982211757196338,
+              "ulcer_index": 0.18624947794494356,
+              "best_day": 0.10237027017356648,
+              "worst_day": -0.24485328855346689,
+              "avg_daily_return": 0.0019702161289346753,
+              "pct_positive_days": 0.47483989021043,
+              "max_drawdown_duration_days": 491.0,
+              "tstat_sharpe": 2.7256122253111426,
+              "alpha": 0.5986809471063241,
+              "beta": 0.1124373226533353,
+              "tstat_alpha": 2.3065509305015777
+            },
+            "params": {
+              "vol_window": 72,
+              "slow": 240,
+              "risk_z": 0.75,
+              "risk_short": 0.0,
+              "risk_long": 0.15,
+              "fast": 12,
+              "base_short": 0.15,
+              "base_long": 0.15
+            }
+          },
+          {
+            "strategy_name": "return_vol_long_short",
+            "final_equity": 59887.170768155585,
+            "trade_count": 900,
+            "metrics": {
+              "total_return": 4.988717076815559,
+              "cagr": 0.8187089007140926,
+              "volatility": 0.44579210953710136,
+              "sharpe": 1.5675424985567197,
+              "sortino": 2.0557861951152563,
+              "calmar": 2.455347107555971,
+              "max_drawdown": -0.33542954196140623,
+              "skewness": -0.46500074350924014,
+              "kurtosis": 9.915422810441706,
+              "tail_ratio": 1.3313803444615075,
+              "omega_ratio": 1.2934223098205777,
+              "ulcer_index": 0.19239969759239703,
+              "best_day": 0.09618612321112319,
+              "worst_day": -0.2259700330570612,
+              "avg_daily_return": 0.0019132048657649792,
+              "pct_positive_days": 0.4684354986276304,
+              "max_drawdown_duration_days": 759.0,
+              "tstat_sharpe": 2.711654117764739,
+              "alpha": 0.5808030210954871,
+              "beta": 0.10969897475748012,
+              "tstat_alpha": 2.292511646589265
+            },
+            "params": {
+              "vol_window": 120,
+              "slow": 240,
+              "risk_z": 0.75,
+              "risk_short": 0.0,
+              "risk_long": 0.15,
+              "fast": 8,
+              "base_short": 0.15,
+              "base_long": 0.15
+            }
+          },
+          {
+            "strategy_name": "return_vol_long_short",
+            "final_equity": 60952.82928624503,
+            "trade_count": 1037,
+            "metrics": {
+              "total_return": 5.095282928624504,
+              "cagr": 0.8294602351866454,
+              "volatility": 0.45331183610257114,
+              "sharpe": 1.562154192615568,
+              "sortino": 2.0572016062261196,
+              "calmar": 2.4164286496775658,
+              "max_drawdown": -0.3449832734760539,
+              "skewness": -0.46374973829824195,
+              "kurtosis": 10.224204943453557,
+              "tail_ratio": 1.3227665775244062,
+              "omega_ratio": 1.2929519222946222,
+              "ulcer_index": 0.18789474769221928,
+              "best_day": 0.0998680455458294,
+              "worst_day": -0.23133017465359196,
+              "avg_daily_return": 0.001938789829787523,
+              "pct_positive_days": 0.4583714547118024,
+              "max_drawdown_duration_days": 491.0,
+              "tstat_sharpe": 2.7023330167377795,
+              "alpha": 0.5910605175496566,
+              "beta": 0.10885054933100421,
+              "tstat_alpha": 2.2920701185902996
+            },
+            "params": {
+              "vol_window": 72,
+              "slow": 240,
+              "risk_z": 0.75,
+              "risk_short": 0.0,
+              "risk_long": 0.15,
+              "fast": 8,
+              "base_short": 0.15,
+              "base_long": 0.15
+            }
+          },
+          {
+            "strategy_name": "return_vol_long_short",
+            "final_equity": 60481.893334777924,
+            "trade_count": 849,
+            "metrics": {
+              "total_return": 5.048189333477793,
+              "cagr": 0.8247245648278632,
+              "volatility": 0.45204772899178514,
+              "sharpe": 1.5591524182467789,
+              "sortino": 2.060960374612253,
+              "calmar": 2.451349996573578,
+              "max_drawdown": -0.35688764775536264,
+              "skewness": -0.4077795895539057,
+              "kurtosis": 8.439477216486104,
+              "tail_ratio": 1.3256310789872148,
+              "omega_ratio": 1.285208468232358,
+              "ulcer_index": 0.1959789012844059,
+              "best_day": 0.09826513652550184,
+              "worst_day": -0.2171177385036297,
+              "avg_daily_return": 0.0019296681993716807,
+              "pct_positive_days": 0.484903934126258,
+              "max_drawdown_duration_days": 491.0,
+              "tstat_sharpe": 2.697140319356227,
+              "alpha": 0.6388073088874966,
+              "beta": 0.06136334410962091,
+              "tstat_alpha": 2.4520980229812093
+            },
+            "params": {
+              "vol_window": 120,
+              "slow": 240,
+              "risk_z": 0.75,
+              "risk_short": 0.05,
+              "risk_long": 0.15,
+              "fast": 12,
+              "base_short": 0.15,
+              "base_long": 0.15
+            }
+          },
+          {
+            "strategy_name": "return_vol_long_short",
+            "final_equity": 60834.33080315032,
+            "trade_count": 989,
+            "metrics": {
+              "total_return": 5.083433080315032,
+              "cagr": 0.8282709301595528,
+              "volatility": 0.45822680799925225,
+              "sharpe": 1.5487315137313655,
+              "sortino": 2.0391544113028495,
+              "calmar": 2.4510120720554918,
+              "max_drawdown": -0.34450770498226246,
+              "skewness": -0.4442961699573584,
+              "kurtosis": 8.51588885995543,
+              "tail_ratio": 1.3220600609362432,
+              "omega_ratio": 1.2839169614483514,
+              "ulcer_index": 0.1951850261055516,
+              "best_day": 0.09773782706854783,
+              "worst_day": -0.22023841242909337,
+              "avg_daily_return": 0.0019429713839424331,
+              "pct_positive_days": 0.4775846294602013,
+              "max_drawdown_duration_days": 491.0,
+              "tstat_sharpe": 2.6791134469326265,
+              "alpha": 0.6466688596637087,
+              "beta": 0.05857188783196015,
+              "tstat_alpha": 2.4471328265464596
+            },
+            "params": {
+              "vol_window": 72,
+              "slow": 240,
+              "risk_z": 0.75,
+              "risk_short": 0.05,
+              "risk_long": 0.15,
+              "fast": 12,
+              "base_short": 0.15,
+              "base_long": 0.15
+            }
+          },
+          {
+            "strategy_name": "return_vol_long_short",
+            "final_equity": 58791.500396163945,
+            "trade_count": 1067,
+            "metrics": {
+              "total_return": 4.879150039616395,
+              "cagr": 0.8075211284539672,
+              "volatility": 0.45316328803501804,
+              "sharpe": 1.5367039694565103,
+              "sortino": 1.9635113177215977,
+              "calmar": 2.367825989899984,
+              "max_drawdown": -0.34257761930313363,
+              "skewness": -0.6655997946604815,
+              "kurtosis": 11.77771241187497,
+              "tail_ratio": 1.3562180652085918,
+              "omega_ratio": 1.2904419973040089,
+              "ulcer_index": 0.18805714018707523,
+              "best_day": 0.0960861976863383,
+              "worst_day": -0.24049978203686462,
+              "avg_daily_return": 0.001906578572307669,
+              "pct_positive_days": 0.46752058554437326,
+              "max_drawdown_duration_days": 737.0,
+              "tstat_sharpe": 2.6583072869787254,
+              "alpha": 0.5741336944040052,
+              "beta": 0.11364930087923963,
+              "tstat_alpha": 2.2310819606287766
+            },
+            "params": {
+              "vol_window": 48,
+              "slow": 240,
+              "risk_z": 0.75,
+              "risk_short": 0.0,
+              "risk_long": 0.15,
+              "fast": 12,
+              "base_short": 0.15,
+              "base_long": 0.15
+            }
+          },
+          {
+            "strategy_name": "return_vol_long_short",
+            "final_equity": 58125.30483045049,
+            "trade_count": 1114,
+            "metrics": {
+              "total_return": 4.812530483045049,
+              "cagr": 0.8006506616953466,
+              "volatility": 0.4497174140644073,
+              "sharpe": 1.535601934455819,
+              "sortino": 2.0300465845428937,
+              "calmar": 2.3692869361481805,
+              "max_drawdown": -0.339480261824321,
+              "skewness": -0.4612123659541319,
+              "kurtosis": 10.000170203489713,
+              "tail_ratio": 1.3798878534775372,
+              "omega_ratio": 1.2875664562392648,
+              "ulcer_index": 0.1860206553557886,
+              "best_day": 0.09608619768633853,
+              "worst_day": -0.22723339571511048,
+              "avg_daily_return": 0.0018907239726099175,
+              "pct_positive_days": 0.45745654162854527,
+              "max_drawdown_duration_days": 737.0,
+              "tstat_sharpe": 2.656400903100587,
+              "alpha": 0.5726305701772193,
+              "beta": 0.10966300006834162,
+              "tstat_alpha": 2.239704113013925
+            },
+            "params": {
+              "vol_window": 48,
+              "slow": 240,
+              "risk_z": 0.75,
+              "risk_short": 0.0,
+              "risk_long": 0.15,
+              "fast": 8,
+              "base_short": 0.15,
+              "base_long": 0.15
+            }
+          }
+        ],
+        "overfitting_correction": {
+          "n_trials": 216,
+          "best_raw_sharpe": 1.5901,
+          "expected_max_sharpe_under_null": 0.7082,
+          "probability_edge_is_real": 0.9364,
+          "verdict": "BORDERLINE",
+          "plain": "Best raw Sharpe 1.59. Correcting for the fact that 216 combinations were tried, the probability that this edge is real rather than selection noise is 94% (a PROBABILITY, not a corrected Sharpe value). The best Sharpe pure noise would be expected to produce over 216 tries is 0.71. It is borderline; validate it out of sample before trusting it."
+        },
+        "warnings": []
+      },
+      "selected": {
+        "params": {
+          "vol_window": 72,
+          "slow": 240,
+          "risk_z": 0.75,
+          "risk_short": 0.0,
+          "risk_long": 0.15,
+          "fast": 12,
+          "base_short": 0.15,
+          "base_long": 0.15
+        },
+        "train": {
+          "strategy_name": "return_vol_long_short",
+          "final_equity": 62707.865010594025,
+          "trade_count": 988,
+          "metrics": {
+            "total_return": 5.270786501059402,
+            "cagr": 0.8468970824500826,
+            "volatility": 0.4567252211977609,
+            "sharpe": 1.5756113472476614,
+            "sortino": 2.004035072326371,
+            "calmar": 2.473783698595454,
+            "max_drawdown": -0.3437837828176586,
+            "skewness": -0.6617868828529498,
+            "kurtosis": 12.110013643256861,
+            "tail_ratio": 1.319723289072844,
+            "omega_ratio": 1.2982211757196338,
+            "ulcer_index": 0.18624947794494356,
+            "best_day": 0.10237027017356648,
+            "worst_day": -0.24485328855346689,
+            "avg_daily_return": 0.0019702161289346753,
+            "pct_positive_days": 0.47483989021043,
+            "max_drawdown_duration_days": 491.0,
+            "tstat_sharpe": 2.7256122253111426,
+            "alpha": 0.5986809471063241,
+            "beta": 0.1124373226533353,
+            "tstat_alpha": 2.3065509305015777
+          },
+          "params": {
+            "vol_window": 72,
+            "slow": 240,
+            "risk_z": 0.75,
+            "risk_short": 0.0,
+            "risk_long": 0.15,
+            "fast": 12,
+            "base_short": 0.15,
+            "base_long": 0.15
+          }
+        },
+        "validation": {
+          "metrics": {
+            "total_return": 0.013024194785499432,
+            "cagr": 0.013034670979230834,
+            "volatility": 0.31190288225713675,
+            "sharpe": 0.19732419685465954,
+            "sortino": 0.2485005803740349,
+            "calmar": 0.03582397221704367,
+            "max_drawdown": -0.36385331309042934,
+            "skewness": -0.002349680020241768,
+            "kurtosis": 6.64763846539449,
+            "tail_ratio": 1.2167763188898806,
+            "omega_ratio": 1.0350038970208717,
+            "ulcer_index": 0.19286504346120315,
+            "best_day": 0.07067103280861842,
+            "worst_day": -0.09290439896030989,
+            "avg_daily_return": 0.00016850372549772198,
+            "pct_positive_days": 0.3791208791208791,
+            "max_drawdown_duration_days": 243.20833333333334,
+            "tstat_sharpe": 0.19724539550639444,
+            "alpha": -0.0795252955169168,
+            "beta": 0.1452139488623059,
+            "tstat_alpha": -0.26175607107604953,
+            "trade_stats": {
+              "total_trades": 291,
+              "round_trips": 167,
+              "win_rate": 0.3592814371257485,
+              "profit_factor": 0.5965733267769002,
+              "expectancy": -15.9595849253305,
+              "avg_win": 65.68799949312158,
+              "avg_loss": -61.743277122593355,
+              "max_consecutive_wins": 7,
+              "max_consecutive_losses": 11,
+              "avg_holding_seconds": 602558.0838323353,
+              "median_holding_seconds": 201600.0,
+              "min_holding_seconds": 14400.0,
+              "max_holding_seconds": 6782400.0,
+              "total_fees": 213.31743018248542,
+              "sl_exits": 0,
+              "tp_exits": 0,
+              "trailing_exits": 0,
+              "signal_quality": {
+                "avg_mae": 0.06055952971880613,
+                "avg_mfe": 0.06650090929868775,
+                "avg_entry_efficiency": 0.4686938743108022,
+                "avg_exit_efficiency": -1.534749919179575,
+                "edge_ratio": 1.0981080864971875
+              }
+            }
+          },
+          "manifest": {
+            "run_id": "b72cc456-4ba5-419e-9708-a69b7275c925",
+            "timestamp": 1784815529879991295,
+            "strategy_name": "return_vol_long_short_1",
+            "strategy_code_hash": "c8be7402a2ff0717b3ff3ec669eee880b965d84278ccd28e7cb2562e7d0c6597",
+            "parameters": {
+              "base_long": {
+                "Float64": 0.15
+              },
+              "risk_short": {
+                "Float64": 0.0
+              },
+              "risk_long": {
+                "Float64": 0.15
+              },
+              "fast": {
+                "Int64": 12
+              },
+              "slow": {
+                "Int64": 240
+              },
+              "risk_z": {
+                "Float64": 0.75
+              },
+              "base_short": {
+                "Float64": 0.15
+              },
+              "vol_window": {
+                "Int64": 72
+              }
+            },
+            "config": {
+              "universe": [
+                1,
+                2,
+                3,
+                4,
+                5
+              ],
+              "time_range": {
+                "start": 1704067200000000000,
+                "end": 1735603200000000000
+              },
+              "bar_interval": {
+                "Hours": 4
+              },
+              "initial_capital": 10000.0,
+              "currency": "USD",
+              "execution": {
+                "signal_delay": 1,
+                "execution_price": "AtOpen",
+                "max_position_pct": 0.15,
+                "allow_short": true,
+                "allow_fractional": true,
+                "skip_gap_bars": false,
+                "position_sizing_mode": "FractionOfEquity",
+                "pyramiding": false
+              },
+              "fees": {
+                "maker_fee_bps": 2.0,
+                "taker_fee_bps": 5.0,
+                "funding_rate_column": "funding_rate",
+                "borrow_rate_annual_bps": 0.0,
+                "min_fee": 0.0
+              },
+              "slippage": {
+                "FixedBps": {
+                  "bps": 2.0
+                }
+              },
+              "data_version": null,
+              "rng_seed": null,
+              "risk_free_rate": 0.0,
+              "warmup_bars": 500,
+              "precise": false
+            },
+            "data_versions": {
+              "bars_1m": "1a0f3ce0-c000-46a2-957b-447d401014f8"
+            },
+            "rng_seed": 0,
+            "engine_version": "0.14.0",
+            "platform": "linux-x86_64"
+          },
+          "trade_count": 291,
+          "warnings": [
+            "funding rate column 'funding_rate' is missing; funding pnl disabled",
+            "funding rate column 'funding_rate' is missing; funding pnl disabled",
+            "funding rate column 'funding_rate' is missing; funding pnl disabled",
+            "funding rate column 'funding_rate' is missing; funding pnl disabled",
+            "funding rate column 'funding_rate' is missing; funding pnl disabled",
+            "fill price 550.189940 outside bar range [550.300000, 563.800000] at row 731",
+            "fill price 0.516897 outside bar range [0.517000, 0.522400] at row 774",
+            "fill price 600.779820 outside bar range [600.800000, 610.000000] at row 991",
+            "fill price 570.013980 outside bar range [565.200000, 569.900000] at row 1105",
+            "fill price 59259.255778 outside bar range [59271.000000, 59674.420000] at row 1454",
+            "fill price 533.093360 outside bar range [533.100000, 540.800000] at row 1454",
+            "fill price 56830.923912 outside bar range [56100.000000, 56819.560000] at row 1525"
+          ],
+          "summary": "Strategy: return_vol_long_short_1\n----------------------------------------\n  Total Return               +1.30%\n  CAGR                       +1.30%\n  Volatility                +31.19%\n  Sharpe                       0.20\n  Sortino                      0.25\n  Calmar                       0.04\n  Max Drawdown              -36.39%\n  Best Day                   +7.07%\n  Worst Day                  -9.29%\n  % Positive Days           +37.91%\n\n  Trades\n  --------------------------------------\n    Total                       291\n    Win Rate                +35.93%\n    Profit Factor              0.60\n    Expectancy               -15.96\n    Avg Win                 65.6880\n    Avg Loss               -61.7433\n    Total Fees               213.32\n\n  Signal Quality\n  --------------------------------------\n    Avg MAE                  +6.06%\n    Avg MFE                  +6.65%\n    Edge Ratio                 1.10\n    Entry Efficiency        +46.87%\n    Exit Efficiency        -153.47%"
+        },
+        "strategy_json": {
+          "name": "return_vol_long_short_1",
+          "signals": {
+            "fast": {
+              "EwmMean": [
+                {
+                  "Column": "close"
+                },
+                "fast"
+              ]
+            },
+            "slow": {
+              "EwmMean": [
+                {
+                  "Column": "close"
+                },
+                "slow"
+              ]
+            },
+            "volatility": {
+              "RollingStd": [
+                {
+                  "PctChange": [
+                    {
+                      "Column": "close"
+                    },
+                    1
+                  ]
+                },
+                14
+              ]
+            },
+            "vol_z": {
+              "ZScore": [
+                {
+                  "RollingStd": [
+                    {
+                      "PctChange": [
+                        {
+                          "Column": "close"
+                        },
+                        1
+                      ]
+                    },
+                    14
+                  ]
+                },
+                "vol_window"
+              ]
+            }
+          },
+          "position_sizing": {
+            "IfElse": [
+              {
+                "Gt": [
+                  {
+                    "EwmMean": [
+                      {
+                        "Column": "close"
+                      },
+                      "fast"
+                    ]
+                  },
+                  {
+                    "EwmMean": [
+                      {
+                        "Column": "close"
+                      },
+                      "slow"
+                    ]
+                  }
+                ]
+              },
+              {
+                "IfElse": [
+                  {
+                    "Gt": [
+                      {
+                        "ZScore": [
+                          {
+                            "RollingStd": [
+                              {
+                                "PctChange": [
+                                  {
+                                    "Column": "close"
+                                  },
+                                  1
+                                ]
+                              },
+                              14
+                            ]
+                          },
+                          "vol_window"
+                        ]
+                      },
+                      {
+                        "Parameter": "risk_z"
+                      }
+                    ]
+                  },
+                  {
+                    "Parameter": "risk_long"
+                  },
+                  {
+                    "Parameter": "base_long"
+                  }
+                ]
+              },
+              {
+                "IfElse": [
+                  {
+                    "Lt": [
+                      {
+                        "EwmMean": [
+                          {
+                            "Column": "close"
+                          },
+                          "fast"
+                        ]
+                      },
+                      {
+                        "EwmMean": [
+                          {
+                            "Column": "close"
+                          },
+                          "slow"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "IfElse": [
+                      {
+                        "Gt": [
+                          {
+                            "ZScore": [
+                              {
+                                "RollingStd": [
+                                  {
+                                    "PctChange": [
+                                      {
+                                        "Column": "close"
+                                      },
+                                      1
+                                    ]
+                                  },
+                                  14
+                                ]
+                              },
+                              "vol_window"
+                            ]
+                          },
+                          {
+                            "Parameter": "risk_z"
+                          }
+                        ]
+                      },
+                      {
+                        "Mul": [
+                          {
+                            "Literal": {
+                              "Float64": -1.0
+                            }
+                          },
+                          {
+                            "Parameter": "risk_short"
+                          }
+                        ]
+                      },
+                      {
+                        "Mul": [
+                          {
+                            "Literal": {
+                              "Float64": -1.0
+                            }
+                          },
+                          {
+                            "Parameter": "base_short"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "Literal": {
+                      "Float64": 0.0
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "parameters": {
+            "fast": {
+              "name": "fast",
+              "default": {
+                "Int64": 12
+              },
+              "description": "",
+              "range": null
+            },
+            "slow": {
+              "name": "slow",
+              "default": {
+                "Int64": 240
+              },
+              "description": "",
+              "range": null
+            },
+            "vol_window": {
+              "name": "vol_window",
+              "default": {
+                "Int64": 72
+              },
+              "description": "",
+              "range": null
+            },
+            "risk_z": {
+              "name": "risk_z",
+              "default": {
+                "Float64": 0.75
+              },
+              "description": "",
+              "range": null
+            },
+            "base_long": {
+              "name": "base_long",
+              "default": {
+                "Float64": 0.15
+              },
+              "description": "",
+              "range": null
+            },
+            "base_short": {
+              "name": "base_short",
+              "default": {
+                "Float64": 0.15
+              },
+              "description": "",
+              "range": null
+            },
+            "risk_long": {
+              "name": "risk_long",
+              "default": {
+                "Float64": 0.15
+              },
+              "description": "",
+              "range": null
+            },
+            "risk_short": {
+              "name": "risk_short",
+              "default": {
+                "Float64": 0.0
+              },
+              "description": "",
+              "range": null
+            }
+          },
+          "constraints": [],
+          "metadata": {
+            "description": "ManifoldBT-native EMA trend with volatility-state sizing"
+          }
+        },
+        "score": 0.658304679494265
+      }
+    },
+    {
+      "name": "return_vol_long_cash",
+      "compile": {
+        "ok": true,
+        "plan": {
+          "name": "return_vol_long_cash",
+          "signal_names": [
+            "fast",
+            "slow",
+            "vol_z",
+            "volatility"
+          ],
+          "required_columns": [
+            "close"
+          ],
+          "required_features": [],
+          "parameters": [
+            "base_long",
+            "base_short",
+            "fast",
+            "risk_long",
+            "risk_short",
+            "risk_z",
+            "slow",
+            "vol_window"
+          ]
+        }
+      },
+      "sweep": {
+        "total": 108,
+        "rank_metric": "sharpe",
+        "device": "auto",
+        "top": [
+          {
+            "strategy_name": "return_vol_long_cash",
+            "final_equity": 45918.934180456934,
+            "trade_count": 271,
+            "metrics": {
+              "total_return": 3.591893418045693,
+              "cagr": 0.6642521471231295,
+              "volatility": 0.39895215968154657,
+              "sharpe": 1.4801740299406938,
+              "sortino": 1.5334484903353995,
+              "calmar": 1.4332405661554213,
+              "max_drawdown": -0.4642573867170095,
+              "skewness": -0.8850817917329606,
+              "kurtosis": 18.922839193527906,
+              "tail_ratio": 1.5765519195194433,
+              "omega_ratio": 1.3519485223663166,
+              "ulcer_index": 0.3017768912140521,
+              "best_day": 0.09081463536591983,
+              "worst_day": -0.2366219263174878,
+              "avg_daily_return": 0.0016167518848716714,
+              "pct_positive_days": 0.3376029277218664,
+              "max_drawdown_duration_days": 773.0,
+              "tstat_sharpe": 2.560517502391581,
+              "alpha": 0.25285282074174287,
+              "beta": 0.313924954640829,
+              "tstat_alpha": 1.411166689133858
+            },
+            "params": {
+              "vol_window": 120,
+              "slow": 240,
+              "risk_z": 1.25,
+              "risk_short": 0.0,
+              "risk_long": 0.15,
+              "fast": 12,
+              "base_short": 0.0,
+              "base_long": 0.15
+            }
+          },
+          {
+            "strategy_name": "return_vol_long_cash",
+            "final_equity": 45918.934180456934,
+            "trade_count": 271,
+            "metrics": {
+              "total_return": 3.591893418045693,
+              "cagr": 0.6642521471231295,
+              "volatility": 0.39895215968154657,
+              "sharpe": 1.4801740299406938,
+              "sortino": 1.5334484903353995,
+              "calmar": 1.4332405661554213,
+              "max_drawdown": -0.4642573867170095,
+              "skewness": -0.8850817917329606,
+              "kurtosis": 18.922839193527906,
+              "tail_ratio": 1.5765519195194433,
+              "omega_ratio": 1.3519485223663166,
+              "ulcer_index": 0.3017768912140521,
+              "best_day": 0.09081463536591983,
+              "worst_day": -0.2366219263174878,
+              "avg_daily_return": 0.0016167518848716714,
+              "pct_positive_days": 0.3376029277218664,
+              "max_drawdown_duration_days": 773.0,
+              "tstat_sharpe": 2.560517502391581,
+              "alpha": 0.25285282074174287,
+              "beta": 0.313924954640829,
+              "tstat_alpha": 1.411166689133858
+            },
+            "params": {
+              "vol_window": 72,
+              "slow": 240,
+              "risk_z": 1.25,
+              "risk_short": 0.0,
+              "risk_long": 0.15,
+              "fast": 12,
+              "base_short": 0.0,
+              "base_long": 0.15
+            }
+          },
+          {
+            "strategy_name": "return_vol_long_cash",
+            "final_equity": 45918.934180456934,
+            "trade_count": 271,
+            "metrics": {
+              "total_return": 3.591893418045693,
+              "cagr": 0.6642521471231295,
+              "volatility": 0.39895215968154657,
+              "sharpe": 1.4801740299406938,
+              "sortino": 1.5334484903353995,
+              "calmar": 1.4332405661554213,
+              "max_drawdown": -0.4642573867170095,
+              "skewness": -0.8850817917329606,
+              "kurtosis": 18.922839193527906,
+              "tail_ratio": 1.5765519195194433,
+              "omega_ratio": 1.3519485223663166,
+              "ulcer_index": 0.3017768912140521,
+              "best_day": 0.09081463536591983,
+              "worst_day": -0.2366219263174878,
+              "avg_daily_return": 0.0016167518848716714,
+              "pct_positive_days": 0.3376029277218664,
+              "max_drawdown_duration_days": 773.0,
+              "tstat_sharpe": 2.560517502391581,
+              "alpha": 0.25285282074174287,
+              "beta": 0.313924954640829,
+              "tstat_alpha": 1.411166689133858
+            },
+            "params": {
+              "vol_window": 48,
+              "slow": 240,
+              "risk_z": 1.25,
+              "risk_short": 0.0,
+              "risk_long": 0.15,
+              "fast": 12,
+              "base_short": 0.0,
+              "base_long": 0.15
+            }
+          },
+          {
+            "strategy_name": "return_vol_long_cash",
+            "final_equity": 45918.934180456934,
+            "trade_count": 271,
+            "metrics": {
+              "total_return": 3.591893418045693,
+              "cagr": 0.6642521471231295,
+              "volatility": 0.39895215968154657,
+              "sharpe": 1.4801740299406938,
+              "sortino": 1.5334484903353995,
+              "calmar": 1.4332405661554213,
+              "max_drawdown": -0.4642573867170095,
+              "skewness": -0.8850817917329606,
+              "kurtosis": 18.922839193527906,
+              "tail_ratio": 1.5765519195194433,
+              "omega_ratio": 1.3519485223663166,
+              "ulcer_index": 0.3017768912140521,
+              "best_day": 0.09081463536591983,
+              "worst_day": -0.2366219263174878,
+              "avg_daily_return": 0.0016167518848716714,
+              "pct_positive_days": 0.3376029277218664,
+              "max_drawdown_duration_days": 773.0,
+              "tstat_sharpe": 2.560517502391581,
+              "alpha": 0.25285282074174287,
+              "beta": 0.313924954640829,
+              "tstat_alpha": 1.411166689133858
+            },
+            "params": {
+              "vol_window": 120,
+              "slow": 240,
+              "risk_z": 0.75,
+              "risk_short": 0.0,
+              "risk_long": 0.15,
+              "fast": 12,
+              "base_short": 0.0,
+              "base_long": 0.15
+            }
+          },
+          {
+            "strategy_name": "return_vol_long_cash",
+            "final_equity": 45918.934180456934,
+            "trade_count": 271,
+            "metrics": {
+              "total_return": 3.591893418045693,
+              "cagr": 0.6642521471231295,
+              "volatility": 0.39895215968154657,
+              "sharpe": 1.4801740299406938,
+              "sortino": 1.5334484903353995,
+              "calmar": 1.4332405661554213,
+              "max_drawdown": -0.4642573867170095,
+              "skewness": -0.8850817917329606,
+              "kurtosis": 18.922839193527906,
+              "tail_ratio": 1.5765519195194433,
+              "omega_ratio": 1.3519485223663166,
+              "ulcer_index": 0.3017768912140521,
+              "best_day": 0.09081463536591983,
+              "worst_day": -0.2366219263174878,
+              "avg_daily_return": 0.0016167518848716714,
+              "pct_positive_days": 0.3376029277218664,
+              "max_drawdown_duration_days": 773.0,
+              "tstat_sharpe": 2.560517502391581,
+              "alpha": 0.25285282074174287,
+              "beta": 0.313924954640829,
+              "tstat_alpha": 1.411166689133858
+            },
+            "params": {
+              "vol_window": 72,
+              "slow": 240,
+              "risk_z": 0.75,
+              "risk_short": 0.0,
+              "risk_long": 0.15,
+              "fast": 12,
+              "base_short": 0.0,
+              "base_long": 0.15
+            }
+          },
+          {
+            "strategy_name": "return_vol_long_cash",
+            "final_equity": 45918.934180456934,
+            "trade_count": 271,
+            "metrics": {
+              "total_return": 3.591893418045693,
+              "cagr": 0.6642521471231295,
+              "volatility": 0.39895215968154657,
+              "sharpe": 1.4801740299406938,
+              "sortino": 1.5334484903353995,
+              "calmar": 1.4332405661554213,
+              "max_drawdown": -0.4642573867170095,
+              "skewness": -0.8850817917329606,
+              "kurtosis": 18.922839193527906,
+              "tail_ratio": 1.5765519195194433,
+              "omega_ratio": 1.3519485223663166,
+              "ulcer_index": 0.3017768912140521,
+              "best_day": 0.09081463536591983,
+              "worst_day": -0.2366219263174878,
+              "avg_daily_return": 0.0016167518848716714,
+              "pct_positive_days": 0.3376029277218664,
+              "max_drawdown_duration_days": 773.0,
+              "tstat_sharpe": 2.560517502391581,
+              "alpha": 0.25285282074174287,
+              "beta": 0.313924954640829,
+              "tstat_alpha": 1.411166689133858
+            },
+            "params": {
+              "vol_window": 48,
+              "slow": 240,
+              "risk_z": 0.75,
+              "risk_short": 0.0,
+              "risk_long": 0.15,
+              "fast": 12,
+              "base_short": 0.0,
+              "base_long": 0.15
+            }
+          },
+          {
+            "strategy_name": "return_vol_long_cash",
+            "final_equity": 44241.531834581845,
+            "trade_count": 319,
+            "metrics": {
+              "total_return": 3.424153183458184,
+              "cagr": 0.6436841116873864,
+              "volatility": 0.39717722325691274,
+              "sharpe": 1.4529089720607704,
+              "sortino": 1.5489763129766834,
+              "calmar": 1.3642228768566311,
+              "max_drawdown": -0.4721827067432864,
+              "skewness": -0.674060990601446,
+              "kurtosis": 16.606581841323138,
+              "tail_ratio": 1.549175396203366,
+              "omega_ratio": 1.3412498741472034,
+              "ulcer_index": 0.30891842412141673,
+              "best_day": 0.0909374492781656,
+              "worst_day": -0.22639002606983571,
+              "avg_daily_return": 0.0015799106123700266,
+              "pct_positive_days": 0.3321134492223239,
+              "max_drawdown_duration_days": 773.0,
+              "tstat_sharpe": 2.5133523336390526,
+              "alpha": 0.24287994606402394,
+              "beta": 0.31068646794000115,
+              "tstat_alpha": 1.3562660915108498
+            },
+            "params": {
+              "vol_window": 120,
+              "slow": 240,
+              "risk_z": 1.25,
+              "risk_short": 0.0,
+              "risk_long": 0.15,
+              "fast": 8,
+              "base_short": 0.0,
+              "base_long": 0.15
+            }
+          },
+          {
+            "strategy_name": "return_vol_long_cash",
+            "final_equity": 44241.531834581845,
+            "trade_count": 319,
+            "metrics": {
+              "total_return": 3.424153183458184,
+              "cagr": 0.6436841116873864,
+              "volatility": 0.39717722325691274,
+              "sharpe": 1.4529089720607704,
+              "sortino": 1.5489763129766834,
+              "calmar": 1.3642228768566311,
+              "max_drawdown": -0.4721827067432864,
+              "skewness": -0.674060990601446,
+              "kurtosis": 16.606581841323138,
+              "tail_ratio": 1.549175396203366,
+              "omega_ratio": 1.3412498741472034,
+              "ulcer_index": 0.30891842412141673,
+              "best_day": 0.0909374492781656,
+              "worst_day": -0.22639002606983571,
+              "avg_daily_return": 0.0015799106123700266,
+              "pct_positive_days": 0.3321134492223239,
+              "max_drawdown_duration_days": 773.0,
+              "tstat_sharpe": 2.5133523336390526,
+              "alpha": 0.24287994606402394,
+              "beta": 0.31068646794000115,
+              "tstat_alpha": 1.3562660915108498
+            },
+            "params": {
+              "vol_window": 72,
+              "slow": 240,
+              "risk_z": 1.25,
+              "risk_short": 0.0,
+              "risk_long": 0.15,
+              "fast": 8,
+              "base_short": 0.0,
+              "base_long": 0.15
+            }
+          }
+        ],
+        "overfitting_correction": {
+          "n_trials": 108,
+          "best_raw_sharpe": 1.4802,
+          "expected_max_sharpe_under_null": 0.5045,
+          "probability_edge_is_real": 0.9543,
+          "verdict": "ROBUST",
+          "plain": "Best raw Sharpe 1.48. Correcting for the fact that 108 combinations were tried, the probability that this edge is real rather than selection noise is 95% (a PROBABILITY, not a corrected Sharpe value). The best Sharpe pure noise would be expected to produce over 108 tries is 0.50. It survives the multiple-testing correction."
+        },
+        "warnings": []
+      },
+      "selected": {
+        "params": {
+          "vol_window": 120,
+          "slow": 240,
+          "risk_z": 1.25,
+          "risk_short": 0.0,
+          "risk_long": 0.15,
+          "fast": 12,
+          "base_short": 0.0,
+          "base_long": 0.15
+        },
+        "train": {
+          "strategy_name": "return_vol_long_cash",
+          "final_equity": 45918.934180456934,
+          "trade_count": 271,
+          "metrics": {
+            "total_return": 3.591893418045693,
+            "cagr": 0.6642521471231295,
+            "volatility": 0.39895215968154657,
+            "sharpe": 1.4801740299406938,
+            "sortino": 1.5334484903353995,
+            "calmar": 1.4332405661554213,
+            "max_drawdown": -0.4642573867170095,
+            "skewness": -0.8850817917329606,
+            "kurtosis": 18.922839193527906,
+            "tail_ratio": 1.5765519195194433,
+            "omega_ratio": 1.3519485223663166,
+            "ulcer_index": 0.3017768912140521,
+            "best_day": 0.09081463536591983,
+            "worst_day": -0.2366219263174878,
+            "avg_daily_return": 0.0016167518848716714,
+            "pct_positive_days": 0.3376029277218664,
+            "max_drawdown_duration_days": 773.0,
+            "tstat_sharpe": 2.560517502391581,
+            "alpha": 0.25285282074174287,
+            "beta": 0.313924954640829,
+            "tstat_alpha": 1.411166689133858
+          },
+          "params": {
+            "vol_window": 120,
+            "slow": 240,
+            "risk_z": 1.25,
+            "risk_short": 0.0,
+            "risk_long": 0.15,
+            "fast": 12,
+            "base_short": 0.0,
+            "base_long": 0.15
+          }
+        },
+        "validation": {
+          "metrics": {
+            "total_return": 0.2626731499660506,
+            "cagr": 0.26290852546222365,
+            "volatility": 0.2866404859144964,
+            "sharpe": 0.9594565123875626,
+            "sortino": 1.1130197150312746,
+            "calmar": 1.0386973842655252,
+            "max_drawdown": -0.2531136878217223,
+            "skewness": 0.1942528840644259,
+            "kurtosis": 9.024775532885798,
+            "tail_ratio": 1.1497856511810247,
+            "omega_ratio": 1.2120584525591969,
+            "ulcer_index": 0.13790680731127053,
+            "best_day": 0.07017447562959145,
+            "worst_day": -0.09262392912447404,
+            "avg_daily_return": 0.0007529612071857604,
+            "pct_positive_days": 0.3159340659340659,
+            "max_drawdown_duration_days": 229.625,
+            "tstat_sharpe": 0.9590733537684827,
+            "alpha": -0.05021743290515477,
+            "beta": 0.334787336354245,
+            "tstat_alpha": -0.22635576855059256,
+            "trade_stats": {
+              "total_trades": 96,
+              "round_trips": 47,
+              "win_rate": 0.2553191489361702,
+              "profit_factor": 0.649647842197696,
+              "expectancy": -18.89438607085477,
+              "avg_win": 137.22163846660382,
+              "avg_loss": -72.41988019798343,
+              "max_consecutive_wins": 3,
+              "max_consecutive_losses": 15,
+              "avg_holding_seconds": 1316527.6595744682,
+              "median_holding_seconds": 907200.0,
+              "min_holding_seconds": 14400.0,
+              "max_holding_seconds": 6782400.0,
+              "total_fees": 65.69038101891853,
+              "sl_exits": 0,
+              "tp_exits": 0,
+              "trailing_exits": 0,
+              "signal_quality": {
+                "avg_mae": 0.05833912040607813,
+                "avg_mfe": 0.12081821103766788,
+                "avg_entry_efficiency": 0.5132415854047364,
+                "avg_exit_efficiency": -0.9803446788390837,
+                "edge_ratio": 2.0709638780409225
+              }
+            }
+          },
+          "manifest": {
+            "run_id": "5fab655f-6a20-41f5-8207-e10ebe1c7866",
+            "timestamp": 1784815531883678835,
+            "strategy_name": "return_vol_long_cash_0",
+            "strategy_code_hash": "4ff3d6fd12090cdaa2dd29b05f3a3bf679809859391f57c31eed24bff0eb3b7c",
+            "parameters": {
+              "risk_short": {
+                "Float64": 0.0
+              },
+              "vol_window": {
+                "Int64": 120
+              },
+              "slow": {
+                "Int64": 240
+              },
+              "fast": {
+                "Int64": 12
+              },
+              "risk_z": {
+                "Float64": 1.25
+              },
+              "risk_long": {
+                "Float64": 0.15
+              },
+              "base_short": {
+                "Float64": 0.0
+              },
+              "base_long": {
+                "Float64": 0.15
+              }
+            },
+            "config": {
+              "universe": [
+                1,
+                2,
+                3,
+                4,
+                5
+              ],
+              "time_range": {
+                "start": 1704067200000000000,
+                "end": 1735603200000000000
+              },
+              "bar_interval": {
+                "Hours": 4
+              },
+              "initial_capital": 10000.0,
+              "currency": "USD",
+              "execution": {
+                "signal_delay": 1,
+                "execution_price": "AtOpen",
+                "max_position_pct": 0.15,
+                "allow_short": true,
+                "allow_fractional": true,
+                "skip_gap_bars": false,
+                "position_sizing_mode": "FractionOfEquity",
+                "pyramiding": false
+              },
+              "fees": {
+                "maker_fee_bps": 2.0,
+                "taker_fee_bps": 5.0,
+                "funding_rate_column": "funding_rate",
+                "borrow_rate_annual_bps": 0.0,
+                "min_fee": 0.0
+              },
+              "slippage": {
+                "FixedBps": {
+                  "bps": 2.0
+                }
+              },
+              "data_version": null,
+              "rng_seed": null,
+              "risk_free_rate": 0.0,
+              "warmup_bars": 500,
+              "precise": false
+            },
+            "data_versions": {
+              "bars_1m": "1a0f3ce0-c000-46a2-957b-447d401014f8"
+            },
+            "rng_seed": 0,
+            "engine_version": "0.14.0",
+            "platform": "linux-x86_64"
+          },
+          "trade_count": 96,
+          "warnings": [
+            "funding rate column 'funding_rate' is missing; funding pnl disabled",
+            "funding rate column 'funding_rate' is missing; funding pnl disabled",
+            "funding rate column 'funding_rate' is missing; funding pnl disabled",
+            "funding rate column 'funding_rate' is missing; funding pnl disabled",
+            "funding rate column 'funding_rate' is missing; funding pnl disabled",
+            "fill price 550.189940 outside bar range [550.300000, 563.800000] at row 731"
+          ],
+          "summary": "Strategy: return_vol_long_cash_0\n----------------------------------------\n  Total Return              +26.27%\n  CAGR                      +26.29%\n  Volatility                +28.66%\n  Sharpe                       0.96\n  Sortino                      1.11\n  Calmar                       1.04\n  Max Drawdown              -25.31%\n  Best Day                   +7.02%\n  Worst Day                  -9.26%\n  % Positive Days           +31.59%\n\n  Trades\n  --------------------------------------\n    Total                        96\n    Win Rate                +25.53%\n    Profit Factor              0.65\n    Expectancy               -18.89\n    Avg Win                137.2216\n    Avg Loss               -72.4199\n    Total Fees                65.69\n\n  Signal Quality\n  --------------------------------------\n    Avg MAE                  +5.83%\n    Avg MFE                 +12.08%\n    Edge Ratio                 2.07\n    Entry Efficiency        +51.32%\n    Exit Efficiency         -98.03%"
+        },
+        "strategy_json": {
+          "name": "return_vol_long_cash_0",
+          "signals": {
+            "fast": {
+              "EwmMean": [
+                {
+                  "Column": "close"
+                },
+                "fast"
+              ]
+            },
+            "slow": {
+              "EwmMean": [
+                {
+                  "Column": "close"
+                },
+                "slow"
+              ]
+            },
+            "volatility": {
+              "RollingStd": [
+                {
+                  "PctChange": [
+                    {
+                      "Column": "close"
+                    },
+                    1
+                  ]
+                },
+                14
+              ]
+            },
+            "vol_z": {
+              "ZScore": [
+                {
+                  "RollingStd": [
+                    {
+                      "PctChange": [
+                        {
+                          "Column": "close"
+                        },
+                        1
+                      ]
+                    },
+                    14
+                  ]
+                },
+                "vol_window"
+              ]
+            }
+          },
+          "position_sizing": {
+            "IfElse": [
+              {
+                "Gt": [
+                  {
+                    "EwmMean": [
+                      {
+                        "Column": "close"
+                      },
+                      "fast"
+                    ]
+                  },
+                  {
+                    "EwmMean": [
+                      {
+                        "Column": "close"
+                      },
+                      "slow"
+                    ]
+                  }
+                ]
+              },
+              {
+                "IfElse": [
+                  {
+                    "Gt": [
+                      {
+                        "ZScore": [
+                          {
+                            "RollingStd": [
+                              {
+                                "PctChange": [
+                                  {
+                                    "Column": "close"
+                                  },
+                                  1
+                                ]
+                              },
+                              14
+                            ]
+                          },
+                          "vol_window"
+                        ]
+                      },
+                      {
+                        "Parameter": "risk_z"
+                      }
+                    ]
+                  },
+                  {
+                    "Parameter": "risk_long"
+                  },
+                  {
+                    "Parameter": "base_long"
+                  }
+                ]
+              },
+              {
+                "IfElse": [
+                  {
+                    "Lt": [
+                      {
+                        "EwmMean": [
+                          {
+                            "Column": "close"
+                          },
+                          "fast"
+                        ]
+                      },
+                      {
+                        "EwmMean": [
+                          {
+                            "Column": "close"
+                          },
+                          "slow"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "Literal": {
+                      "Float64": 0.0
+                    }
+                  },
+                  {
+                    "Literal": {
+                      "Float64": 0.0
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "parameters": {
+            "fast": {
+              "name": "fast",
+              "default": {
+                "Int64": 12
+              },
+              "description": "",
+              "range": null
+            },
+            "slow": {
+              "name": "slow",
+              "default": {
+                "Int64": 240
+              },
+              "description": "",
+              "range": null
+            },
+            "vol_window": {
+              "name": "vol_window",
+              "default": {
+                "Int64": 120
+              },
+              "description": "",
+              "range": null
+            },
+            "risk_z": {
+              "name": "risk_z",
+              "default": {
+                "Float64": 1.25
+              },
+              "description": "",
+              "range": null
+            },
+            "base_long": {
+              "name": "base_long",
+              "default": {
+                "Float64": 0.15
+              },
+              "description": "",
+              "range": null
+            },
+            "base_short": {
+              "name": "base_short",
+              "default": {
+                "Float64": 0.0
+              },
+              "description": "",
+              "range": null
+            },
+            "risk_long": {
+              "name": "risk_long",
+              "default": {
+                "Float64": 0.15
+              },
+              "description": "",
+              "range": null
+            },
+            "risk_short": {
+              "name": "risk_short",
+              "default": {
+                "Float64": 0.0
+              },
+              "description": "",
+              "range": null
+            }
+          },
+          "constraints": [],
+          "metadata": {
+            "description": "ManifoldBT-native EMA trend with volatility-state sizing"
+          }
+        },
+        "score": 1.6859576208532139
+      }
+    },
+    {
+      "name": "range_vol_long_cash",
+      "compile": {
+        "ok": true,
+        "plan": {
+          "name": "range_vol_long_cash",
+          "signal_names": [
+            "fast",
+            "slow",
+            "vol_z",
+            "volatility"
+          ],
+          "required_columns": [
+            "close",
+            "high",
+            "low"
+          ],
+          "required_features": [],
+          "parameters": [
+            "base_long",
+            "base_short",
+            "fast",
+            "risk_long",
+            "risk_short",
+            "risk_z",
+            "slow",
+            "vol_window"
+          ]
+        }
+      },
+      "sweep": {
+        "total": 108,
+        "rank_metric": "sharpe",
+        "device": "auto",
+        "top": [
+          {
+            "strategy_name": "range_vol_long_cash",
+            "final_equity": 45918.934180456934,
+            "trade_count": 271,
+            "metrics": {
+              "total_return": 3.591893418045693,
+              "cagr": 0.6642521471231295,
+              "volatility": 0.39895215968154657,
+              "sharpe": 1.4801740299406938,
+              "sortino": 1.5334484903353995,
+              "calmar": 1.4332405661554213,
+              "max_drawdown": -0.4642573867170095,
+              "skewness": -0.8850817917329606,
+              "kurtosis": 18.922839193527906,
+              "tail_ratio": 1.5765519195194433,
+              "omega_ratio": 1.3519485223663166,
+              "ulcer_index": 0.3017768912140521,
+              "best_day": 0.09081463536591983,
+              "worst_day": -0.2366219263174878,
+              "avg_daily_return": 0.0016167518848716714,
+              "pct_positive_days": 0.3376029277218664,
+              "max_drawdown_duration_days": 773.0,
+              "tstat_sharpe": 2.560517502391581,
+              "alpha": 0.25285282074174287,
+              "beta": 0.313924954640829,
+              "tstat_alpha": 1.411166689133858
+            },
+            "params": {
+              "vol_window": 120,
+              "slow": 240,
+              "risk_z": 1.25,
+              "risk_short": 0.0,
+              "risk_long": 0.15,
+              "fast": 12,
+              "base_short": 0.0,
+              "base_long": 0.15
+            }
+          },
+          {
+            "strategy_name": "range_vol_long_cash",
+            "final_equity": 45918.934180456934,
+            "trade_count": 271,
+            "metrics": {
+              "total_return": 3.591893418045693,
+              "cagr": 0.6642521471231295,
+              "volatility": 0.39895215968154657,
+              "sharpe": 1.4801740299406938,
+              "sortino": 1.5334484903353995,
+              "calmar": 1.4332405661554213,
+              "max_drawdown": -0.4642573867170095,
+              "skewness": -0.8850817917329606,
+              "kurtosis": 18.922839193527906,
+              "tail_ratio": 1.5765519195194433,
+              "omega_ratio": 1.3519485223663166,
+              "ulcer_index": 0.3017768912140521,
+              "best_day": 0.09081463536591983,
+              "worst_day": -0.2366219263174878,
+              "avg_daily_return": 0.0016167518848716714,
+              "pct_positive_days": 0.3376029277218664,
+              "max_drawdown_duration_days": 773.0,
+              "tstat_sharpe": 2.560517502391581,
+              "alpha": 0.25285282074174287,
+              "beta": 0.313924954640829,
+              "tstat_alpha": 1.411166689133858
+            },
+            "params": {
+              "vol_window": 72,
+              "slow": 240,
+              "risk_z": 1.25,
+              "risk_short": 0.0,
+              "risk_long": 0.15,
+              "fast": 12,
+              "base_short": 0.0,
+              "base_long": 0.15
+            }
+          },
+          {
+            "strategy_name": "range_vol_long_cash",
+            "final_equity": 45918.934180456934,
+            "trade_count": 271,
+            "metrics": {
+              "total_return": 3.591893418045693,
+              "cagr": 0.6642521471231295,
+              "volatility": 0.39895215968154657,
+              "sharpe": 1.4801740299406938,
+              "sortino": 1.5334484903353995,
+              "calmar": 1.4332405661554213,
+              "max_drawdown": -0.4642573867170095,
+              "skewness": -0.8850817917329606,
+              "kurtosis": 18.922839193527906,
+              "tail_ratio": 1.5765519195194433,
+              "omega_ratio": 1.3519485223663166,
+              "ulcer_index": 0.3017768912140521,
+              "best_day": 0.09081463536591983,
+              "worst_day": -0.2366219263174878,
+              "avg_daily_return": 0.0016167518848716714,
+              "pct_positive_days": 0.3376029277218664,
+              "max_drawdown_duration_days": 773.0,
+              "tstat_sharpe": 2.560517502391581,
+              "alpha": 0.25285282074174287,
+              "beta": 0.313924954640829,
+              "tstat_alpha": 1.411166689133858
+            },
+            "params": {
+              "vol_window": 48,
+              "slow": 240,
+              "risk_z": 1.25,
+              "risk_short": 0.0,
+              "risk_long": 0.15,
+              "fast": 12,
+              "base_short": 0.0,
+              "base_long": 0.15
+            }
+          },
+          {
+            "strategy_name": "range_vol_long_cash",
+            "final_equity": 45918.934180456934,
+            "trade_count": 271,
+            "metrics": {
+              "total_return": 3.591893418045693,
+              "cagr": 0.6642521471231295,
+              "volatility": 0.39895215968154657,
+              "sharpe": 1.4801740299406938,
+              "sortino": 1.5334484903353995,
+              "calmar": 1.4332405661554213,
+              "max_drawdown": -0.4642573867170095,
+              "skewness": -0.8850817917329606,
+              "kurtosis": 18.922839193527906,
+              "tail_ratio": 1.5765519195194433,
+              "omega_ratio": 1.3519485223663166,
+              "ulcer_index": 0.3017768912140521,
+              "best_day": 0.09081463536591983,
+              "worst_day": -0.2366219263174878,
+              "avg_daily_return": 0.0016167518848716714,
+              "pct_positive_days": 0.3376029277218664,
+              "max_drawdown_duration_days": 773.0,
+              "tstat_sharpe": 2.560517502391581,
+              "alpha": 0.25285282074174287,
+              "beta": 0.313924954640829,
+              "tstat_alpha": 1.411166689133858
+            },
+            "params": {
+              "vol_window": 120,
+              "slow": 240,
+              "risk_z": 0.75,
+              "risk_short": 0.0,
+              "risk_long": 0.15,
+              "fast": 12,
+              "base_short": 0.0,
+              "base_long": 0.15
+            }
+          },
+          {
+            "strategy_name": "range_vol_long_cash",
+            "final_equity": 45918.934180456934,
+            "trade_count": 271,
+            "metrics": {
+              "total_return": 3.591893418045693,
+              "cagr": 0.6642521471231295,
+              "volatility": 0.39895215968154657,
+              "sharpe": 1.4801740299406938,
+              "sortino": 1.5334484903353995,
+              "calmar": 1.4332405661554213,
+              "max_drawdown": -0.4642573867170095,
+              "skewness": -0.8850817917329606,
+              "kurtosis": 18.922839193527906,
+              "tail_ratio": 1.5765519195194433,
+              "omega_ratio": 1.3519485223663166,
+              "ulcer_index": 0.3017768912140521,
+              "best_day": 0.09081463536591983,
+              "worst_day": -0.2366219263174878,
+              "avg_daily_return": 0.0016167518848716714,
+              "pct_positive_days": 0.3376029277218664,
+              "max_drawdown_duration_days": 773.0,
+              "tstat_sharpe": 2.560517502391581,
+              "alpha": 0.25285282074174287,
+              "beta": 0.313924954640829,
+              "tstat_alpha": 1.411166689133858
+            },
+            "params": {
+              "vol_window": 72,
+              "slow": 240,
+              "risk_z": 0.75,
+              "risk_short": 0.0,
+              "risk_long": 0.15,
+              "fast": 12,
+              "base_short": 0.0,
+              "base_long": 0.15
+            }
+          },
+          {
+            "strategy_name": "range_vol_long_cash",
+            "final_equity": 45918.934180456934,
+            "trade_count": 271,
+            "metrics": {
+              "total_return": 3.591893418045693,
+              "cagr": 0.6642521471231295,
+              "volatility": 0.39895215968154657,
+              "sharpe": 1.4801740299406938,
+              "sortino": 1.5334484903353995,
+              "calmar": 1.4332405661554213,
+              "max_drawdown": -0.4642573867170095,
+              "skewness": -0.8850817917329606,
+              "kurtosis": 18.922839193527906,
+              "tail_ratio": 1.5765519195194433,
+              "omega_ratio": 1.3519485223663166,
+              "ulcer_index": 0.3017768912140521,
+              "best_day": 0.09081463536591983,
+              "worst_day": -0.2366219263174878,
+              "avg_daily_return": 0.0016167518848716714,
+              "pct_positive_days": 0.3376029277218664,
+              "max_drawdown_duration_days": 773.0,
+              "tstat_sharpe": 2.560517502391581,
+              "alpha": 0.25285282074174287,
+              "beta": 0.313924954640829,
+              "tstat_alpha": 1.411166689133858
+            },
+            "params": {
+              "vol_window": 48,
+              "slow": 240,
+              "risk_z": 0.75,
+              "risk_short": 0.0,
+              "risk_long": 0.15,
+              "fast": 12,
+              "base_short": 0.0,
+              "base_long": 0.15
+            }
+          },
+          {
+            "strategy_name": "range_vol_long_cash",
+            "final_equity": 44241.531834581845,
+            "trade_count": 319,
+            "metrics": {
+              "total_return": 3.424153183458184,
+              "cagr": 0.6436841116873864,
+              "volatility": 0.39717722325691274,
+              "sharpe": 1.4529089720607704,
+              "sortino": 1.5489763129766834,
+              "calmar": 1.3642228768566311,
+              "max_drawdown": -0.4721827067432864,
+              "skewness": -0.674060990601446,
+              "kurtosis": 16.606581841323138,
+              "tail_ratio": 1.549175396203366,
+              "omega_ratio": 1.3412498741472034,
+              "ulcer_index": 0.30891842412141673,
+              "best_day": 0.0909374492781656,
+              "worst_day": -0.22639002606983571,
+              "avg_daily_return": 0.0015799106123700266,
+              "pct_positive_days": 0.3321134492223239,
+              "max_drawdown_duration_days": 773.0,
+              "tstat_sharpe": 2.5133523336390526,
+              "alpha": 0.24287994606402394,
+              "beta": 0.31068646794000115,
+              "tstat_alpha": 1.3562660915108498
+            },
+            "params": {
+              "vol_window": 120,
+              "slow": 240,
+              "risk_z": 1.25,
+              "risk_short": 0.0,
+              "risk_long": 0.15,
+              "fast": 8,
+              "base_short": 0.0,
+              "base_long": 0.15
+            }
+          },
+          {
+            "strategy_name": "range_vol_long_cash",
+            "final_equity": 44241.531834581845,
+            "trade_count": 319,
+            "metrics": {
+              "total_return": 3.424153183458184,
+              "cagr": 0.6436841116873864,
+              "volatility": 0.39717722325691274,
+              "sharpe": 1.4529089720607704,
+              "sortino": 1.5489763129766834,
+              "calmar": 1.3642228768566311,
+              "max_drawdown": -0.4721827067432864,
+              "skewness": -0.674060990601446,
+              "kurtosis": 16.606581841323138,
+              "tail_ratio": 1.549175396203366,
+              "omega_ratio": 1.3412498741472034,
+              "ulcer_index": 0.30891842412141673,
+              "best_day": 0.0909374492781656,
+              "worst_day": -0.22639002606983571,
+              "avg_daily_return": 0.0015799106123700266,
+              "pct_positive_days": 0.3321134492223239,
+              "max_drawdown_duration_days": 773.0,
+              "tstat_sharpe": 2.5133523336390526,
+              "alpha": 0.24287994606402394,
+              "beta": 0.31068646794000115,
+              "tstat_alpha": 1.3562660915108498
+            },
+            "params": {
+              "vol_window": 72,
+              "slow": 240,
+              "risk_z": 1.25,
+              "risk_short": 0.0,
+              "risk_long": 0.15,
+              "fast": 8,
+              "base_short": 0.0,
+              "base_long": 0.15
+            }
+          }
+        ],
+        "overfitting_correction": {
+          "n_trials": 108,
+          "best_raw_sharpe": 1.4802,
+          "expected_max_sharpe_under_null": 0.5238,
+          "probability_edge_is_real": 0.951,
+          "verdict": "ROBUST",
+          "plain": "Best raw Sharpe 1.48. Correcting for the fact that 108 combinations were tried, the probability that this edge is real rather than selection noise is 95% (a PROBABILITY, not a corrected Sharpe value). The best Sharpe pure noise would be expected to produce over 108 tries is 0.52. It survives the multiple-testing correction."
+        },
+        "warnings": []
+      },
+      "selected": {
+        "params": {
+          "vol_window": 120,
+          "slow": 240,
+          "risk_z": 1.25,
+          "risk_short": 0.0,
+          "risk_long": 0.15,
+          "fast": 12,
+          "base_short": 0.0,
+          "base_long": 0.15
+        },
+        "train": {
+          "strategy_name": "range_vol_long_cash",
+          "final_equity": 45918.934180456934,
+          "trade_count": 271,
+          "metrics": {
+            "total_return": 3.591893418045693,
+            "cagr": 0.6642521471231295,
+            "volatility": 0.39895215968154657,
+            "sharpe": 1.4801740299406938,
+            "sortino": 1.5334484903353995,
+            "calmar": 1.4332405661554213,
+            "max_drawdown": -0.4642573867170095,
+            "skewness": -0.8850817917329606,
+            "kurtosis": 18.922839193527906,
+            "tail_ratio": 1.5765519195194433,
+            "omega_ratio": 1.3519485223663166,
+            "ulcer_index": 0.3017768912140521,
+            "best_day": 0.09081463536591983,
+            "worst_day": -0.2366219263174878,
+            "avg_daily_return": 0.0016167518848716714,
+            "pct_positive_days": 0.3376029277218664,
+            "max_drawdown_duration_days": 773.0,
+            "tstat_sharpe": 2.560517502391581,
+            "alpha": 0.25285282074174287,
+            "beta": 0.313924954640829,
+            "tstat_alpha": 1.411166689133858
+          },
+          "params": {
+            "vol_window": 120,
+            "slow": 240,
+            "risk_z": 1.25,
+            "risk_short": 0.0,
+            "risk_long": 0.15,
+            "fast": 12,
+            "base_short": 0.0,
+            "base_long": 0.15
+          }
+        },
+        "validation": {
+          "metrics": {
+            "total_return": 0.2626731499660506,
+            "cagr": 0.26290852546222365,
+            "volatility": 0.2866404859144964,
+            "sharpe": 0.9594565123875626,
+            "sortino": 1.1130197150312746,
+            "calmar": 1.0386973842655252,
+            "max_drawdown": -0.2531136878217223,
+            "skewness": 0.1942528840644259,
+            "kurtosis": 9.024775532885798,
+            "tail_ratio": 1.1497856511810247,
+            "omega_ratio": 1.2120584525591969,
+            "ulcer_index": 0.13790680731127053,
+            "best_day": 0.07017447562959145,
+            "worst_day": -0.09262392912447404,
+            "avg_daily_return": 0.0007529612071857604,
+            "pct_positive_days": 0.3159340659340659,
+            "max_drawdown_duration_days": 229.625,
+            "tstat_sharpe": 0.9590733537684827,
+            "alpha": -0.05021743290515477,
+            "beta": 0.334787336354245,
+            "tstat_alpha": -0.22635576855059256,
+            "trade_stats": {
+              "total_trades": 96,
+              "round_trips": 47,
+              "win_rate": 0.2553191489361702,
+              "profit_factor": 0.649647842197696,
+              "expectancy": -18.89438607085477,
+              "avg_win": 137.22163846660382,
+              "avg_loss": -72.41988019798343,
+              "max_consecutive_wins": 3,
+              "max_consecutive_losses": 15,
+              "avg_holding_seconds": 1316527.6595744682,
+              "median_holding_seconds": 907200.0,
+              "min_holding_seconds": 14400.0,
+              "max_holding_seconds": 6782400.0,
+              "total_fees": 65.69038101891853,
+              "sl_exits": 0,
+              "tp_exits": 0,
+              "trailing_exits": 0,
+              "signal_quality": {
+                "avg_mae": 0.05833912040607813,
+                "avg_mfe": 0.12081821103766788,
+                "avg_entry_efficiency": 0.5132415854047364,
+                "avg_exit_efficiency": -0.9803446788390837,
+                "edge_ratio": 2.0709638780409225
+              }
+            }
+          },
+          "manifest": {
+            "run_id": "a9feb3c0-3086-475f-9426-fe4b564134da",
+            "timestamp": 1784815534050234504,
+            "strategy_name": "range_vol_long_cash_0",
+            "strategy_code_hash": "a930e034930e4af0e48f8b0ee09a13dabc181f42d8bd07a84604842091db6fd5",
+            "parameters": {
+              "base_long": {
+                "Float64": 0.15
+              },
+              "fast": {
+                "Int64": 12
+              },
+              "risk_long": {
+                "Float64": 0.15
+              },
+              "risk_z": {
+                "Float64": 1.25
+              },
+              "vol_window": {
+                "Int64": 120
+              },
+              "base_short": {
+                "Float64": 0.0
+              },
+              "risk_short": {
+                "Float64": 0.0
+              },
+              "slow": {
+                "Int64": 240
+              }
+            },
+            "config": {
+              "universe": [
+                1,
+                2,
+                3,
+                4,
+                5
+              ],
+              "time_range": {
+                "start": 1704067200000000000,
+                "end": 1735603200000000000
+              },
+              "bar_interval": {
+                "Hours": 4
+              },
+              "initial_capital": 10000.0,
+              "currency": "USD",
+              "execution": {
+                "signal_delay": 1,
+                "execution_price": "AtOpen",
+                "max_position_pct": 0.15,
+                "allow_short": true,
+                "allow_fractional": true,
+                "skip_gap_bars": false,
+                "position_sizing_mode": "FractionOfEquity",
+                "pyramiding": false
+              },
+              "fees": {
+                "maker_fee_bps": 2.0,
+                "taker_fee_bps": 5.0,
+                "funding_rate_column": "funding_rate",
+                "borrow_rate_annual_bps": 0.0,
+                "min_fee": 0.0
+              },
+              "slippage": {
+                "FixedBps": {
+                  "bps": 2.0
+                }
+              },
+              "data_version": null,
+              "rng_seed": null,
+              "risk_free_rate": 0.0,
+              "warmup_bars": 500,
+              "precise": false
+            },
+            "data_versions": {
+              "bars_1m": "1a0f3ce0-c000-46a2-957b-447d401014f8"
+            },
+            "rng_seed": 0,
+            "engine_version": "0.14.0",
+            "platform": "linux-x86_64"
+          },
+          "trade_count": 96,
+          "warnings": [
+            "funding rate column 'funding_rate' is missing; funding pnl disabled",
+            "funding rate column 'funding_rate' is missing; funding pnl disabled",
+            "funding rate column 'funding_rate' is missing; funding pnl disabled",
+            "funding rate column 'funding_rate' is missing; funding pnl disabled",
+            "funding rate column 'funding_rate' is missing; funding pnl disabled",
+            "fill price 550.189940 outside bar range [550.300000, 563.800000] at row 731"
+          ],
+          "summary": "Strategy: range_vol_long_cash_0\n----------------------------------------\n  Total Return              +26.27%\n  CAGR                      +26.29%\n  Volatility                +28.66%\n  Sharpe                       0.96\n  Sortino                      1.11\n  Calmar                       1.04\n  Max Drawdown              -25.31%\n  Best Day                   +7.02%\n  Worst Day                  -9.26%\n  % Positive Days           +31.59%\n\n  Trades\n  --------------------------------------\n    Total                        96\n    Win Rate                +25.53%\n    Profit Factor              0.65\n    Expectancy               -18.89\n    Avg Win                137.2216\n    Avg Loss               -72.4199\n    Total Fees                65.69\n\n  Signal Quality\n  --------------------------------------\n    Avg MAE                  +5.83%\n    Avg MFE                 +12.08%\n    Edge Ratio                 2.07\n    Entry Efficiency        +51.32%\n    Exit Efficiency         -98.03%"
+        },
+        "strategy_json": {
+          "name": "range_vol_long_cash_0",
+          "signals": {
+            "fast": {
+              "EwmMean": [
+                {
+                  "Column": "close"
+                },
+                "fast"
+              ]
+            },
+            "slow": {
+              "EwmMean": [
+                {
+                  "Column": "close"
+                },
+                "slow"
+              ]
+            },
+            "volatility": {
+              "Div": [
+                {
+                  "RollingMean": [
+                    {
+                      "Sub": [
+                        {
+                          "Column": "high"
+                        },
+                        {
+                          "Column": "low"
+                        }
+                      ]
+                    },
+                    14
+                  ]
+                },
+                {
+                  "Add": [
+                    {
+                      "Column": "close"
+                    },
+                    {
+                      "Literal": {
+                        "Float64": 1e-12
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            "vol_z": {
+              "ZScore": [
+                {
+                  "Div": [
+                    {
+                      "RollingMean": [
+                        {
+                          "Sub": [
+                            {
+                              "Column": "high"
+                            },
+                            {
+                              "Column": "low"
+                            }
+                          ]
+                        },
+                        14
+                      ]
+                    },
+                    {
+                      "Add": [
+                        {
+                          "Column": "close"
+                        },
+                        {
+                          "Literal": {
+                            "Float64": 1e-12
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "vol_window"
+              ]
+            }
+          },
+          "position_sizing": {
+            "IfElse": [
+              {
+                "Gt": [
+                  {
+                    "EwmMean": [
+                      {
+                        "Column": "close"
+                      },
+                      "fast"
+                    ]
+                  },
+                  {
+                    "EwmMean": [
+                      {
+                        "Column": "close"
+                      },
+                      "slow"
+                    ]
+                  }
+                ]
+              },
+              {
+                "IfElse": [
+                  {
+                    "Gt": [
+                      {
+                        "ZScore": [
+                          {
+                            "Div": [
+                              {
+                                "RollingMean": [
+                                  {
+                                    "Sub": [
+                                      {
+                                        "Column": "high"
+                                      },
+                                      {
+                                        "Column": "low"
+                                      }
+                                    ]
+                                  },
+                                  14
+                                ]
+                              },
+                              {
+                                "Add": [
+                                  {
+                                    "Column": "close"
+                                  },
+                                  {
+                                    "Literal": {
+                                      "Float64": 1e-12
+                                    }
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          "vol_window"
+                        ]
+                      },
+                      {
+                        "Parameter": "risk_z"
+                      }
+                    ]
+                  },
+                  {
+                    "Parameter": "risk_long"
+                  },
+                  {
+                    "Parameter": "base_long"
+                  }
+                ]
+              },
+              {
+                "IfElse": [
+                  {
+                    "Lt": [
+                      {
+                        "EwmMean": [
+                          {
+                            "Column": "close"
+                          },
+                          "fast"
+                        ]
+                      },
+                      {
+                        "EwmMean": [
+                          {
+                            "Column": "close"
+                          },
+                          "slow"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "Literal": {
+                      "Float64": 0.0
+                    }
+                  },
+                  {
+                    "Literal": {
+                      "Float64": 0.0
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "parameters": {
+            "fast": {
+              "name": "fast",
+              "default": {
+                "Int64": 12
+              },
+              "description": "",
+              "range": null
+            },
+            "slow": {
+              "name": "slow",
+              "default": {
+                "Int64": 240
+              },
+              "description": "",
+              "range": null
+            },
+            "vol_window": {
+              "name": "vol_window",
+              "default": {
+                "Int64": 120
+              },
+              "description": "",
+              "range": null
+            },
+            "risk_z": {
+              "name": "risk_z",
+              "default": {
+                "Float64": 1.25
+              },
+              "description": "",
+              "range": null
+            },
+            "base_long": {
+              "name": "base_long",
+              "default": {
+                "Float64": 0.15
+              },
+              "description": "",
+              "range": null
+            },
+            "base_short": {
+              "name": "base_short",
+              "default": {
+                "Float64": 0.0
+              },
+              "description": "",
+              "range": null
+            },
+            "risk_long": {
+              "name": "risk_long",
+              "default": {
+                "Float64": 0.15
+              },
+              "description": "",
+              "range": null
+            },
+            "risk_short": {
+              "name": "risk_short",
+              "default": {
+                "Float64": 0.0
+              },
+              "description": "",
+              "range": null
+            }
+          },
+          "constraints": [],
+          "metadata": {
+            "description": "ManifoldBT-native EMA trend with volatility-state sizing"
+          }
+        },
+        "score": 1.6851326208532138
+      }
+    }
+  ],
+  "errors": [],
+  "blockers": [
+    "No ingest_data tool: only the server's preloaded datastore can be used.",
+    "Native run_walk_forward is Pro-only; train/validation/holdout are separate MCP backtests.",
+    "The datastore exposes Binance CryptoSpot proxies, not complete perpetual funding/basis/OI history.",
+    "Community Monte Carlo is capped at 1,000 paths."
+  ],
+  "version": {
+    "version": "0.14.0",
+    "license_tier": "Community",
+    "license_email": null
+  },
+  "symbols": [
+    {
+      "id": 1,
+      "ticker": "BTCUSDT",
+      "exchange": "BINANCE",
+      "asset_class": "CryptoSpot"
+    },
+    {
+      "id": 2,
+      "ticker": "ETHUSDT",
+      "exchange": "BINANCE",
+      "asset_class": "CryptoSpot"
+    },
+    {
+      "id": 3,
+      "ticker": "SOLUSDT",
+      "exchange": "BINANCE",
+      "asset_class": "CryptoSpot"
+    },
+    {
+      "id": 4,
+      "ticker": "BNBUSDT",
+      "exchange": "BINANCE",
+      "asset_class": "CryptoSpot"
+    },
+    {
+      "id": 5,
+      "ticker": "XRPUSDT",
+      "exchange": "BINANCE",
+      "asset_class": "CryptoSpot"
+    },
+    {
+      "id": 6,
+      "ticker": "ADAUSDT",
+      "exchange": "BINANCE",
+      "asset_class": "CryptoSpot"
+    },
+    {
+      "id": 7,
+      "ticker": "DOGEUSDT",
+      "exchange": "BINANCE",
+      "asset_class": "CryptoSpot"
+    },
+    {
+      "id": 8,
+      "ticker": "AVAXUSDT",
+      "exchange": "BINANCE",
+      "asset_class": "CryptoSpot"
+    },
+    {
+      "id": 9,
+      "ticker": "DOTUSDT",
+      "exchange": "BINANCE",
+      "asset_class": "CryptoSpot"
+    },
+    {
+      "id": 10,
+      "ticker": "LINKUSDT",
+      "exchange": "BINANCE",
+      "asset_class": "CryptoSpot"
+    },
+    {
+      "id": 11,
+      "ticker": "LTCUSDT",
+      "exchange": "BINANCE",
+      "asset_class": "CryptoSpot"
+    },
+    {
+      "id": 12,
+      "ticker": "TRXUSDT",
+      "exchange": "BINANCE",
+      "asset_class": "CryptoSpot"
+    },
+    {
+      "id": 13,
+      "ticker": "BCHUSDT",
+      "exchange": "BINANCE",
+      "asset_class": "CryptoSpot"
+    },
+    {
+      "id": 14,
+      "ticker": "XLMUSDT",
+      "exchange": "BINANCE",
+      "asset_class": "CryptoSpot"
+    },
+    {
+      "id": 15,
+      "ticker": "ATOMUSDT",
+      "exchange": "BINANCE",
+      "asset_class": "CryptoSpot"
+    },
+    {
+      "id": 16,
+      "ticker": "ETCUSDT",
+      "exchange": "BINANCE",
+      "asset_class": "CryptoSpot"
+    },
+    {
+      "id": 17,
+      "ticker": "UNIUSDT",
+      "exchange": "BINANCE",
+      "asset_class": "CryptoSpot"
+    },
+    {
+      "id": 18,
+      "ticker": "FILUSDT",
+      "exchange": "BINANCE",
+      "asset_class": "CryptoSpot"
+    },
+    {
+      "id": 19,
+      "ticker": "NEARUSDT",
+      "exchange": "BINANCE",
+      "asset_class": "CryptoSpot"
+    },
+    {
+      "id": 20,
+      "ticker": "ICPUSDT",
+      "exchange": "BINANCE",
+      "asset_class": "CryptoSpot"
+    },
+    {
+      "id": 21,
+      "ticker": "AAVEUSDT",
+      "exchange": "BINANCE",
+      "asset_class": "CryptoSpot"
+    },
+    {
+      "id": 22,
+      "ticker": "INJUSDT",
+      "exchange": "BINANCE",
+      "asset_class": "CryptoSpot"
+    },
+    {
+      "id": 23,
+      "ticker": "SANDUSDT",
+      "exchange": "BINANCE",
+      "asset_class": "CryptoSpot"
+    },
+    {
+      "id": 24,
+      "ticker": "MANAUSDT",
+      "exchange": "BINANCE",
+      "asset_class": "CryptoSpot"
+    },
+    {
+      "id": 25,
+      "ticker": "AXSUSDT",
+      "exchange": "BINANCE",
+      "asset_class": "CryptoSpot"
+    },
+    {
+      "id": 26,
+      "ticker": "ALGOUSDT",
+      "exchange": "BINANCE",
+      "asset_class": "CryptoSpot"
+    },
+    {
+      "id": 27,
+      "ticker": "VETUSDT",
+      "exchange": "BINANCE",
+      "asset_class": "CryptoSpot"
+    },
+    {
+      "id": 28,
+      "ticker": "APTUSDT",
+      "exchange": "BINANCE",
+      "asset_class": "CryptoSpot"
+    },
+    {
+      "id": 29,
+      "ticker": "ARBUSDT",
+      "exchange": "BINANCE",
+      "asset_class": "CryptoSpot"
+    },
+    {
+      "id": 30,
+      "ticker": "OPUSDT",
+      "exchange": "BINANCE",
+      "asset_class": "CryptoSpot"
+    },
+    {
+      "id": 31,
+      "ticker": "SUIUSDT",
+      "exchange": "BINANCE",
+      "asset_class": "CryptoSpot"
+    },
+    {
+      "id": 32,
+      "ticker": "TIAUSDT",
+      "exchange": "BINANCE",
+      "asset_class": "CryptoSpot"
+    },
+    {
+      "id": 33,
+      "ticker": "SEIUSDT",
+      "exchange": "BINANCE",
+      "asset_class": "CryptoSpot"
+    },
+    {
+      "id": 34,
+      "ticker": "RUNEUSDT",
+      "exchange": "BINANCE",
+      "asset_class": "CryptoSpot"
+    },
+    {
+      "id": 35,
+      "ticker": "GRTUSDT",
+      "exchange": "BINANCE",
+      "asset_class": "CryptoSpot"
+    },
+    {
+      "id": 36,
+      "ticker": "THETAUSDT",
+      "exchange": "BINANCE",
+      "asset_class": "CryptoSpot"
+    },
+    {
+      "id": 37,
+      "ticker": "FLOWUSDT",
+      "exchange": "BINANCE",
+      "asset_class": "CryptoSpot"
+    },
+    {
+      "id": 38,
+      "ticker": "CHZUSDT",
+      "exchange": "BINANCE",
+      "asset_class": "CryptoSpot"
+    },
+    {
+      "id": 39,
+      "ticker": "GALAUSDT",
+      "exchange": "BINANCE",
+      "asset_class": "CryptoSpot"
+    },
+    {
+      "id": 40,
+      "ticker": "CRVUSDT",
+      "exchange": "BINANCE",
+      "asset_class": "CryptoSpot"
+    },
+    {
+      "id": 41,
+      "ticker": "SNXUSDT",
+      "exchange": "BINANCE",
+      "asset_class": "CryptoSpot"
+    },
+    {
+      "id": 42,
+      "ticker": "COMPUSDT",
+      "exchange": "BINANCE",
+      "asset_class": "CryptoSpot"
+    },
+    {
+      "id": 43,
+      "ticker": "MKRUSDT",
+      "exchange": "BINANCE",
+      "asset_class": "CryptoSpot"
+    },
+    {
+      "id": 44,
+      "ticker": "KAVAUSDT",
+      "exchange": "BINANCE",
+      "asset_class": "CryptoSpot"
+    },
+    {
+      "id": 45,
+      "ticker": "ENJUSDT",
+      "exchange": "BINANCE",
+      "asset_class": "CryptoSpot"
+    },
+    {
+      "id": 46,
+      "ticker": "1INCHUSDT",
+      "exchange": "BINANCE",
+      "asset_class": "CryptoSpot"
+    },
+    {
+      "id": 47,
+      "ticker": "LDOUSDT",
+      "exchange": "BINANCE",
+      "asset_class": "CryptoSpot"
+    },
+    {
+      "id": 48,
+      "ticker": "SHIBUSDT",
+      "exchange": "BINANCE",
+      "asset_class": "CryptoSpot"
+    },
+    {
+      "id": 49,
+      "ticker": "PEPEUSDT",
+      "exchange": "BINANCE",
+      "asset_class": "CryptoSpot"
+    },
+    {
+      "id": 50,
+      "ticker": "WLDUSDT",
+      "exchange": "BINANCE",
+      "asset_class": "CryptoSpot"
+    }
+  ],
+  "winner": {
+    "params": {
+      "vol_window": 120,
+      "slow": 240,
+      "risk_z": 1.25,
+      "risk_short": 0.0,
+      "risk_long": 0.15,
+      "fast": 12,
+      "base_short": 0.0,
+      "base_long": 0.15
+    },
+    "train": {
+      "strategy_name": "return_vol_long_cash",
+      "final_equity": 45918.934180456934,
+      "trade_count": 271,
+      "metrics": {
+        "total_return": 3.591893418045693,
+        "cagr": 0.6642521471231295,
+        "volatility": 0.39895215968154657,
+        "sharpe": 1.4801740299406938,
+        "sortino": 1.5334484903353995,
+        "calmar": 1.4332405661554213,
+        "max_drawdown": -0.4642573867170095,
+        "skewness": -0.8850817917329606,
+        "kurtosis": 18.922839193527906,
+        "tail_ratio": 1.5765519195194433,
+        "omega_ratio": 1.3519485223663166,
+        "ulcer_index": 0.3017768912140521,
+        "best_day": 0.09081463536591983,
+        "worst_day": -0.2366219263174878,
+        "avg_daily_return": 0.0016167518848716714,
+        "pct_positive_days": 0.3376029277218664,
+        "max_drawdown_duration_days": 773.0,
+        "tstat_sharpe": 2.560517502391581,
+        "alpha": 0.25285282074174287,
+        "beta": 0.313924954640829,
+        "tstat_alpha": 1.411166689133858
+      },
+      "params": {
+        "vol_window": 120,
+        "slow": 240,
+        "risk_z": 1.25,
+        "risk_short": 0.0,
+        "risk_long": 0.15,
+        "fast": 12,
+        "base_short": 0.0,
+        "base_long": 0.15
+      }
+    },
+    "validation": {
+      "metrics": {
+        "total_return": 0.2626731499660506,
+        "cagr": 0.26290852546222365,
+        "volatility": 0.2866404859144964,
+        "sharpe": 0.9594565123875626,
+        "sortino": 1.1130197150312746,
+        "calmar": 1.0386973842655252,
+        "max_drawdown": -0.2531136878217223,
+        "skewness": 0.1942528840644259,
+        "kurtosis": 9.024775532885798,
+        "tail_ratio": 1.1497856511810247,
+        "omega_ratio": 1.2120584525591969,
+        "ulcer_index": 0.13790680731127053,
+        "best_day": 0.07017447562959145,
+        "worst_day": -0.09262392912447404,
+        "avg_daily_return": 0.0007529612071857604,
+        "pct_positive_days": 0.3159340659340659,
+        "max_drawdown_duration_days": 229.625,
+        "tstat_sharpe": 0.9590733537684827,
+        "alpha": -0.05021743290515477,
+        "beta": 0.334787336354245,
+        "tstat_alpha": -0.22635576855059256,
+        "trade_stats": {
+          "total_trades": 96,
+          "round_trips": 47,
+          "win_rate": 0.2553191489361702,
+          "profit_factor": 0.649647842197696,
+          "expectancy": -18.89438607085477,
+          "avg_win": 137.22163846660382,
+          "avg_loss": -72.41988019798343,
+          "max_consecutive_wins": 3,
+          "max_consecutive_losses": 15,
+          "avg_holding_seconds": 1316527.6595744682,
+          "median_holding_seconds": 907200.0,
+          "min_holding_seconds": 14400.0,
+          "max_holding_seconds": 6782400.0,
+          "total_fees": 65.69038101891853,
+          "sl_exits": 0,
+          "tp_exits": 0,
+          "trailing_exits": 0,
+          "signal_quality": {
+            "avg_mae": 0.05833912040607813,
+            "avg_mfe": 0.12081821103766788,
+            "avg_entry_efficiency": 0.5132415854047364,
+            "avg_exit_efficiency": -0.9803446788390837,
+            "edge_ratio": 2.0709638780409225
+          }
+        }
+      },
+      "manifest": {
+        "run_id": "5fab655f-6a20-41f5-8207-e10ebe1c7866",
+        "timestamp": 1784815531883678835,
+        "strategy_name": "return_vol_long_cash_0",
+        "strategy_code_hash": "4ff3d6fd12090cdaa2dd29b05f3a3bf679809859391f57c31eed24bff0eb3b7c",
+        "parameters": {
+          "risk_short": {
+            "Float64": 0.0
+          },
+          "vol_window": {
+            "Int64": 120
+          },
+          "slow": {
+            "Int64": 240
+          },
+          "fast": {
+            "Int64": 12
+          },
+          "risk_z": {
+            "Float64": 1.25
+          },
+          "risk_long": {
+            "Float64": 0.15
+          },
+          "base_short": {
+            "Float64": 0.0
+          },
+          "base_long": {
+            "Float64": 0.15
+          }
+        },
+        "config": {
+          "universe": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "time_range": {
+            "start": 1704067200000000000,
+            "end": 1735603200000000000
+          },
+          "bar_interval": {
+            "Hours": 4
+          },
+          "initial_capital": 10000.0,
+          "currency": "USD",
+          "execution": {
+            "signal_delay": 1,
+            "execution_price": "AtOpen",
+            "max_position_pct": 0.15,
+            "allow_short": true,
+            "allow_fractional": true,
+            "skip_gap_bars": false,
+            "position_sizing_mode": "FractionOfEquity",
+            "pyramiding": false
+          },
+          "fees": {
+            "maker_fee_bps": 2.0,
+            "taker_fee_bps": 5.0,
+            "funding_rate_column": "funding_rate",
+            "borrow_rate_annual_bps": 0.0,
+            "min_fee": 0.0
+          },
+          "slippage": {
+            "FixedBps": {
+              "bps": 2.0
+            }
+          },
+          "data_version": null,
+          "rng_seed": null,
+          "risk_free_rate": 0.0,
+          "warmup_bars": 500,
+          "precise": false
+        },
+        "data_versions": {
+          "bars_1m": "1a0f3ce0-c000-46a2-957b-447d401014f8"
+        },
+        "rng_seed": 0,
+        "engine_version": "0.14.0",
+        "platform": "linux-x86_64"
+      },
+      "trade_count": 96,
+      "warnings": [
+        "funding rate column 'funding_rate' is missing; funding pnl disabled",
+        "funding rate column 'funding_rate' is missing; funding pnl disabled",
+        "funding rate column 'funding_rate' is missing; funding pnl disabled",
+        "funding rate column 'funding_rate' is missing; funding pnl disabled",
+        "funding rate column 'funding_rate' is missing; funding pnl disabled",
+        "fill price 550.189940 outside bar range [550.300000, 563.800000] at row 731"
+      ],
+      "summary": "Strategy: return_vol_long_cash_0\n----------------------------------------\n  Total Return              +26.27%\n  CAGR                      +26.29%\n  Volatility                +28.66%\n  Sharpe                       0.96\n  Sortino                      1.11\n  Calmar                       1.04\n  Max Drawdown              -25.31%\n  Best Day                   +7.02%\n  Worst Day                  -9.26%\n  % Positive Days           +31.59%\n\n  Trades\n  --------------------------------------\n    Total                        96\n    Win Rate                +25.53%\n    Profit Factor              0.65\n    Expectancy               -18.89\n    Avg Win                137.2216\n    Avg Loss               -72.4199\n    Total Fees                65.69\n\n  Signal Quality\n  --------------------------------------\n    Avg MAE                  +5.83%\n    Avg MFE                 +12.08%\n    Edge Ratio                 2.07\n    Entry Efficiency        +51.32%\n    Exit Efficiency         -98.03%"
+    },
+    "strategy_json": {
+      "name": "return_vol_long_cash_0",
+      "signals": {
+        "fast": {
+          "EwmMean": [
+            {
+              "Column": "close"
+            },
+            "fast"
+          ]
+        },
+        "slow": {
+          "EwmMean": [
+            {
+              "Column": "close"
+            },
+            "slow"
+          ]
+        },
+        "volatility": {
+          "RollingStd": [
+            {
+              "PctChange": [
+                {
+                  "Column": "close"
+                },
+                1
+              ]
+            },
+            14
+          ]
+        },
+        "vol_z": {
+          "ZScore": [
+            {
+              "RollingStd": [
+                {
+                  "PctChange": [
+                    {
+                      "Column": "close"
+                    },
+                    1
+                  ]
+                },
+                14
+              ]
+            },
+            "vol_window"
+          ]
+        }
+      },
+      "position_sizing": {
+        "IfElse": [
+          {
+            "Gt": [
+              {
+                "EwmMean": [
+                  {
+                    "Column": "close"
+                  },
+                  "fast"
+                ]
+              },
+              {
+                "EwmMean": [
+                  {
+                    "Column": "close"
+                  },
+                  "slow"
+                ]
+              }
+            ]
+          },
+          {
+            "IfElse": [
+              {
+                "Gt": [
+                  {
+                    "ZScore": [
+                      {
+                        "RollingStd": [
+                          {
+                            "PctChange": [
+                              {
+                                "Column": "close"
+                              },
+                              1
+                            ]
+                          },
+                          14
+                        ]
+                      },
+                      "vol_window"
+                    ]
+                  },
+                  {
+                    "Parameter": "risk_z"
+                  }
+                ]
+              },
+              {
+                "Parameter": "risk_long"
+              },
+              {
+                "Parameter": "base_long"
+              }
+            ]
+          },
+          {
+            "IfElse": [
+              {
+                "Lt": [
+                  {
+                    "EwmMean": [
+                      {
+                        "Column": "close"
+                      },
+                      "fast"
+                    ]
+                  },
+                  {
+                    "EwmMean": [
+                      {
+                        "Column": "close"
+                      },
+                      "slow"
+                    ]
+                  }
+                ]
+              },
+              {
+                "Literal": {
+                  "Float64": 0.0
+                }
+              },
+              {
+                "Literal": {
+                  "Float64": 0.0
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "parameters": {
+        "fast": {
+          "name": "fast",
+          "default": {
+            "Int64": 12
+          },
+          "description": "",
+          "range": null
+        },
+        "slow": {
+          "name": "slow",
+          "default": {
+            "Int64": 240
+          },
+          "description": "",
+          "range": null
+        },
+        "vol_window": {
+          "name": "vol_window",
+          "default": {
+            "Int64": 120
+          },
+          "description": "",
+          "range": null
+        },
+        "risk_z": {
+          "name": "risk_z",
+          "default": {
+            "Float64": 1.25
+          },
+          "description": "",
+          "range": null
+        },
+        "base_long": {
+          "name": "base_long",
+          "default": {
+            "Float64": 0.15
+          },
+          "description": "",
+          "range": null
+        },
+        "base_short": {
+          "name": "base_short",
+          "default": {
+            "Float64": 0.0
+          },
+          "description": "",
+          "range": null
+        },
+        "risk_long": {
+          "name": "risk_long",
+          "default": {
+            "Float64": 0.15
+          },
+          "description": "",
+          "range": null
+        },
+        "risk_short": {
+          "name": "risk_short",
+          "default": {
+            "Float64": 0.0
+          },
+          "description": "",
+          "range": null
+        }
+      },
+      "constraints": [],
+      "metadata": {
+        "description": "ManifoldBT-native EMA trend with volatility-state sizing"
+      }
+    },
+    "score": 1.6859576208532139,
+    "overfitting_correction": {
+      "n_trials": 108,
+      "best_raw_sharpe": 1.4802,
+      "expected_max_sharpe_under_null": 0.5045,
+      "probability_edge_is_real": 0.9543,
+      "verdict": "ROBUST",
+      "plain": "Best raw Sharpe 1.48. Correcting for the fact that 108 combinations were tried, the probability that this edge is real rather than selection noise is 95% (a PROBABILITY, not a corrected Sharpe value). The best Sharpe pure noise would be expected to produce over 108 tries is 0.50. It survives the multiple-testing correction."
+    },
+    "family": "return_vol_long_cash",
+    "holdout": {
+      "metrics": {
+        "total_return": 0.0714365742239067,
+        "cagr": 0.04724375510360601,
+        "volatility": 0.2201656245303423,
+        "sharpe": 0.319741678667175,
+        "sortino": 0.33100254015489144,
+        "calmar": 0.20715230601013496,
+        "max_drawdown": -0.22806289736062413,
+        "skewness": 0.30176558733909487,
+        "kurtosis": 9.377356353605201,
+        "tail_ratio": 1.153595384657149,
+        "omega_ratio": 1.0703847520532546,
+        "ulcer_index": 0.12099780232551266,
+        "best_day": 0.07241612533438735,
+        "worst_day": -0.07256534426707772,
+        "avg_daily_return": 0.0001927340899990106,
+        "pct_positive_days": 0.27155963302752295,
+        "max_drawdown_duration_days": 266.4583333333333,
+        "tstat_sharpe": 0.39091639767545694,
+        "alpha": 0.11599176227023965,
+        "beta": 0.20880985092725649,
+        "tstat_alpha": 0.7740895298583295,
+        "trade_stats": {
+          "total_trades": 130,
+          "round_trips": 65,
+          "win_rate": 0.2,
+          "profit_factor": 1.203253217177403,
+          "expectancy": 10.990242188293301,
+          "avg_win": 325.3095929861857,
+          "avg_loss": -67.58959551117977,
+          "max_consecutive_wins": 2,
+          "max_consecutive_losses": 24,
+          "avg_holding_seconds": 1278276.923076923,
+          "median_holding_seconds": 532800.0,
+          "min_holding_seconds": 14400.0,
+          "max_holding_seconds": 10008000.0,
+          "total_fees": 110.02860605230141,
+          "sl_exits": 0,
+          "tp_exits": 0,
+          "trailing_exits": 0,
+          "signal_quality": {
+            "avg_mae": 0.046137892143981736,
+            "avg_mfe": 0.11924534300201493,
+            "avg_entry_efficiency": 0.5005191288149458,
+            "avg_exit_efficiency": -1.7548934888392624,
+            "edge_ratio": 2.584542497734574
+          }
+        }
+      },
+      "manifest": {
+        "run_id": "6e9e4727-4847-46bf-9512-17757167d4c0",
+        "timestamp": 1784815534909211841,
+        "strategy_name": "return_vol_long_cash_0",
+        "strategy_code_hash": "6acbf18874bfc62f71ba98ae9ac51072cd19d4920368ceb5058956274f1ba934",
+        "parameters": {
+          "slow": {
+            "Int64": 240
+          },
+          "fast": {
+            "Int64": 12
+          },
+          "risk_short": {
+            "Float64": 0.0
+          },
+          "risk_long": {
+            "Float64": 0.15
+          },
+          "vol_window": {
+            "Int64": 120
+          },
+          "risk_z": {
+            "Float64": 1.25
+          },
+          "base_long": {
+            "Float64": 0.15
+          },
+          "base_short": {
+            "Float64": 0.0
+          }
+        },
+        "config": {
+          "universe": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "time_range": {
+            "start": 1735689600000000000,
+            "end": 1782864000000000000
+          },
+          "bar_interval": {
+            "Hours": 4
+          },
+          "initial_capital": 10000.0,
+          "currency": "USD",
+          "execution": {
+            "signal_delay": 1,
+            "execution_price": "AtOpen",
+            "max_position_pct": 0.15,
+            "allow_short": true,
+            "allow_fractional": true,
+            "skip_gap_bars": false,
+            "position_sizing_mode": "FractionOfEquity",
+            "pyramiding": false
+          },
+          "fees": {
+            "maker_fee_bps": 2.0,
+            "taker_fee_bps": 5.0,
+            "funding_rate_column": "funding_rate",
+            "borrow_rate_annual_bps": 0.0,
+            "min_fee": 0.0
+          },
+          "slippage": {
+            "FixedBps": {
+              "bps": 2.0
+            }
+          },
+          "data_version": null,
+          "rng_seed": null,
+          "risk_free_rate": 0.0,
+          "warmup_bars": 500,
+          "precise": false
+        },
+        "data_versions": {
+          "bars_1m": "1a0f3ce0-c000-46a2-957b-447d401014f8"
+        },
+        "rng_seed": 0,
+        "engine_version": "0.14.0",
+        "platform": "linux-x86_64"
+      },
+      "trade_count": 130,
+      "warnings": [
+        "funding rate column 'funding_rate' is missing; funding pnl disabled",
+        "funding rate column 'funding_rate' is missing; funding pnl disabled",
+        "funding rate column 'funding_rate' is missing; funding pnl disabled",
+        "funding rate column 'funding_rate' is missing; funding pnl disabled",
+        "funding rate column 'funding_rate' is missing; funding pnl disabled",
+        "fill price 4134.163002 outside bar range [4134.340000, 4207.910000] at row 1589",
+        "fill price 1071.615634 outside bar range [1071.830000, 1091.560000] at row 1770",
+        "Sharpe is not statistically significant (t-stat 0.4, |t| < 2): too few or too inconsistent returns to trust it."
+      ],
+      "summary": "Strategy: return_vol_long_cash_0\n----------------------------------------\n  Total Return               +7.14%\n  CAGR                       +4.72%\n  Volatility                +22.02%\n  Sharpe                       0.32\n  Sortino                      0.33\n  Calmar                       0.21\n  Max Drawdown              -22.81%\n  Best Day                   +7.24%\n  Worst Day                  -7.26%\n  % Positive Days           +27.16%\n\n  Trades\n  --------------------------------------\n    Total                       130\n    Win Rate                +20.00%\n    Profit Factor              1.20\n    Expectancy                10.99\n    Avg Win                325.3096\n    Avg Loss               -67.5896\n    Total Fees               110.03\n\n  Signal Quality\n  --------------------------------------\n    Avg MAE                  +4.61%\n    Avg MFE                 +11.92%\n    Edge Ratio                 2.58\n    Entry Efficiency        +50.05%\n    Exit Efficiency        -175.49%",
+      "honest_summary": "On symbol BTCUSDT, ETHUSDT, SOLUSDT, BNBUSDT, XRPUSDT 4h (2025-01-01 to 2026-07-01), this strategy returns +4.7%/yr (CAGR) with a 0.32 Sharpe (not statistically reliable, t-stat 0.4), max drawdown -23%. Over 130 trades, win rate 20%, profit factor 1.20; outperforms its benchmark (alpha +0.12).",
+      "guardrails": {
+        "run_id": "6e9e4727-4847-46bf-9512-17757167d4c0",
+        "fees_applied": "binance_perps",
+        "slippage_bps": 2.0,
+        "trades": 130
+      },
+      "daily_returns": {
+        "returns": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -0.0010272,
+          -0.00897843,
+          0.00454914,
+          -0.00419546,
+          -0.004595,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -0.00372648,
+          -0.00010267,
+          0.0,
+          -0.00099941,
+          0.00616727,
+          -0.00205479,
+          0.00266728,
+          0.02854545,
+          -0.00304557,
+          0.00015549,
+          -0.00271457,
+          0.00069305,
+          0.00025742,
+          0.00551503,
+          -0.01067103,
+          -0.00506872,
+          0.00830305,
+          -0.00196707,
+          -0.00630647,
+          -0.00987555,
+          0.0041101,
+          -0.00040396,
+          -0.00255952,
+          0.07241613,
+          0.02828741,
+          0.03313114,
+          -0.01964103,
+          0.01045662,
+          0.02800835,
+          -0.01704742,
+          -0.02133576,
+          -0.00456084,
+          -0.00983301,
+          0.0217917,
+          -0.00884782,
+          0.0020416,
+          0.01881628,
+          0.02239951,
+          -0.03601277,
+          0.00733165,
+          0.0043162,
+          -9.282e-05,
+          0.01115766,
+          -0.00857171,
+          -0.01493223,
+          -0.0245598,
+          -0.00014883,
+          0.00314616,
+          0.00660663,
+          -0.00278317,
+          0.00035463,
+          -0.02622673,
+          0.01145516,
+          0.00756598,
+          -0.0005492,
+          0.02311989,
+          0.01224589,
+          -0.01336078,
+          -0.02937436,
+          -0.00412273,
+          -0.00698017,
+          0.00147625,
+          0.00073944,
+          -0.00688053,
+          0.00091059,
+          -0.00067199,
+          -0.01103506,
+          0.00176495,
+          0.0,
+          0.0,
+          0.00051727,
+          0.00177721,
+          -0.00055514,
+          0.0001419,
+          0.00035169,
+          0.00283032,
+          -0.01071918,
+          -0.02277949,
+          0.01044151,
+          0.00362337,
+          -0.01766797,
+          0.00123908,
+          0.00993167,
+          -0.00581323,
+          0.00786803,
+          0.02606955,
+          0.03748298,
+          0.01369492,
+          -0.00346587,
+          0.0115895,
+          0.01109868,
+          0.00327672,
+          0.03344108,
+          0.03659236,
+          0.00113624,
+          0.00313367,
+          0.01753901,
+          0.01927772,
+          0.01426015,
+          -0.04140321,
+          -0.00539556,
+          0.00599739,
+          0.00248255,
+          0.02532532,
+          -0.01962025,
+          -0.00518768,
+          -0.00643629,
+          -0.01882622,
+          -0.03037772,
+          -0.02002535,
+          0.01920206,
+          0.02306061,
+          -0.01576112,
+          0.00830265,
+          0.037849,
+          0.00403415,
+          0.01242253,
+          0.00478584,
+          -0.01220289,
+          0.04712481,
+          0.02232182,
+          -0.03372976,
+          -0.01420803,
+          0.00604942,
+          0.00579009,
+          -0.01857155,
+          -0.03483046,
+          0.03218557,
+          -0.0175412,
+          0.059306,
+          -0.00256261,
+          -0.00027562,
+          -0.04465728,
+          0.0230631,
+          -0.0002005,
+          0.01326676,
+          -0.01687605,
+          -0.00139967,
+          -0.00171011,
+          -0.00877616,
+          0.01219039,
+          0.00742095,
+          -0.01637163,
+          0.00261596,
+          -0.00226534,
+          0.01052823,
+          0.00609837,
+          -0.00062166,
+          0.01197221,
+          0.01517482,
+          0.03053792,
+          0.0002309,
+          -0.01125818,
+          -0.01059103,
+          0.01154494,
+          0.01830502,
+          0.00062844,
+          -0.01741477,
+          0.01148779,
+          -0.00425452,
+          -0.04822458,
+          -0.00145573,
+          -0.00092622,
+          -0.01748038,
+          0.00288467,
+          0.00147679,
+          0.00473419,
+          0.00705632,
+          -0.004054,
+          0.01039978,
+          0.03014974,
+          0.02012907,
+          -0.01429753,
+          0.00582904,
+          0.02059149,
+          -0.01168344,
+          0.01129986,
+          -0.02156402,
+          -0.07256534,
+          0.00487871,
+          0.0327358,
+          -0.00153213,
+          -0.01629774,
+          -0.0088491,
+          -0.00344689,
+          -0.01436558,
+          0.00420949,
+          0.00343739,
+          -0.00190225,
+          -0.00846333,
+          0.00290801,
+          0.00524174,
+          -0.00243783,
+          0.00103768,
+          0.00298574,
+          -0.00190164,
+          -0.00646172,
+          -0.00248905,
+          -0.00398059,
+          0.00137402,
+          4.557e-05,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.00015461,
+          -0.00663708,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.00127731,
+          0.00323959,
+          0.02995859,
+          0.00474862,
+          -0.02720334,
+          -0.00558252,
+          -0.00549661,
+          0.0011323,
+          0.00430174,
+          -0.00273526,
+          0.03926159,
+          0.00400286,
+          -0.01532791,
+          0.00191481,
+          -0.00011634,
+          -0.01732913,
+          -0.01264727,
+          -0.02477993,
+          -0.00261725,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -0.00695218,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.01294063,
+          -0.011742,
+          -0.03019437,
+          -0.01280582,
+          0.00058702,
+          -0.00010549,
+          0.0,
+          0.0,
+          0.0,
+          -0.00021838,
+          -0.00768155,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -0.00473101,
+          0.0015222,
+          0.00615585,
+          0.00283921,
+          -0.01101227,
+          0.01972194,
+          -0.00370024,
+          0.0038939,
+          0.00256085,
+          0.01215693,
+          -0.01920372,
+          -0.0215916,
+          0.01231304,
+          0.00349174,
+          0.00575594,
+          -0.0028015,
+          -0.00372665,
+          -0.00216317,
+          0.00926942,
+          -0.01716719,
+          -0.00669636,
+          -0.00367872,
+          0.0015211,
+          0.00660568,
+          0.00240807,
+          0.00013467,
+          0.00437873,
+          0.00308496,
+          0.00894241,
+          -0.01476707,
+          0.01009928,
+          0.00457475,
+          0.02073927,
+          0.00058953,
+          -0.01744899,
+          -0.0083061,
+          0.01189446,
+          -0.01578689,
+          -0.01272338,
+          -0.00371198,
+          -0.00412865,
+          -0.00158029,
+          0.00230564,
+          0.00120666,
+          -0.0054484,
+          0.00141826,
+          7.544e-05,
+          0.00160107,
+          -0.00163252,
+          -0.00184689,
+          -0.00233244,
+          0.0,
+          0.01010075,
+          -0.00180635,
+          -0.00385566,
+          -0.00940696,
+          -0.00634934,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "points": 545
+      }
+    },
+    "test_2025": {
+      "metrics": {
+        "total_return": 0.21010396510048301,
+        "cagr": 0.2109232471360465,
+        "volatility": 0.24910098259508182,
+        "sharpe": 0.8945192133899477,
+        "sortino": 0.9458035703513561,
+        "calmar": 1.5737492117769833,
+        "max_drawdown": -0.13402595887427615,
+        "skewness": 0.22818132815366765,
+        "kurtosis": 7.7170152110617956,
+        "tail_ratio": 1.241851133263843,
+        "omega_ratio": 1.2010959982778096,
+        "ulcer_index": 0.0707383665416064,
+        "best_day": 0.07241612533438735,
+        "worst_day": -0.07256534426707772,
+        "avg_daily_return": 0.0006100632854363193,
+        "pct_positive_days": 0.2975206611570248,
+        "max_drawdown_duration_days": 84.45833333333333,
+        "tstat_sharpe": 0.892936127879294,
+        "alpha": 0.1954962378658888,
+        "beta": 0.24767260061600072,
+        "tstat_alpha": 0.9759186123181943,
+        "trade_stats": {
+          "total_trades": 76,
+          "round_trips": 38,
+          "win_rate": 0.2894736842105263,
+          "profit_factor": 2.0541305268357024,
+          "expectancy": 55.29051713170599,
+          "avg_win": 372.1990066997318,
+          "avg_loss": -73.82034898860081,
+          "max_consecutive_wins": 2,
+          "max_consecutive_losses": 8,
+          "avg_holding_seconds": 1599915.7894736843,
+          "median_holding_seconds": 763200.0,
+          "min_holding_seconds": 14400.0,
+          "max_holding_seconds": 10008000.0,
+          "total_fees": 64.03785867469779,
+          "sl_exits": 0,
+          "tp_exits": 0,
+          "trailing_exits": 0,
+          "signal_quality": {
+            "avg_mae": 0.047375759317835955,
+            "avg_mfe": 0.16183692169682917,
+            "avg_entry_efficiency": 0.5056607592491278,
+            "avg_exit_efficiency": -1.6469502456163023,
+            "edge_ratio": 3.4160280284077906
+          }
+        }
+      },
+      "manifest": {
+        "run_id": "cd9fa1cf-36b3-489d-a370-48c9a5094ba9",
+        "timestamp": 1784815535346707762,
+        "strategy_name": "return_vol_long_cash_0",
+        "strategy_code_hash": "6acbf18874bfc62f71ba98ae9ac51072cd19d4920368ceb5058956274f1ba934",
+        "parameters": {
+          "slow": {
+            "Int64": 240
+          },
+          "fast": {
+            "Int64": 12
+          },
+          "risk_short": {
+            "Float64": 0.0
+          },
+          "risk_long": {
+            "Float64": 0.15
+          },
+          "vol_window": {
+            "Int64": 120
+          },
+          "risk_z": {
+            "Float64": 1.25
+          },
+          "base_long": {
+            "Float64": 0.15
+          },
+          "base_short": {
+            "Float64": 0.0
+          }
+        },
+        "config": {
+          "universe": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "time_range": {
+            "start": 1735689600000000000,
+            "end": 1767139200000000000
+          },
+          "bar_interval": {
+            "Hours": 4
+          },
+          "initial_capital": 10000.0,
+          "currency": "USD",
+          "execution": {
+            "signal_delay": 1,
+            "execution_price": "AtOpen",
+            "max_position_pct": 0.15,
+            "allow_short": true,
+            "allow_fractional": true,
+            "skip_gap_bars": false,
+            "position_sizing_mode": "FractionOfEquity",
+            "pyramiding": false
+          },
+          "fees": {
+            "maker_fee_bps": 2.0,
+            "taker_fee_bps": 5.0,
+            "funding_rate_column": "funding_rate",
+            "borrow_rate_annual_bps": 0.0,
+            "min_fee": 0.0
+          },
+          "slippage": {
+            "FixedBps": {
+              "bps": 2.0
+            }
+          },
+          "data_version": null,
+          "rng_seed": null,
+          "risk_free_rate": 0.0,
+          "warmup_bars": 500,
+          "precise": false
+        },
+        "data_versions": {
+          "bars_1m": "1a0f3ce0-c000-46a2-957b-447d401014f8"
+        },
+        "rng_seed": 0,
+        "engine_version": "0.14.0",
+        "platform": "linux-x86_64"
+      },
+      "trade_count": 76,
+      "warnings": [
+        "funding rate column 'funding_rate' is missing; funding pnl disabled",
+        "funding rate column 'funding_rate' is missing; funding pnl disabled",
+        "funding rate column 'funding_rate' is missing; funding pnl disabled",
+        "funding rate column 'funding_rate' is missing; funding pnl disabled",
+        "funding rate column 'funding_rate' is missing; funding pnl disabled",
+        "fill price 4134.163002 outside bar range [4134.340000, 4207.910000] at row 1589",
+        "fill price 1071.615634 outside bar range [1071.830000, 1091.560000] at row 1770",
+        "Sharpe is not statistically significant (t-stat 0.9, |t| < 2): too few or too inconsistent returns to trust it."
+      ],
+      "summary": "Strategy: return_vol_long_cash_0\n----------------------------------------\n  Total Return              +21.01%\n  CAGR                      +21.09%\n  Volatility                +24.91%\n  Sharpe                       0.89\n  Sortino                      0.95\n  Calmar                       1.57\n  Max Drawdown              -13.40%\n  Best Day                   +7.24%\n  Worst Day                  -7.26%\n  % Positive Days           +29.75%\n\n  Trades\n  --------------------------------------\n    Total                        76\n    Win Rate                +28.95%\n    Profit Factor              2.05\n    Expectancy                55.29\n    Avg Win                372.1990\n    Avg Loss               -73.8203\n    Total Fees                64.04\n\n  Signal Quality\n  --------------------------------------\n    Avg MAE                  +4.74%\n    Avg MFE                 +16.18%\n    Edge Ratio                 3.42\n    Entry Efficiency        +50.57%\n    Exit Efficiency        -164.70%",
+      "honest_summary": "On symbol BTCUSDT, ETHUSDT, SOLUSDT, BNBUSDT, XRPUSDT 4h (2025-01-01 to 2025-12-31), this strategy returns +21.1%/yr (CAGR) with a 0.89 Sharpe (not statistically reliable, t-stat 0.9), max drawdown -13%. Over 76 trades, win rate 29%, profit factor 2.05; outperforms its benchmark (alpha +0.20).",
+      "guardrails": {
+        "run_id": "cd9fa1cf-36b3-489d-a370-48c9a5094ba9",
+        "fees_applied": "binance_perps",
+        "slippage_bps": 2.0,
+        "trades": 76
+      }
+    },
+    "test_2026_ytd": {
+      "metrics": {
+        "total_return": -0.04897545781188928,
+        "cagr": -0.09638853866567887,
+        "volatility": 0.09652481466200483,
+        "sharpe": -1.0074020158689334,
+        "sortino": -0.8384824812407684,
+        "calmar": -1.3182924432885252,
+        "max_drawdown": -0.0731162035832007,
+        "skewness": -0.4822211893256624,
+        "kurtosis": 6.892718876219231,
+        "tail_ratio": 0.9509028245995993,
+        "omega_ratio": 0.7822958216626279,
+        "ulcer_index": 0.0370164773842798,
+        "best_day": 0.020734122523337506,
+        "worst_day": -0.021591602869554638,
+        "avg_daily_return": -0.00026622667452944244,
+        "pct_positive_days": 0.16111111111111112,
+        "max_drawdown_duration_days": 74.29166666666667,
+        "tstat_sharpe": -0.7090828753274134,
+        "alpha": -0.046288555265450185,
+        "beta": 0.05676252265082043,
+        "tstat_alpha": -0.3541474871003642,
+        "trade_stats": {
+          "total_trades": 30,
+          "round_trips": 15,
+          "win_rate": 0.13333333333333333,
+          "profit_factor": 0.1962650276378441,
+          "expectancy": -32.650305207926195,
+          "avg_win": 59.79688523927612,
+          "avg_loss": -46.87294989211117,
+          "max_consecutive_wins": 1,
+          "max_consecutive_losses": 11,
+          "avg_holding_seconds": 940800.0,
+          "median_holding_seconds": 460800.0,
+          "min_holding_seconds": 43200.0,
+          "max_holding_seconds": 3556800.0,
+          "total_fees": 22.101267605769934,
+          "sl_exits": 0,
+          "tp_exits": 0,
+          "trailing_exits": 0,
+          "signal_quality": {
+            "avg_mae": 0.03647654605291612,
+            "avg_mfe": 0.05830744265427268,
+            "avg_entry_efficiency": 0.5145047142971784,
+            "avg_exit_efficiency": -2.6802994565615967,
+            "edge_ratio": 1.5984913311059308
+          }
+        }
+      },
+      "manifest": {
+        "run_id": "f320d3b6-38dc-4625-b218-9cd3cff75414",
+        "timestamp": 1784815535675807670,
+        "strategy_name": "return_vol_long_cash_0",
+        "strategy_code_hash": "6acbf18874bfc62f71ba98ae9ac51072cd19d4920368ceb5058956274f1ba934",
+        "parameters": {
+          "slow": {
+            "Int64": 240
+          },
+          "fast": {
+            "Int64": 12
+          },
+          "risk_short": {
+            "Float64": 0.0
+          },
+          "risk_long": {
+            "Float64": 0.15
+          },
+          "vol_window": {
+            "Int64": 120
+          },
+          "risk_z": {
+            "Float64": 1.25
+          },
+          "base_long": {
+            "Float64": 0.15
+          },
+          "base_short": {
+            "Float64": 0.0
+          }
+        },
+        "config": {
+          "universe": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "time_range": {
+            "start": 1767225600000000000,
+            "end": 1782864000000000000
+          },
+          "bar_interval": {
+            "Hours": 4
+          },
+          "initial_capital": 10000.0,
+          "currency": "USD",
+          "execution": {
+            "signal_delay": 1,
+            "execution_price": "AtOpen",
+            "max_position_pct": 0.15,
+            "allow_short": true,
+            "allow_fractional": true,
+            "skip_gap_bars": false,
+            "position_sizing_mode": "FractionOfEquity",
+            "pyramiding": false
+          },
+          "fees": {
+            "maker_fee_bps": 2.0,
+            "taker_fee_bps": 5.0,
+            "funding_rate_column": "funding_rate",
+            "borrow_rate_annual_bps": 0.0,
+            "min_fee": 0.0
+          },
+          "slippage": {
+            "FixedBps": {
+              "bps": 2.0
+            }
+          },
+          "data_version": null,
+          "rng_seed": null,
+          "risk_free_rate": 0.0,
+          "warmup_bars": 500,
+          "precise": false
+        },
+        "data_versions": {
+          "bars_1m": "1a0f3ce0-c000-46a2-957b-447d401014f8"
+        },
+        "rng_seed": 0,
+        "engine_version": "0.14.0",
+        "platform": "linux-x86_64"
+      },
+      "trade_count": 30,
+      "warnings": [
+        "funding rate column 'funding_rate' is missing; funding pnl disabled",
+        "funding rate column 'funding_rate' is missing; funding pnl disabled",
+        "funding rate column 'funding_rate' is missing; funding pnl disabled",
+        "funding rate column 'funding_rate' is missing; funding pnl disabled",
+        "funding rate column 'funding_rate' is missing; funding pnl disabled",
+        "Sharpe is not statistically significant (t-stat -0.7, |t| < 2): too few or too inconsistent returns to trust it.",
+        "Negative alpha (-0.05): the strategy underperforms its benchmark after costs.",
+        "Profit factor 0.20 (< 1): on average the strategy loses money per trade."
+      ],
+      "summary": "Strategy: return_vol_long_cash_0\n----------------------------------------\n  Total Return               -4.90%\n  CAGR                       -9.64%\n  Volatility                 +9.65%\n  Sharpe                      -1.01\n  Sortino                     -0.84\n  Calmar                      -1.32\n  Max Drawdown               -7.31%\n  Best Day                   +2.07%\n  Worst Day                  -2.16%\n  % Positive Days           +16.11%\n\n  Trades\n  --------------------------------------\n    Total                        30\n    Win Rate                +13.33%\n    Profit Factor              0.20\n    Expectancy               -32.65\n    Avg Win                 59.7969\n    Avg Loss               -46.8729\n    Total Fees                22.10\n\n  Signal Quality\n  --------------------------------------\n    Avg MAE                  +3.65%\n    Avg MFE                  +5.83%\n    Edge Ratio                 1.60\n    Entry Efficiency        +51.45%\n    Exit Efficiency        -268.03%",
+      "honest_summary": "On symbol BTCUSDT, ETHUSDT, SOLUSDT, BNBUSDT, XRPUSDT 4h (2026-01-01 to 2026-07-01), this strategy returns -9.6%/yr (CAGR) with a -1.01 Sharpe (not statistically reliable, t-stat -0.7), max drawdown -7%. Over 30 trades, win rate 13%, profit factor 0.20; underperforms its benchmark (alpha -0.05).",
+      "guardrails": {
+        "run_id": "f320d3b6-38dc-4625-b218-9cd3cff75414",
+        "fees_applied": "binance_perps",
+        "slippage_bps": 2.0,
+        "trades": 30
+      }
+    },
+    "heatmap": {
+      "x_param": "fast",
+      "x_values": [
+        {
+          "Int64": 8
+        },
+        {
+          "Int64": 12
+        },
+        {
+          "Int64": 18
+        },
+        {
+          "Int64": 24
+        }
+      ],
+      "y_param": "slow",
+      "y_values": [
+        {
+          "Int64": 96
+        },
+        {
+          "Int64": 144
+        },
+        {
+          "Int64": 168
+        },
+        {
+          "Int64": 240
+        }
+      ],
+      "metric_grid": [
+        [
+          1.4517186381594318,
+          1.3981569343064773,
+          1.3320269205389983,
+          1.4529089720607704
+        ],
+        [
+          1.318219896153055,
+          1.3371515158055376,
+          1.3159502757424026,
+          1.4801740299406938
+        ],
+        [
+          1.396689796832041,
+          1.244093988332408,
+          1.2531351878802128,
+          1.3741847775187712
+        ],
+        [
+          1.389353021542822,
+          1.3305071828077206,
+          1.3305120212833643,
+          1.259331535984645
+        ]
+      ],
+      "results": [
+        {
+          "strategy_name": "return_vol_long_cash_0",
+          "metrics": {
+            "total_return": 2.7379894425357576,
+            "cagr": 0.5536729742834987,
+            "volatility": 0.34418694330935784,
+            "sharpe": 1.4517186381594318,
+            "sortino": 1.8447029697985116,
+            "calmar": 1.450942272708846,
+            "max_drawdown": -0.385382181794486,
+            "skewness": 0.5678963148888451,
+            "kurtosis": 5.927782377305837,
+            "tail_ratio": 1.3792866259259757,
+            "omega_ratio": 1.3129215026846366,
+            "ulcer_index": 0.222569271167181,
+            "best_day": 0.0954854614774463,
+            "worst_day": -0.10717143360574544,
+            "avg_daily_return": 0.0013680016443896469,
+            "pct_positive_days": 0.34309240622140896,
+            "max_drawdown_duration_days": 732.0,
+            "tstat_sharpe": 2.511293203613518,
+            "alpha": 0.22238986722414597,
+            "beta": 0.25777804240145336,
+            "tstat_alpha": 1.395565245640856
+          },
+          "final_equity": 37379.894425357576,
+          "trade_count": 566,
+          "profile": {
+            "data_load_us": 82,
+            "align_us": 89,
+            "signal_eval_us": 25244,
+            "runtime_prep_us": 0,
+            "simulation_us": 1048,
+            "output_build_us": 0,
+            "total_us": 37803
+          }
+        },
+        {
+          "strategy_name": "return_vol_long_cash_0",
+          "metrics": {
+            "total_return": 2.699412197270037,
+            "cagr": 0.548296210232825,
+            "volatility": 0.3588533984935986,
+            "sharpe": 1.3981569343064773,
+            "sortino": 1.640345880060061,
+            "calmar": 1.2888300902020544,
+            "max_drawdown": -0.42971856869515646,
+            "skewness": 0.08508033540875168,
+            "kurtosis": 9.619678638653891,
+            "tail_ratio": 1.4476100556518081,
+            "omega_ratio": 1.3133342658466691,
+            "ulcer_index": 0.265421079923443,
+            "best_day": 0.09869065695591717,
+            "worst_day": -0.1625066919315169,
+            "avg_daily_return": 0.0013736710951492688,
+            "pct_positive_days": 0.3266239707227813,
+            "max_drawdown_duration_days": 760.0,
+            "tstat_sharpe": 2.418638098606102,
+            "alpha": 0.21017192631437734,
+            "beta": 0.27106212944469155,
+            "tstat_alpha": 1.2712104543951612
+          },
+          "final_equity": 36994.12197270037,
+          "trade_count": 459,
+          "profile": {
+            "data_load_us": 82,
+            "align_us": 89,
+            "signal_eval_us": 568,
+            "runtime_prep_us": 0,
+            "simulation_us": 966,
+            "output_build_us": 0,
+            "total_us": 37804
+          }
+        },
+        {
+          "strategy_name": "return_vol_long_cash_0",
+          "metrics": {
+            "total_return": 2.508430871808924,
+            "cagr": 0.5211129999652404,
+            "volatility": 0.36522821219920754,
+            "sharpe": 1.3320269205389983,
+            "sortino": 1.521563408180413,
+            "calmar": 1.2094822426252063,
+            "max_drawdown": -0.4438308222385439,
+            "skewness": -0.10901631321116026,
+            "kurtosis": 10.717988013941508,
+            "tail_ratio": 1.4249153369048089,
+            "omega_ratio": 1.299033195693485,
+            "ulcer_index": 0.28104842498810484,
+            "best_day": 0.09464348664256916,
+            "worst_day": -0.17589255649619073,
+            "avg_daily_return": 0.001331947462805405,
+            "pct_positive_days": 0.3275388838060384,
+            "max_drawdown_duration_days": 773.0,
+            "tstat_sharpe": 2.304241376153263,
+            "alpha": 0.18260458916315828,
+            "beta": 0.28252315941876055,
+            "tstat_alpha": 1.1009680706852776
+          },
+          "final_equity": 35084.30871808924,
+          "trade_count": 443,
+          "profile": {
+            "data_load_us": 82,
+            "align_us": 89,
+            "signal_eval_us": 829,
+            "runtime_prep_us": 0,
+            "simulation_us": 999,
+            "output_build_us": 0,
+            "total_us": 37804
+          }
+        },
+        {
+          "strategy_name": "return_vol_long_cash_0",
+          "metrics": {
+            "total_return": 3.424153183458184,
+            "cagr": 0.6436841116873864,
+            "volatility": 0.39717722325691274,
+            "sharpe": 1.4529089720607704,
+            "sortino": 1.5489763129766834,
+            "calmar": 1.3642228768566311,
+            "max_drawdown": -0.4721827067432864,
+            "skewness": -0.674060990601446,
+            "kurtosis": 16.606581841323138,
+            "tail_ratio": 1.549175396203366,
+            "omega_ratio": 1.3412498741472034,
+            "ulcer_index": 0.30891842412141673,
+            "best_day": 0.0909374492781656,
+            "worst_day": -0.22639002606983571,
+            "avg_daily_return": 0.0015799106123700266,
+            "pct_positive_days": 0.3321134492223239,
+            "max_drawdown_duration_days": 773.0,
+            "tstat_sharpe": 2.5133523336390526,
+            "alpha": 0.24287994606402394,
+            "beta": 0.31068646794000115,
+            "tstat_alpha": 1.3562660915108498
+          },
+          "final_equity": 44241.531834581845,
+          "trade_count": 319,
+          "profile": {
+            "data_load_us": 82,
+            "align_us": 89,
+            "signal_eval_us": 12657,
+            "runtime_prep_us": 0,
+            "simulation_us": 926,
+            "output_build_us": 0,
+            "total_us": 37804
+          }
+        },
+        {
+          "strategy_name": "return_vol_long_cash_0",
+          "metrics": {
+            "total_return": 2.3043245796180307,
+            "cagr": 0.4909494057255994,
+            "volatility": 0.34905128602323326,
+            "sharpe": 1.318219896153055,
+            "sortino": 1.6246215188689161,
+            "calmar": 1.1572229503621865,
+            "max_drawdown": -0.4310974467708618,
+            "skewness": 0.5086430281897976,
+            "kurtosis": 5.922387023088781,
+            "tail_ratio": 1.3177611262530544,
+            "omega_ratio": 1.283871025844854,
+            "ulcer_index": 0.25765843183556164,
+            "best_day": 0.0954488976254908,
+            "worst_day": -0.10752750394655286,
+            "avg_daily_return": 0.0012597572895650564,
+            "pct_positive_days": 0.34400731930466605,
+            "max_drawdown_duration_days": 760.0,
+            "tstat_sharpe": 2.2803569362961658,
+            "alpha": 0.17737542633764972,
+            "beta": 0.26287106814104405,
+            "tstat_alpha": 1.1010577343416643
+          },
+          "final_equity": 33043.24579618031,
+          "trade_count": 466,
+          "profile": {
+            "data_load_us": 82,
+            "align_us": 89,
+            "signal_eval_us": 2843,
+            "runtime_prep_us": 0,
+            "simulation_us": 23015,
+            "output_build_us": 0,
+            "total_us": 37804
+          }
+        },
+        {
+          "strategy_name": "return_vol_long_cash_0",
+          "metrics": {
+            "total_return": 2.514829576108574,
+            "cagr": 0.5220395036550995,
+            "volatility": 0.3638407281173532,
+            "sharpe": 1.3371515158055376,
+            "sortino": 1.5254789462336944,
+            "calmar": 1.163394328468964,
+            "max_drawdown": -0.4567697710610849,
+            "skewness": -0.021867869347481205,
+            "kurtosis": 9.937297637835455,
+            "tail_ratio": 1.4821921945184915,
+            "omega_ratio": 1.3015801508067628,
+            "ulcer_index": 0.28984961466138465,
+            "best_day": 0.09926445636829384,
+            "worst_day": -0.16810744676388512,
+            "avg_daily_return": 0.0013319922823104976,
+            "pct_positive_days": 0.3284537968892955,
+            "max_drawdown_duration_days": 773.0,
+            "tstat_sharpe": 2.3131062904182245,
+            "alpha": 0.18574172414738474,
+            "beta": 0.27962181172757195,
+            "tstat_alpha": 1.119597097109496
+          },
+          "final_equity": 35148.29576108574,
+          "trade_count": 393,
+          "profile": {
+            "data_load_us": 82,
+            "align_us": 89,
+            "signal_eval_us": 684,
+            "runtime_prep_us": 0,
+            "simulation_us": 986,
+            "output_build_us": 0,
+            "total_us": 37804
+          }
+        },
+        {
+          "strategy_name": "return_vol_long_cash_0",
+          "metrics": {
+            "total_return": 2.486178988893909,
+            "cagr": 0.5178822402844401,
+            "volatility": 0.3693908305272592,
+            "sharpe": 1.3159502757424026,
+            "sortino": 1.4528208134939282,
+            "calmar": 1.1319549758857985,
+            "max_drawdown": -0.46915548473193164,
+            "skewness": -0.3058340733069461,
+            "kurtosis": 12.323159963366376,
+            "tail_ratio": 1.36822511000722,
+            "omega_ratio": 1.2983044969498234,
+            "ulcer_index": 0.29546643416092255,
+            "best_day": 0.09249157651377593,
+            "worst_day": -0.1883433174913638,
+            "avg_daily_return": 0.0013308691725915452,
+            "pct_positive_days": 0.32936870997255263,
+            "max_drawdown_duration_days": 773.0,
+            "tstat_sharpe": 2.2764307744613355,
+            "alpha": 0.178206561430732,
+            "beta": 0.28624581272303234,
+            "tstat_alpha": 1.0635234760556227
+          },
+          "final_equity": 34861.78988893909,
+          "trade_count": 365,
+          "profile": {
+            "data_load_us": 82,
+            "align_us": 89,
+            "signal_eval_us": 975,
+            "runtime_prep_us": 0,
+            "simulation_us": 1012,
+            "output_build_us": 0,
+            "total_us": 37804
+          }
+        },
+        {
+          "strategy_name": "return_vol_long_cash_0",
+          "metrics": {
+            "total_return": 3.591893418045693,
+            "cagr": 0.6642521471231295,
+            "volatility": 0.39895215968154657,
+            "sharpe": 1.4801740299406938,
+            "sortino": 1.5334484903353995,
+            "calmar": 1.4332405661554213,
+            "max_drawdown": -0.4642573867170095,
+            "skewness": -0.8850817917329606,
+            "kurtosis": 18.922839193527906,
+            "tail_ratio": 1.5765519195194433,
+            "omega_ratio": 1.3519485223663166,
+            "ulcer_index": 0.3017768912140521,
+            "best_day": 0.09081463536591983,
+            "worst_day": -0.2366219263174878,
+            "avg_daily_return": 0.0016167518848716714,
+            "pct_positive_days": 0.3376029277218664,
+            "max_drawdown_duration_days": 773.0,
+            "tstat_sharpe": 2.560517502391581,
+            "alpha": 0.25285282074174287,
+            "beta": 0.313924954640829,
+            "tstat_alpha": 1.411166689133858
+          },
+          "final_equity": 45918.934180456934,
+          "trade_count": 271,
+          "profile": {
+            "data_load_us": 82,
+            "align_us": 89,
+            "signal_eval_us": 960,
+            "runtime_prep_us": 0,
+            "simulation_us": 959,
+            "output_build_us": 0,
+            "total_us": 37804
+          }
+        },
+        {
+          "strategy_name": "return_vol_long_cash_0",
+          "metrics": {
+            "total_return": 2.586285457826942,
+            "cagr": 0.5323105177177532,
+            "volatility": 0.34902815822249955,
+            "sharpe": 1.396689796832041,
+            "sortino": 1.721744901027082,
+            "calmar": 1.3371913561195987,
+            "max_drawdown": -0.4017196239685083,
+            "skewness": 0.5435169562907954,
+            "kurtosis": 6.057285445719247,
+            "tail_ratio": 1.4213129717386475,
+            "omega_ratio": 1.3075293300748845,
+            "ulcer_index": 0.23769770517745378,
+            "best_day": 0.09494914985573422,
+            "worst_day": -0.1071853001882237,
+            "avg_daily_return": 0.0013346586376357136,
+            "pct_positive_days": 0.3394327538883806,
+            "max_drawdown_duration_days": 759.0,
+            "tstat_sharpe": 2.4161001327279554,
+            "alpha": 0.20434429851453273,
+            "beta": 0.26323257413824475,
+            "tstat_alpha": 1.26961010713768
+          },
+          "final_equity": 35862.85457826942,
+          "trade_count": 392,
+          "profile": {
+            "data_load_us": 82,
+            "align_us": 89,
+            "signal_eval_us": 4859,
+            "runtime_prep_us": 0,
+            "simulation_us": 1101,
+            "output_build_us": 0,
+            "total_us": 37805
+          }
+        },
+        {
+          "strategy_name": "return_vol_long_cash_0",
+          "metrics": {
+            "total_return": 2.232960377544185,
+            "cagr": 0.4801106403370803,
+            "volatility": 0.37088447051759366,
+            "sharpe": 1.244093988332408,
+            "sortino": 1.3729913101667264,
+            "calmar": 1.00845611793478,
+            "max_drawdown": -0.4934484512095617,
+            "skewness": -0.27809059917241774,
+            "kurtosis": 12.625170000406104,
+            "tail_ratio": 1.3690841912848268,
+            "omega_ratio": 1.2827719459570122,
+            "ulcer_index": 0.3120907131953335,
+            "best_day": 0.09777088425197222,
+            "worst_day": -0.189551307366558,
+            "avg_daily_return": 0.00126328580461817,
+            "pct_positive_days": 0.32479414455626715,
+            "max_drawdown_duration_days": 774.0,
+            "tstat_sharpe": 2.152128308772525,
+            "alpha": 0.1550512037152982,
+            "beta": 0.28482388018402427,
+            "tstat_alpha": 0.9164352287468661
+          },
+          "final_equity": 32329.60377544185,
+          "trade_count": 341,
+          "profile": {
+            "data_load_us": 82,
+            "align_us": 89,
+            "signal_eval_us": 903,
+            "runtime_prep_us": 0,
+            "simulation_us": 23748,
+            "output_build_us": 0,
+            "total_us": 37805
+          }
+        },
+        {
+          "strategy_name": "return_vol_long_cash_0",
+          "metrics": {
+            "total_return": 2.3376156958800145,
+            "cagr": 0.49595237258709535,
+            "volatility": 0.37966647601674897,
+            "sharpe": 1.2531351878802128,
+            "sortino": 1.339017456330626,
+            "calmar": 1.0677116209178783,
+            "max_drawdown": -0.4691330565614504,
+            "skewness": -0.6046349919892925,
+            "kurtosis": 16.179986967641593,
+            "tail_ratio": 1.3832239284787873,
+            "omega_ratio": 1.288421774312825,
+            "ulcer_index": 0.30036432495912363,
+            "best_day": 0.09146502511031196,
+            "worst_day": -0.2134587713856535,
+            "avg_daily_return": 0.0013025966345107927,
+            "pct_positive_days": 0.3266239707227813,
+            "max_drawdown_duration_days": 773.0,
+            "tstat_sharpe": 2.1677684627115164,
+            "alpha": 0.15572212234610486,
+            "beta": 0.29754890126937866,
+            "tstat_alpha": 0.9107975079652839
+          },
+          "final_equity": 33376.156958800144,
+          "trade_count": 317,
+          "profile": {
+            "data_load_us": 82,
+            "align_us": 89,
+            "signal_eval_us": 578,
+            "runtime_prep_us": 0,
+            "simulation_us": 10076,
+            "output_build_us": 0,
+            "total_us": 37805
+          }
+        },
+        {
+          "strategy_name": "return_vol_long_cash_0",
+          "metrics": {
+            "total_return": 3.102007826097399,
+            "cagr": 0.6026779560870106,
+            "volatility": 0.40366471703813844,
+            "sharpe": 1.3741847775187712,
+            "sortino": 1.3973818426715703,
+            "calmar": 1.274312219071244,
+            "max_drawdown": -0.4737388315468483,
+            "skewness": -0.8859419596597345,
+            "kurtosis": 18.567238830633624,
+            "tail_ratio": 1.4707859757019865,
+            "omega_ratio": 1.3257796942001383,
+            "ulcer_index": 0.3097043259380537,
+            "best_day": 0.10786929047217897,
+            "worst_day": -0.23677596346593355,
+            "avg_daily_return": 0.0015187129620129556,
+            "pct_positive_days": 0.3376029277218664,
+            "max_drawdown_duration_days": 775.0,
+            "tstat_sharpe": 2.37716924036147,
+            "alpha": 0.20950223799755294,
+            "beta": 0.32093656185371333,
+            "tstat_alpha": 1.1637124717597767
+          },
+          "final_equity": 41020.07826097399,
+          "trade_count": 237,
+          "profile": {
+            "data_load_us": 82,
+            "align_us": 89,
+            "signal_eval_us": 556,
+            "runtime_prep_us": 0,
+            "simulation_us": 6932,
+            "output_build_us": 0,
+            "total_us": 37805
+          }
+        },
+        {
+          "strategy_name": "return_vol_long_cash_0",
+          "metrics": {
+            "total_return": 2.6285789588263864,
+            "cagr": 0.5383256933389444,
+            "volatility": 0.3553816918020422,
+            "sharpe": 1.389353021542822,
+            "sortino": 1.650890608664821,
+            "calmar": 1.2420762814233595,
+            "max_drawdown": -0.4397539544462288,
+            "skewness": 0.3882189825644373,
+            "kurtosis": 6.6112357327100515,
+            "tail_ratio": 1.4443162592778571,
+            "omega_ratio": 1.31096137917269,
+            "ulcer_index": 0.2654030008731903,
+            "best_day": 0.09473014135018576,
+            "worst_day": -0.12231641305495311,
+            "avg_daily_return": 0.0013518155436171588,
+            "pct_positive_days": 0.33485818847209514,
+            "max_drawdown_duration_days": 772.0,
+            "tstat_sharpe": 2.403408421375668,
+            "alpha": 0.20476470636031446,
+            "beta": 0.26866769073338703,
+            "tstat_alpha": 1.251224487673401
+          },
+          "final_equity": 36285.78958826386,
+          "trade_count": 334,
+          "profile": {
+            "data_load_us": 82,
+            "align_us": 89,
+            "signal_eval_us": 15284,
+            "runtime_prep_us": 0,
+            "simulation_us": 3777,
+            "output_build_us": 0,
+            "total_us": 37805
+          }
+        },
+        {
+          "strategy_name": "return_vol_long_cash_0",
+          "metrics": {
+            "total_return": 2.6086197587711375,
+            "cagr": 0.535492854283727,
+            "volatility": 0.37622875731064975,
+            "sharpe": 1.3305071828077206,
+            "sortino": 1.4181920735222813,
+            "calmar": 1.2482081211768274,
+            "max_drawdown": -0.4361951683521387,
+            "skewness": -0.6202163466271212,
+            "kurtosis": 16.011265701997065,
+            "tail_ratio": 1.4637486359531158,
+            "omega_ratio": 1.307913349955743,
+            "ulcer_index": 0.26887129837073964,
+            "best_day": 0.09190679750882591,
+            "worst_day": -0.21057118602617486,
+            "avg_daily_return": 0.0013704998329381033,
+            "pct_positive_days": 0.32936870997255263,
+            "max_drawdown_duration_days": 760.0,
+            "tstat_sharpe": 2.301612418354201,
+            "alpha": 0.18515032059214478,
+            "beta": 0.2932476334106164,
+            "tstat_alpha": 1.0889294589678935
+          },
+          "final_equity": 36086.19758771137,
+          "trade_count": 295,
+          "profile": {
+            "data_load_us": 82,
+            "align_us": 89,
+            "signal_eval_us": 628,
+            "runtime_prep_us": 0,
+            "simulation_us": 915,
+            "output_build_us": 0,
+            "total_us": 37805
+          }
+        },
+        {
+          "strategy_name": "return_vol_long_cash_0",
+          "metrics": {
+            "total_return": 2.7345888092527093,
+            "cagr": 0.5532004947669504,
+            "volatility": 0.3888780209565593,
+            "sharpe": 1.3305120212833643,
+            "sortino": 1.3628069772370068,
+            "calmar": 1.2024479073819816,
+            "max_drawdown": -0.4645591298820154,
+            "skewness": -0.9562650203894054,
+            "kurtosis": 20.05857780033141,
+            "tail_ratio": 1.4887193143715205,
+            "omega_ratio": 1.3139378936711823,
+            "ulcer_index": 0.29547478077011297,
+            "best_day": 0.08990017103761438,
+            "worst_day": -0.23426692640687952,
+            "avg_daily_return": 0.0014165828383178268,
+            "pct_positive_days": 0.3284537968892955,
+            "max_drawdown_duration_days": 773.0,
+            "tstat_sharpe": 2.3016207883170026,
+            "alpha": 0.18563908512409066,
+            "beta": 0.3084416274427054,
+            "tstat_alpha": 1.0686120897817275
+          },
+          "final_equity": 37345.88809252709,
+          "trade_count": 253,
+          "profile": {
+            "data_load_us": 82,
+            "align_us": 89,
+            "signal_eval_us": 924,
+            "runtime_prep_us": 0,
+            "simulation_us": 913,
+            "output_build_us": 0,
+            "total_us": 37805
+          }
+        },
+        {
+          "strategy_name": "return_vol_long_cash_0",
+          "metrics": {
+            "total_return": 2.588065216445934,
+            "cagr": 0.5325645923800086,
+            "volatility": 0.4059515761103378,
+            "sharpe": 1.259331535984645,
+            "sortino": 1.2612694430127485,
+            "calmar": 1.0740558163682672,
+            "max_drawdown": -0.4966080539766988,
+            "skewness": -1.1152337632721832,
+            "kurtosis": 21.723704107385853,
+            "tail_ratio": 1.4288208545673164,
+            "omega_ratio": 1.297135061230591,
+            "ulcer_index": 0.3309924648469648,
+            "best_day": 0.11254917955748422,
+            "worst_day": -0.25064532505943327,
+            "avg_daily_return": 0.001399664946963502,
+            "pct_positive_days": 0.33485818847209514,
+            "max_drawdown_duration_days": 777.0,
+            "tstat_sharpe": 2.1784873764685324,
+            "alpha": 0.1661039876437942,
+            "beta": 0.3208584332546235,
+            "tstat_alpha": 0.9137672436007476
+          },
+          "final_equity": 35880.65216445934,
+          "trade_count": 219,
+          "profile": {
+            "data_load_us": 82,
+            "align_us": 89,
+            "signal_eval_us": 573,
+            "runtime_prep_us": 0,
+            "simulation_us": 897,
+            "output_build_us": 0,
+            "total_us": 37805
+          }
+        }
+      ]
+    },
+    "stability": {
+      "param_name": "risk_z",
+      "values": [
+        {
+          "Float64": 0.5
+        },
+        {
+          "Float64": 0.75
+        },
+        {
+          "Int64": 1
+        },
+        {
+          "Float64": 1.25
+        },
+        {
+          "Float64": 1.5
+        },
+        {
+          "Int64": 2
+        }
+      ],
+      "metric_values": [
+        0.9644053326008513,
+        0.9644053326008513,
+        0.9644053326008513,
+        0.9644053326008513,
+        0.9644053326008513,
+        0.9644053326008513
+      ],
+      "stability_score": 0.9999999999999999,
+      "mean_metric": 0.9644053326008512,
+      "std_metric": 1.2161883888976234e-16,
+      "results": [
+        {
+          "strategy_name": "return_vol_long_cash_0",
+          "metrics": {
+            "total_return": 0.2647607047120062,
+            "cagr": 0.26578127666121176,
+            "volatility": 0.28698786131120685,
+            "sharpe": 0.9644053326008513,
+            "sortino": 1.1194161491406924,
+            "calmar": 1.0532426257474945,
+            "max_drawdown": -0.2536267529540907,
+            "skewness": 0.20538887521348004,
+            "kurtosis": 9.110281032048137,
+            "tail_ratio": 1.1489162091388854,
+            "omega_ratio": 1.213794216209082,
+            "ulcer_index": 0.13838462375733912,
+            "best_day": 0.07026799925727589,
+            "worst_day": -0.09289658175035864,
+            "avg_daily_return": 0.0007577621460376219,
+            "pct_positive_days": 0.3159340659340659,
+            "max_drawdown_duration_days": 232.0,
+            "tstat_sharpe": 0.9627536695757167,
+            "alpha": -0.04828184919735617,
+            "beta": 0.33459994979301255,
+            "tstat_alpha": -0.21710139231667816
+          },
+          "final_equity": 12647.607047120062,
+          "trade_count": 96,
+          "profile": {
+            "data_load_us": 54,
+            "align_us": 30,
+            "signal_eval_us": 2717,
+            "runtime_prep_us": 0,
+            "simulation_us": 159,
+            "output_build_us": 0,
+            "total_us": 4662
+          }
+        },
+        {
+          "strategy_name": "return_vol_long_cash_0",
+          "metrics": {
+            "total_return": 0.2647607047120062,
+            "cagr": 0.26578127666121176,
+            "volatility": 0.28698786131120685,
+            "sharpe": 0.9644053326008513,
+            "sortino": 1.1194161491406924,
+            "calmar": 1.0532426257474945,
+            "max_drawdown": -0.2536267529540907,
+            "skewness": 0.20538887521348004,
+            "kurtosis": 9.110281032048137,
+            "tail_ratio": 1.1489162091388854,
+            "omega_ratio": 1.213794216209082,
+            "ulcer_index": 0.13838462375733912,
+            "best_day": 0.07026799925727589,
+            "worst_day": -0.09289658175035864,
+            "avg_daily_return": 0.0007577621460376219,
+            "pct_positive_days": 0.3159340659340659,
+            "max_drawdown_duration_days": 232.0,
+            "tstat_sharpe": 0.9627536695757167,
+            "alpha": -0.04828184919735617,
+            "beta": 0.33459994979301255,
+            "tstat_alpha": -0.21710139231667816
+          },
+          "final_equity": 12647.607047120062,
+          "trade_count": 96,
+          "profile": {
+            "data_load_us": 54,
+            "align_us": 30,
+            "signal_eval_us": 273,
+            "runtime_prep_us": 0,
+            "simulation_us": 1750,
+            "output_build_us": 0,
+            "total_us": 4662
+          }
+        },
+        {
+          "strategy_name": "return_vol_long_cash_0",
+          "metrics": {
+            "total_return": 0.2647607047120062,
+            "cagr": 0.26578127666121176,
+            "volatility": 0.28698786131120685,
+            "sharpe": 0.9644053326008513,
+            "sortino": 1.1194161491406924,
+            "calmar": 1.0532426257474945,
+            "max_drawdown": -0.2536267529540907,
+            "skewness": 0.20538887521348004,
+            "kurtosis": 9.110281032048137,
+            "tail_ratio": 1.1489162091388854,
+            "omega_ratio": 1.213794216209082,
+            "ulcer_index": 0.13838462375733912,
+            "best_day": 0.07026799925727589,
+            "worst_day": -0.09289658175035864,
+            "avg_daily_return": 0.0007577621460376219,
+            "pct_positive_days": 0.3159340659340659,
+            "max_drawdown_duration_days": 232.0,
+            "tstat_sharpe": 0.9627536695757167,
+            "alpha": -0.04828184919735617,
+            "beta": 0.33459994979301255,
+            "tstat_alpha": -0.21710139231667816
+          },
+          "final_equity": 12647.607047120062,
+          "trade_count": 96,
+          "profile": {
+            "data_load_us": 54,
+            "align_us": 30,
+            "signal_eval_us": 225,
+            "runtime_prep_us": 0,
+            "simulation_us": 159,
+            "output_build_us": 0,
+            "total_us": 4662
+          }
+        },
+        {
+          "strategy_name": "return_vol_long_cash_0",
+          "metrics": {
+            "total_return": 0.2647607047120062,
+            "cagr": 0.26578127666121176,
+            "volatility": 0.28698786131120685,
+            "sharpe": 0.9644053326008513,
+            "sortino": 1.1194161491406924,
+            "calmar": 1.0532426257474945,
+            "max_drawdown": -0.2536267529540907,
+            "skewness": 0.20538887521348004,
+            "kurtosis": 9.110281032048137,
+            "tail_ratio": 1.1489162091388854,
+            "omega_ratio": 1.213794216209082,
+            "ulcer_index": 0.13838462375733912,
+            "best_day": 0.07026799925727589,
+            "worst_day": -0.09289658175035864,
+            "avg_daily_return": 0.0007577621460376219,
+            "pct_positive_days": 0.3159340659340659,
+            "max_drawdown_duration_days": 232.0,
+            "tstat_sharpe": 0.9627536695757167,
+            "alpha": -0.04828184919735617,
+            "beta": 0.33459994979301255,
+            "tstat_alpha": -0.21710139231667816
+          },
+          "final_equity": 12647.607047120062,
+          "trade_count": 96,
+          "profile": {
+            "data_load_us": 54,
+            "align_us": 30,
+            "signal_eval_us": 177,
+            "runtime_prep_us": 0,
+            "simulation_us": 171,
+            "output_build_us": 0,
+            "total_us": 4662
+          }
+        },
+        {
+          "strategy_name": "return_vol_long_cash_0",
+          "metrics": {
+            "total_return": 0.2647607047120062,
+            "cagr": 0.26578127666121176,
+            "volatility": 0.28698786131120685,
+            "sharpe": 0.9644053326008513,
+            "sortino": 1.1194161491406924,
+            "calmar": 1.0532426257474945,
+            "max_drawdown": -0.2536267529540907,
+            "skewness": 0.20538887521348004,
+            "kurtosis": 9.110281032048137,
+            "tail_ratio": 1.1489162091388854,
+            "omega_ratio": 1.213794216209082,
+            "ulcer_index": 0.13838462375733912,
+            "best_day": 0.07026799925727589,
+            "worst_day": -0.09289658175035864,
+            "avg_daily_return": 0.0007577621460376219,
+            "pct_positive_days": 0.3159340659340659,
+            "max_drawdown_duration_days": 232.0,
+            "tstat_sharpe": 0.9627536695757167,
+            "alpha": -0.04828184919735617,
+            "beta": 0.33459994979301255,
+            "tstat_alpha": -0.21710139231667816
+          },
+          "final_equity": 12647.607047120062,
+          "trade_count": 96,
+          "profile": {
+            "data_load_us": 54,
+            "align_us": 30,
+            "signal_eval_us": 146,
+            "runtime_prep_us": 0,
+            "simulation_us": 163,
+            "output_build_us": 0,
+            "total_us": 4662
+          }
+        },
+        {
+          "strategy_name": "return_vol_long_cash_0",
+          "metrics": {
+            "total_return": 0.2647607047120062,
+            "cagr": 0.26578127666121176,
+            "volatility": 0.28698786131120685,
+            "sharpe": 0.9644053326008513,
+            "sortino": 1.1194161491406924,
+            "calmar": 1.0532426257474945,
+            "max_drawdown": -0.2536267529540907,
+            "skewness": 0.20538887521348004,
+            "kurtosis": 9.110281032048137,
+            "tail_ratio": 1.1489162091388854,
+            "omega_ratio": 1.213794216209082,
+            "ulcer_index": 0.13838462375733912,
+            "best_day": 0.07026799925727589,
+            "worst_day": -0.09289658175035864,
+            "avg_daily_return": 0.0007577621460376219,
+            "pct_positive_days": 0.3159340659340659,
+            "max_drawdown_duration_days": 232.0,
+            "tstat_sharpe": 0.9627536695757167,
+            "alpha": -0.04828184919735617,
+            "beta": 0.33459994979301255,
+            "tstat_alpha": -0.21710139231667816
+          },
+          "final_equity": 12647.607047120062,
+          "trade_count": 96,
+          "profile": {
+            "data_load_us": 54,
+            "align_us": 30,
+            "signal_eval_us": 212,
+            "runtime_prep_us": 0,
+            "simulation_us": 228,
+            "output_build_us": 0,
+            "total_us": 4662
+          }
+        }
+      ]
+    },
+    "monte_carlo": {
+      "n_paths": 1000,
+      "method_name": "block_bootstrap(block_size=24)",
+      "final_return": {
+        "percentiles": [
+          [
+            0.9,
+            0.5035826318738366
+          ],
+          [
+            0.95,
+            0.6302235565393468
+          ],
+          [
+            0.99,
+            0.9254882236309161
+          ]
+        ],
+        "cvar": [
+          [
+            0.95,
+            -0.31312816061719667
+          ],
+          [
+            0.99,
+            -0.39081906950656714
+          ]
+        ],
+        "mean": 0.11320551313697261,
+        "std": 0.2826624860058221,
+        "min": -0.4417095109173098,
+        "max": 1.3094378361224055
+      },
+      "max_drawdown": {
+        "percentiles": [
+          [
+            0.9,
+            0.31693762993928576
+          ],
+          [
+            0.95,
+            0.3519651922148921
+          ],
+          [
+            0.99,
+            0.4219367176229571
+          ]
+        ],
+        "cvar": [
+          [
+            0.95,
+            0.39807947263485377
+          ],
+          [
+            0.99,
+            0.4528811935556441
+          ]
+        ],
+        "mean": 0.21723590699916348,
+        "std": 0.0721882174002422,
+        "min": 0.07951443260267871,
+        "max": 0.494459997476314
+      },
+      "prob_of_ruin": 0.399,
+      "prob_of_wipeout": 0.0,
+      "dd_exceedance": [
+        [
+          -0.2,
+          1.0
+        ],
+        [
+          -0.3,
+          1.0
+        ],
+        [
+          -0.4,
+          1.0
+        ]
+      ],
+      "paths": null,
+      "paths_n_steps": null
+    }
+  },
+  "accepted": false
+}
