@@ -32,3 +32,5 @@ jobs:
       - run: ruff check --select E9,F manifold_research.py tests
       - run: python -m compileall -q manifold_research.py tests
       - run: pytest -q
+        env:
+          PYTHONPATH: "."
