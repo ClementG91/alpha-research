@@ -28,13 +28,13 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Syntax check
-        run: python -m py_compile campaign.py
+        run: python -m py_compile campaign.py stateful_campaign.py
 
-      - name: Run rate-limited ManifoldBT MCP alpha campaign
+      - name: Run stateful ManifoldBT MCP alpha campaign
         run: |
           rm -rf results
           mkdir -p results
-          python campaign.py
+          python stateful_campaign.py
 
       - name: Print research summary
         if: always()
