@@ -1,0 +1,4 @@
+Alpha campaign did not run because a code-quality gate failed.
+Ruff: success
+Compile: success
+Pytest: failure
