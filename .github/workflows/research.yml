@@ -8,6 +8,7 @@ on:
       - "run_walk_forward_mean_reversion.py"
       - "run_walk_forward_mean_reversion_v2.py"
       - "run_walk_forward_mean_reversion_v3.py"
+      - "run_walk_forward_mean_reversion_v4.py"
       - "requirements-manifold.txt"
       - ".github/workflows/research.yml"
   workflow_dispatch:
@@ -44,7 +45,7 @@ jobs:
           MANIFOLDBT_MCP_URL: https://mcp.manifoldbt.com/mcp
         run: |
           rm -rf results/walk_forward
-          python run_walk_forward_mean_reversion_v3.py --output results/walk_forward
+          python run_walk_forward_mean_reversion_v4.py --output results/walk_forward
 
       - name: Print research report or fatal error
         if: always()
