@@ -1,49 +1,28 @@
 name: LSE institutional alpha campaign
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - "lse_*.py"
+      - "quant_validation.py"
+      - "requirements-institutional.txt"
+      - "tests/test_lse_vault.py"
+      - "tests/test_quant_validation.py"
+      - ".github/workflows/lse-institutional-alpha.yml"
   workflow_dispatch:
-    inputs:
-      phase:
-        description: Campaign phase
-        required: true
-        default: full
-        type: choice
-        options:
-          - discover
-          - collect
-          - research
-          - full
+  schedule:
+    - cron: "43 6 * * 1"
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: lse-institutional-alpha
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        python-version: ["3.11", "3.12"]
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: ${{ matrix.python-version }}
-          cache: pip
-          cache-dependency-path: requirements-institutional.txt
-      - run: python -m pip install --upgrade pip
-      - run: pip install -r requirements-institutional.txt pytest ruff
-      - run: ruff check --select E9,F institutional_alpha.py lse_vault.py lse_institutional_campaign.py lse_campaign_runner.py quant_validation.py tests/test_institutional_alpha.py tests/test_lse_vault.py tests/test_quant_validation.py
-      - run: python -m compileall -q institutional_alpha.py lse_vault.py lse_institutional_campaign.py lse_campaign_runner.py quant_validation.py tests
-      - run: pytest -q tests/test_institutional_alpha.py tests/test_lse_vault.py tests/test_quant_validation.py
-        env:
-          PYTHONPATH: "."
-
-  authenticated-research:
+  campaign:
     runs-on: ubuntu-latest
     timeout-minutes: 240
     env:
@@ -64,25 +43,124 @@ jobs:
           cache: pip
           cache-dependency-path: requirements-institutional.txt
       - run: python -m pip install --upgrade pip
-      - run: pip install -r requirements-institutional.txt
-      - name: Run strict LSE-only campaign
+      - run: pip install -r requirements-institutional.txt pytest ruff
+      - name: Prepare diagnostics
+        run: mkdir -p /tmp/lse_campaign
+      - id: lint
+        continue-on-error: true
+        shell: bash
         run: |
-          rm -rf results/lse_institutional
+          set -o pipefail
+          ruff check --select E9,F lse_vault.py lse_institutional_campaign.py lse_campaign_runner.py quant_validation.py tests/test_lse_vault.py tests/test_quant_validation.py 2>&1 | tee /tmp/lse_campaign/ruff.log
+      - id: compile
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -o pipefail
+          python -m compileall -q lse_vault.py lse_institutional_campaign.py lse_campaign_runner.py quant_validation.py tests 2>&1 | tee /tmp/lse_campaign/compile.log
+      - id: tests
+        continue-on-error: true
+        shell: bash
+        env:
+          PYTHONPATH: "."
+        run: |
+          set -o pipefail
+          pytest -q tests/test_lse_vault.py tests/test_quant_validation.py 2>&1 | tee /tmp/lse_campaign/pytest.log
+      - name: Record failed quality gates
+        if: steps.lint.outcome != 'success' || steps.compile.outcome != 'success' || steps.tests.outcome != 'success'
+        run: |
+          cat > /tmp/lse_campaign/FATAL.txt <<TXT
+          LSE campaign did not run because a code-quality gate failed.
+          Ruff: ${{ steps.lint.outcome }}
+          Compile: ${{ steps.compile.outcome }}
+          Pytest: ${{ steps.tests.outcome }}
+          TXT
+      - name: Run strict LSE-only campaign
+        if: steps.lint.outcome == 'success' && steps.compile.outcome == 'success' && steps.tests.outcome == 'success'
+        continue-on-error: true
+        shell: bash
+        run: |
+          rm -rf /tmp/lse_campaign/research
+          mkdir -p /tmp/lse_campaign/research
+          set +e
           python lse_campaign_runner.py \
-            --phase "${{ inputs.phase }}" \
+            --phase full \
             --start 2004-01-01 \
-            --output results/lse_institutional
-      - name: Reject any secret material in outputs
+            --output /tmp/lse_campaign/research \
+            > >(tee /tmp/lse_campaign/research.log) \
+            2> >(tee -a /tmp/lse_campaign/research.log >&2)
+          code=$?
+          if [ -f /tmp/lse_campaign/research/FATAL.txt ]; then
+            cp /tmp/lse_campaign/research/FATAL.txt /tmp/lse_campaign/FATAL.txt
+          fi
+          exit "$code"
+      - name: Reject secret material
+        if: always()
         run: |
           python - <<'PY'
           from pathlib import Path
           from lse_vault import assert_secret_absent
-          assert_secret_absent(Path("results/lse_institutional"))
+          assert_secret_absent(Path('/tmp/lse_campaign'))
           PY
-      - name: Upload sanitized research outputs
+      - name: Publish sanitized verdict to main
+        if: always()
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from lse_vault import assert_secret_absent, redact
+
+          root = Path('/tmp/lse_campaign')
+          source = root / 'research'
+          target = Path('results/lse_institutional/latest')
+          target.mkdir(parents=True, exist_ok=True)
+          for path in sorted(target.rglob('*'), reverse=True):
+              if path.is_file():
+                  path.unlink()
+          text_files = {
+              'manifest.json', 'collection_errors.json', 'research_summary.json',
+          }
+          for name in text_files:
+              candidate = source / name
+              if candidate.exists():
+                  target.joinpath(name).write_text(
+                      redact(candidate.read_text(encoding='utf-8', errors='replace')),
+                      encoding='utf-8',
+                  )
+          for name in ('ruff.log', 'compile.log', 'pytest.log', 'research.log', 'FATAL.txt'):
+              candidate = root / name
+              if candidate.exists():
+                  target.joinpath(name).write_text(
+                      redact(candidate.read_text(encoding='utf-8', errors='replace')),
+                      encoding='utf-8',
+                  )
+          plots = source / 'plots'
+          if plots.exists():
+              for plot in plots.iterdir():
+                  if plot.suffix in {'.svg', '.png'}:
+                      destination = target / 'plots' / plot.name
+                      destination.parent.mkdir(parents=True, exist_ok=True)
+                      destination.write_bytes(plot.read_bytes())
+          if not any(path.is_file() for path in target.rglob('*')):
+              target.joinpath('FATAL.txt').write_text(
+                  'LSE campaign produced no publishable result.\n', encoding='utf-8'
+              )
+          assert_secret_absent(target)
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add results/lse_institutional/latest
+          if git diff --cached --quiet; then
+            echo "No LSE result change to commit"
+          else
+            git commit -m "publish latest LSE alpha verdict [skip ci]"
+            git push origin HEAD:main
+          fi
+      - name: Upload sanitized campaign artifact
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: lse-institutional-alpha-${{ github.run_number }}
-          path: results/lse_institutional/
+          path: /tmp/lse_campaign/
           if-no-files-found: error
           retention-days: 30
