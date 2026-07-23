@@ -3,7 +3,7 @@ from __future__ import annotations
 import numpy as np
 import pandas as pd
 
-from quant_research.advanced import run_advanced_walk_forward
+from quant_research.advanced_v2 import run_advanced_walk_forward
 from quant_research.core import ResearchConfig
 
 
@@ -61,6 +61,10 @@ def test_advanced_sleeves_are_purged_and_constrained() -> None:
     assert (result.weights.max(axis=1) <= cfg.per_asset_cap + 1e-9).all()
     crypto = result.weights[["BTC-USD", "ETH-USD"]].sum(axis=1)
     assert (crypto <= cfg.crypto_cap + 1e-9).all()
+    assert np.isclose(
+        result.diagnostics["average_gross_exposure"],
+        result.weights.sum(axis=1).mean(),
+    )
     assert set(result.diagnostics["sleeve_metrics"]) == {
         "ml_1m",
         "ml_3m",
