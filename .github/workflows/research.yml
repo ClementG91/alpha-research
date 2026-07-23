@@ -6,6 +6,7 @@ on:
     paths:
       - "quant_research/**"
       - "run_quant_research.py"
+      - "run_advanced_quant_research.py"
       - "requirements-quant.txt"
   workflow_dispatch:
     inputs:
@@ -44,17 +45,21 @@ jobs:
         run: python -m pip install --upgrade pip && pip install -r requirements-quant.txt
 
       - name: Compile research engine
-        run: python -m compileall -q quant_research run_quant_research.py
+        run: |
+          python -m compileall -q \
+            quant_research \
+            run_quant_research.py \
+            run_advanced_quant_research.py
 
-      - name: Run maximum-history walk-forward research
+      - name: Run advanced maximum-history walk-forward ensemble
         env:
           PYTHONHASHSEED: "0"
           MC_PATHS: ${{ inputs.monte_carlo_paths || '5000' }}
           PERMUTATION_TRIALS: ${{ inputs.permutation_trials || '1000' }}
         run: |
-          rm -rf results/quant
-          python run_quant_research.py \
-            --output results/quant \
+          rm -rf results/advanced_quant
+          python run_advanced_quant_research.py \
+            --output results/advanced_quant \
             --mc-paths "$MC_PATHS" \
             --permutation-trials "$PERMUTATION_TRIALS" \
             --holdout-months 36
@@ -62,16 +67,16 @@ jobs:
       - name: Print report
         if: always()
         run: |
-          test ! -f results/quant/REPORT.md || cat results/quant/REPORT.md
+          test ! -f results/advanced_quant/REPORT.md || cat results/advanced_quant/REPORT.md
           test ! -f results/FATAL.txt || cat results/FATAL.txt
 
       - name: Upload complete research bundle
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: multi-asset-quant-research-${{ github.run_number }}
+          name: advanced-multi-asset-quant-${{ github.run_number }}
           path: |
-            results/quant/
+            results/advanced_quant/
             results/FATAL.txt
           if-no-files-found: warn
           retention-days: 30
