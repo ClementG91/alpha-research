@@ -1,0 +1,43 @@
+name: Crypto alpha research
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run ManifoldBT MCP research
+        run: python research.py
+
+      - name: Print research summary
+        if: always()
+        run: |
+          if [ -f results/REPORT.md ]; then
+            cat results/REPORT.md
+          fi
+
+      - name: Upload raw research artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: alpha-research-results
+          path: results/
+          if-no-files-found: warn
+          retention-days: 30
