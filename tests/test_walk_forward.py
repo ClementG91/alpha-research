@@ -7,7 +7,7 @@ from run_walk_forward_mean_reversion import (
     consensus_params,
     freeze,
 )
-from run_walk_forward_mean_reversion_v2 import conditional_families
+from run_walk_forward_mean_reversion_v3 import conditional_families
 
 
 def result(sharpe: float, alpha: float, beta: float, trades: int = 30) -> dict:
@@ -36,6 +36,7 @@ def test_conditional_families_use_garch() -> None:
     assert len(families) == 5
     assert all("garch(" in " ".join(family["signals"].values()) for family in families)
     assert all("risk_size" in family["signals"] for family in families)
+    assert all("risk_multiplier" in family["signals"] for family in families)
     assert all(family["grid"] for family in families)
 
 
