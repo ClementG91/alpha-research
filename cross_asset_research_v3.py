@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-from typing import Any
-
 import numpy as np
 import pandas as pd
 
@@ -47,8 +45,8 @@ def vectorized_strategy_from_score(
     active_class_count = valid_classes.sum(axis=1).replace(0, np.nan)
     raw = raw.div(active_class_count, axis=0).fillna(0.0)
 
-    # Closed-form projection onto the intersection of class-neutral and beta-neutral constraints.
-    # Centering beta inside each class preserves every class sum at zero while removing total beta.
+    # Closed-form projection onto class-neutral and beta-neutral constraints.
+    # Centering beta inside each class preserves every class sum at zero.
     centered_beta = pd.DataFrame(0.0, index=common, columns=score.columns)
     for class_name in class_names:
         columns = [column for column in score if str(classes.get(column)) == class_name]
