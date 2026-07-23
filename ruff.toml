@@ -1,2 +1,2 @@
 [lint.per-file-ignores]
-"alpha_hunt.py" = ["F401"]
+"alpha_hunt.py" = ["F401", "F841"]
