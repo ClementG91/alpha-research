@@ -1,17 +1,18 @@
-name: Quant CI
+name: Manifold research CI
 
 on:
   pull_request:
     branches: [main]
+    paths:
+      - "manifold_research.py"
+      - "tests/**"
+      - "requirements-*.txt"
+      - ".github/workflows/**"
   push:
     branches: [main]
 
 permissions:
   contents: read
-
-concurrency:
-  group: quant-ci-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: true
 
 jobs:
   test:
@@ -22,47 +23,12 @@ jobs:
         python-version: ["3.11", "3.12"]
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
           cache: pip
           cache-dependency-path: requirements-dev.txt
-
-      - name: Install deterministic test dependencies
-        run: python -m pip install --upgrade pip && pip install -r requirements-dev.txt
-
-      - name: Ruff
-        run: |
-          ruff check \
-            quant_research \
-            run_quant_research.py \
-            run_advanced_quant_research.py \
-            run_advanced_quant_research_v2.py \
-            run_advanced_quant_research_v3.py \
-            tests
-
-      - name: Compile
-        run: |
-          python -m compileall -q \
-            quant_research \
-            run_quant_research.py \
-            run_advanced_quant_research.py \
-            run_advanced_quant_research_v2.py \
-            run_advanced_quant_research_v3.py \
-            tests
-
-      - name: Anti-lookahead and allocation tests
-        env:
-          PYTHONHASHSEED: "0"
-          PYTHONPATH: "."
-        run: pytest -q --junitxml=pytest-${{ matrix.python-version }}.xml
-
-      - name: Upload test diagnostics
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: pytest-${{ matrix.python-version }}
-          path: pytest-${{ matrix.python-version }}.xml
-          if-no-files-found: warn
-          retention-days: 7
+      - run: python -m pip install --upgrade pip && pip install -r requirements-dev.txt
+      - run: ruff check --select E9,F manifold_research.py tests
+      - run: python -m compileall -q manifold_research.py tests
+      - run: pytest -q

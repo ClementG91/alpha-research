@@ -1,45 +1,52 @@
-# Alpha Research
+# Alpha Research — ManifoldBT MCP only
 
-Leakage-resistant, reproducible research for multi-asset quantitative portfolios.
+This repository now uses the remote **ManifoldBT MCP engine** for every market calculation. The previous `yfinance`/scikit-learn multi-asset engine has been removed from the active pipeline.
 
-## Current result
+## What comes from ManifoldBT
 
-The current pipeline no longer treats an indicator crossover as a quant strategy. It combines:
+- strategy validation;
+- Binance-universe discovery;
+- parameter sweeps and overfitting correction;
+- train, validation and frozen holdout backtests;
+- equity curve and daily returns;
+- 2D parameter surface;
+- parameter stability analysis;
+- Monte Carlo risk simulation.
 
-- pooled cross-sectional Ridge and shallow gradient-boosting forecasts at 1/3/6-month horizons;
-- statistical trend measured with regression slope t-statistics;
-- PCA residual momentum;
-- a defensive macro risk-parity sleeve;
-- Gaussian-mixture regime detection;
-- Ledoit-Wolf covariance shrinkage and volatility-aware allocation.
+Python only orchestrates MCP calls, preserves raw JSON payloads, and renders SVG files from the numerical series returned by ManifoldBT. It does not recalculate strategy performance.
 
-The universe combines global equities, real estate, government bonds, gold, commodities, USD and capped BTC/ETH exposure over the maximum available history.
+## Latest research output
 
-- Required target: net OOS Sharpe >= 1.5.
-- Best final 36-month holdout Sharpe: **1.247**.
-- Full walk-forward Sharpe: **0.834**.
-- Anti-lookahead audit: **PASS**.
-- Status: **not validated as alpha >= 1.5**.
+The workflow writes the current report to [`results/manifold/REPORT.md`](results/manifold/REPORT.md) and commits the plots to the branch:
 
-See [`QUANT_RESULTS.md`](./QUANT_RESULTS.md) for the methodology, metrics, stress tests, Monte Carlo and rejection reasons.
+![Sharpe by period](results/manifold/plots/period_metrics.svg)
 
-The previous ManifoldBT EMA experiments are retained only for reproducibility and are deprecated as the primary research result.
+![Parameter stability](results/manifold/plots/stability.svg)
 
-## Validation standard
+![Monte Carlo risk](results/manifold/plots/monte_carlo.svg)
 
-A candidate is accepted only when it passes all of the following:
+The frozen holdout equity and drawdown are generated when the new MCP workflow completes:
 
-- purged expanding walk-forward with horizon-specific embargoes;
-- point-in-time asset eligibility and next-period execution;
-- mutation tests proving future data cannot alter historical weights;
-- a genuinely untouched final holdout;
-- explicit transaction costs and doubled-cost stress;
-- delayed-execution and no-crypto stress tests;
-- block-bootstrap Monte Carlo;
-- cross-sectional permutation testing;
-- Probabilistic and Deflated Sharpe analysis;
-- stable performance across multiple independent sleeves.
+- [`results/manifold/plots/equity_curve.svg`](results/manifold/plots/equity_curve.svg)
+- [`results/manifold/plots/drawdown.svg`](results/manifold/plots/drawdown.svg)
+- [`results/manifold/plots/parameter_heatmap.svg`](results/manifold/plots/parameter_heatmap.svg)
 
-CI runs deterministic anti-lookahead and allocation tests on Python 3.11 and 3.12. The full market-data research workflow is separate, scheduled weekly and available manually.
+## Validation protocol
 
-> Research only. Historical simulations are not a guarantee of future performance.
+- Train: 2021–2023.
+- Validation: 2024.
+- Frozen holdout: 2025 through 1 July 2026.
+- Universe: BTCUSDT, ETHUSDT, SOLUSDT, BNBUSDT and XRPUSDT.
+- Timeframe: 4h.
+- Binance-perps fee preset, 2 bps slippage and one-bar execution delay.
+- Required acceptance threshold: net holdout Sharpe >= 1.5, positive train result, validation Sharpe >= 0.7 and at least 30 holdout trades.
+
+## Real limitations of the public MCP server
+
+- It currently reports ManifoldBT Community and locks native `run_walk_forward` behind Pro.
+- It exposes no `ingest_data` tool, so the pipeline cannot add equities, futures or custom datasets.
+- Its preloaded datastore contains Binance **CryptoSpot** proxies, not full perpetual history.
+- Funding, basis, open interest and liquidation history are unavailable.
+- Community Monte Carlo is capped at 1,000 paths.
+
+The workflow therefore performs chronological train/validation/holdout orchestration through separate MCP calls. That is genuinely out of sample, but it is not ManifoldBT's native Pro walk-forward optimiser.

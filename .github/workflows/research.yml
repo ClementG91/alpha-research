@@ -1,24 +1,21 @@
-name: Multi-asset quant research
+name: ManifoldBT MCP research
 
 on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "manifold_research.py"
+      - "requirements-manifold.txt"
+      - ".github/workflows/research.yml"
   workflow_dispatch:
-    inputs:
-      monte_carlo_paths:
-        description: Block-bootstrap paths
-        required: false
-        default: "5000"
-      permutation_trials:
-        description: Cross-sectional permutation trials
-        required: false
-        default: "1000"
   schedule:
     - cron: "17 3 * * 0"
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
-  group: multi-asset-quant-research
+  group: manifold-mcp-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -27,51 +24,49 @@ jobs:
     timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+          fetch-depth: 0
 
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
           cache: pip
-          cache-dependency-path: requirements-quant.txt
+          cache-dependency-path: requirements-manifold.txt
 
-      - name: Install quant dependencies
-        run: python -m pip install --upgrade pip && pip install -r requirements-quant.txt
+      - name: Install MCP research dependencies
+        run: python -m pip install --upgrade pip && pip install -r requirements-manifold.txt
 
-      - name: Compile research engine
-        run: |
-          python -m compileall -q \
-            quant_research \
-            run_quant_research.py \
-            run_advanced_quant_research.py \
-            run_advanced_quant_research_v2.py \
-            run_advanced_quant_research_v3.py
-
-      - name: Run diversified maximum-history quant ensemble
+      - name: Run research entirely through ManifoldBT MCP
         env:
-          PYTHONHASHSEED: "0"
-          MC_PATHS: ${{ inputs.monte_carlo_paths || '5000' }}
-          PERMUTATION_TRIALS: ${{ inputs.permutation_trials || '1000' }}
+          MANIFOLDBT_MCP_URL: https://mcp.manifoldbt.com/mcp
         run: |
-          rm -rf results/advanced_quant
-          python run_advanced_quant_research_v3.py \
-            --output results/advanced_quant \
-            --mc-paths "$MC_PATHS" \
-            --permutation-trials "$PERMUTATION_TRIALS" \
-            --holdout-months 36
+          rm -rf results/manifold
+          python manifold_research.py --output results/manifold
 
-      - name: Print report
-        if: always()
+      - name: Publish report and plots to the branch
+        if: success()
+        shell: bash
         run: |
-          test ! -f results/advanced_quant/REPORT.md || cat results/advanced_quant/REPORT.md
-          test ! -f results/FATAL.txt || cat results/FATAL.txt
+          if [ "${{ github.event_name }}" = "pull_request" ] && [ "${{ github.event.pull_request.head.repo.full_name }}" != "${{ github.repository }}" ]; then
+            echo "Fork PR: results remain available as an artifact because the token is read-only."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add results/manifold
+          if git diff --cached --quiet; then
+            echo "No result changes"
+            exit 0
+          fi
+          git commit -m "record ManifoldBT MCP research outputs [skip ci]"
+          git push origin HEAD:${{ github.head_ref || github.ref_name }}
 
-      - name: Upload complete research bundle
+      - name: Upload raw MCP payloads and SVG plots
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: diversified-multi-asset-quant-${{ github.run_number }}
-          path: |
-            results/advanced_quant/
-            results/FATAL.txt
+          name: manifold-mcp-research-${{ github.run_number }}
+          path: results/manifold/
           if-no-files-found: warn
           retention-days: 30
