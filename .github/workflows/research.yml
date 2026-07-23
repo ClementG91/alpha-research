@@ -6,6 +6,7 @@ on:
     paths:
       - "manifold_research.py"
       - "run_manifold_research.py"
+      - "run_market_neutral_research.py"
       - "requirements-manifold.txt"
       - ".github/workflows/research.yml"
   workflow_dispatch:
@@ -42,13 +43,14 @@ jobs:
           MANIFOLDBT_MCP_URL: https://mcp.manifoldbt.com/mcp
         run: |
           rm -rf results/manifold
-          python run_manifold_research.py --output results/manifold
+          python run_market_neutral_research.py --output results/manifold
 
       - name: Print Manifold report or fatal error
         if: always()
         run: |
           test ! -f results/manifold/REPORT.md || cat results/manifold/REPORT.md
           test ! -f results/manifold/FATAL.txt || cat results/manifold/FATAL.txt
+          test ! -f results/manifold/call-errors.jsonl || cat results/manifold/call-errors.jsonl
 
       - name: Upload raw MCP payloads and SVG plots
         if: always()
