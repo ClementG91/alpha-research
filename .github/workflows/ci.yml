@@ -33,10 +33,20 @@ jobs:
         run: python -m pip install --upgrade pip && pip install -r requirements-dev.txt
 
       - name: Ruff
-        run: ruff check quant_research run_quant_research.py tests
+        run: |
+          ruff check \
+            quant_research \
+            run_quant_research.py \
+            run_advanced_quant_research.py \
+            tests
 
       - name: Compile
-        run: python -m compileall -q quant_research run_quant_research.py tests
+        run: |
+          python -m compileall -q \
+            quant_research \
+            run_quant_research.py \
+            run_advanced_quant_research.py \
+            tests
 
       - name: Anti-lookahead and allocation tests
         env:
