@@ -28,19 +28,19 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Syntax check
-        run: python -m py_compile campaign.py generation3.py
+        run: python -m py_compile campaign.py generation4.py
 
-      - name: Run ensemble and BTC-regime alpha campaign
+      - name: Run crypto anomaly and volatility campaign
         run: |
           rm -rf results
           mkdir -p results
-          python generation3.py
+          python generation4.py
 
       - name: Print research summary
         if: always()
         run: |
-          if [ -f results/GENERATION3.md ]; then
-            cat results/GENERATION3.md
+          if [ -f results/GENERATION4.md ]; then
+            cat results/GENERATION4.md
           fi
           if [ -f results/FATAL.txt ]; then
             cat results/FATAL.txt
