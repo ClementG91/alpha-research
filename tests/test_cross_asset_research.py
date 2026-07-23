@@ -36,7 +36,7 @@ def test_vectorized_portfolio_is_neutral_each_day() -> None:
     assert (gross - 1.0).abs().max() < 1e-12
 
 
-def test_close_reversal_signal_is_lagged() -> None:
+def test_close_reversal_signal_is_causal() -> None:
     dates = pd.date_range("2020-01-01", periods=200, freq="B")
     symbols = ["SPY", "A", "B", "C", "D", "E", "F", "G", "H"]
     rng = np.random.default_rng(4)
@@ -58,8 +58,24 @@ def test_close_reversal_signal_is_lagged() -> None:
         "residual_reversal",
         tuple(sorted({"lookback": 1.0, "quantile": 0.2, "vol_window": 20.0, "beta_window": 63.0}.items())),
     )
-    result = research.build_candidate(candidate, panel, classes, 5.0)
-    assert result.positions.iloc[:64].abs().sum().sum() == 0
+    baseline = research.build_candidate(candidate, panel, classes, 5.0)
+
+    cutoff = dates[120]
+    changed = {key: value.copy() for key, value in panel.items()}
+    future = changed["close"].index > cutoff
+    changed["close"].loc[future] *= 1.75
+    changed["open"].loc[future] *= 0.65
+    changed["high"].loc[future] *= 2.00
+    changed["low"].loc[future] *= 0.50
+    perturbed = research.build_candidate(candidate, changed, classes, 5.0)
+
+    pd.testing.assert_frame_equal(
+        baseline.positions.loc[:cutoff],
+        perturbed.positions.loc[:cutoff],
+        check_exact=False,
+        atol=1e-12,
+        rtol=1e-12,
+    )
 
 
 def test_hac_regression_recovers_low_beta() -> None:
