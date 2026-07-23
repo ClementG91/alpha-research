@@ -5,11 +5,13 @@ from pathlib import Path
 from typing import Any
 
 import manifold_research as engine
+import run_walk_forward_mean_reversion as walk
 import run_walk_forward_mean_reversion_v2 as calibrated
 import run_walk_forward_mean_reversion_v3 as bounded
 import run_walk_forward_mean_reversion_v4 as enumerated
 
 _original_call = engine.call
+_base_fold_score = walk.fold_score
 
 
 def log_record(filename: str, record: dict[str, Any]) -> None:
@@ -60,6 +62,7 @@ async def evaluate_fold(session: Any, family: dict[str, Any], strategy: dict[str
 def main() -> int:
     engine.call = logging_call
     calibrated.conditional_families = bounded.conditional_families
+    calibrated.fold_score = _base_fold_score
     calibrated.evaluate_fold = evaluate_fold
     return calibrated.main()
 
