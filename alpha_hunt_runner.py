@@ -64,7 +64,8 @@ def _factor_matrix(
     classes: pd.Series,
     class_names: list[str],
 ) -> np.ndarray:
-    rows = [np.ones(len(symbols), dtype=float), beta.reindex(symbols).to_numpy(dtype=float)]
+    beta_values = beta.reindex(symbols).fillna(0.0).to_numpy(dtype=float)
+    rows = [np.ones(len(symbols), dtype=float), beta_values]
     rows.extend(
         (classes.reindex(symbols).to_numpy() == class_name).astype(float)
         for class_name in class_names
