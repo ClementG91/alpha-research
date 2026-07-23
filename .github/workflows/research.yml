@@ -7,6 +7,7 @@ on:
       - "quant_research/**"
       - "run_quant_research.py"
       - "run_advanced_quant_research.py"
+      - "run_advanced_quant_research_v2.py"
       - "requirements-quant.txt"
   workflow_dispatch:
     inputs:
@@ -49,16 +50,17 @@ jobs:
           python -m compileall -q \
             quant_research \
             run_quant_research.py \
-            run_advanced_quant_research.py
+            run_advanced_quant_research.py \
+            run_advanced_quant_research_v2.py
 
-      - name: Run advanced maximum-history walk-forward ensemble
+      - name: Run corrected maximum-history quant ensemble
         env:
           PYTHONHASHSEED: "0"
           MC_PATHS: ${{ inputs.monte_carlo_paths || '5000' }}
           PERMUTATION_TRIALS: ${{ inputs.permutation_trials || '1000' }}
         run: |
           rm -rf results/advanced_quant
-          python run_advanced_quant_research.py \
+          python run_advanced_quant_research_v2.py \
             --output results/advanced_quant \
             --mc-paths "$MC_PATHS" \
             --permutation-trials "$PERMUTATION_TRIALS" \
