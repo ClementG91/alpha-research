@@ -14,7 +14,39 @@ DEFAULT_START = "2026-07-02"
 INTERVAL = "4h"
 
 
-async def monitor(strategy: dict[str, Any], start: str, end: str) -> dict[str, Any]:
+def freeze(strategy: dict[str, Any], params: dict[str, Any]) -> dict[str, Any]:
+    frozen = json.loads(json.dumps(strategy))
+    frozen["name"] = f"{frozen.get('name', 'strategy')}_paper_locked"
+    for key, value in params.items():
+        definition = (frozen.get("parameters") or {}).get(key)
+        if not definition:
+            raise KeyError(f"Locked parameter {key!r} is missing from the composed strategy")
+        default = definition.get("default") or {}
+        definition["default"] = {"Int64": int(round(value))} if "Int64" in default else {"Float64": float(value)}
+    return frozen
+
+
+async def resolve_strategy(session: Any, specification: dict[str, Any]) -> dict[str, Any]:
+    if "position_sizing" in specification and "parameters" in specification:
+        return specification
+    required = {"name", "signals", "size", "params"}
+    missing = sorted(required - set(specification))
+    if missing:
+        raise ValueError(f"Invalid locked strategy specification; missing: {', '.join(missing)}")
+    payload = await engine.call(session, "compose_strategy", {
+        "name": specification["name"],
+        "signals": specification["signals"],
+        "size": specification["size"],
+    })
+    strategy = payload.get("strategy_json") or (payload.get("result") or {}).get("strategy_json")
+    if not isinstance(strategy, dict):
+        raise TypeError(f"compose_strategy did not return strategy_json: {payload}")
+    strategy = freeze(strategy, specification["params"])
+    await engine.call(session, "validate_strategy", {"strategy_json": strategy})
+    return strategy
+
+
+async def monitor(specification: dict[str, Any], start: str, end: str) -> dict[str, Any]:
     report: dict[str, Any] = {
         "start": start,
         "end": end,
@@ -28,6 +60,8 @@ async def monitor(strategy: dict[str, Any], start: str, end: str) -> dict[str, A
             await session.initialize()
             report["version"] = await engine.call(session, "get_version", {})
             try:
+                strategy = await resolve_strategy(session, specification)
+                report["strategy_name"] = strategy.get("name")
                 result = await engine.backtest(
                     session,
                     strategy,
@@ -59,8 +93,9 @@ def render(report: dict[str, Any], output: Path) -> None:
         f"- Window: `{report['start']}` to `{report['end']}`.",
         f"- Calendar days: `{report['calendar_days']}`.",
         f"- Status: `{report['status']}`.",
+        f"- Frozen strategy: `{report.get('strategy_name', 'unresolved')}`.",
         "",
-        "This monitor never changes parameters. It only re-runs the frozen strategy on bars that arrived after the research cutoff.",
+        "This monitor never changes parameters. It recompiles the committed DSL specification, freezes the committed values, and only evaluates bars arriving after the research cutoff.",
     ]
     if result:
         lines += [
@@ -99,8 +134,8 @@ def main() -> int:
     args = parser.parse_args()
     args.output.mkdir(parents=True, exist_ok=True)
     try:
-        strategy = json.loads(args.strategy.read_text(encoding="utf-8"))
-        report = asyncio.run(monitor(strategy, args.start, args.end))
+        specification = json.loads(args.strategy.read_text(encoding="utf-8"))
+        report = asyncio.run(monitor(specification, args.start, args.end))
         (args.output / "raw.json").write_text(json.dumps(report, indent=2, default=str), encoding="utf-8")
         render(report, args.output)
         return 0
