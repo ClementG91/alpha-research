@@ -11,8 +11,8 @@ on:
       - "run_walk_forward_mean_reversion_v2.py"
       - "run_walk_forward_mean_reversion_v3.py"
       - "run_walk_forward_mean_reversion_v4.py"
+      - "run_walk_forward_mean_reversion_v5.py"
       - "run_paper_monitor.py"
-      - "run_garch_probe.py"
       - "tests/**"
       - "requirements-*.txt"
       - ".github/workflows/**"
@@ -37,8 +37,8 @@ jobs:
           cache: pip
           cache-dependency-path: requirements-dev.txt
       - run: python -m pip install --upgrade pip && pip install -r requirements-dev.txt
-      - run: ruff check --select E9,F manifold_research.py run_manifold_research.py run_beta_neutral_mean_reversion.py run_walk_forward_mean_reversion_v2.py run_walk_forward_mean_reversion_v3.py run_walk_forward_mean_reversion_v4.py run_paper_monitor.py run_garch_probe.py tests
-      - run: python -m compileall -q manifold_research.py run_manifold_research.py run_beta_neutral_mean_reversion.py run_walk_forward_mean_reversion.py run_walk_forward_mean_reversion_v2.py run_walk_forward_mean_reversion_v3.py run_walk_forward_mean_reversion_v4.py run_paper_monitor.py run_garch_probe.py tests
+      - run: ruff check --select E9,F manifold_research.py run_manifold_research.py run_beta_neutral_mean_reversion.py run_walk_forward_mean_reversion_v2.py run_walk_forward_mean_reversion_v3.py run_walk_forward_mean_reversion_v4.py run_walk_forward_mean_reversion_v5.py run_paper_monitor.py tests
+      - run: python -m compileall -q manifold_research.py run_manifold_research.py run_beta_neutral_mean_reversion.py run_walk_forward_mean_reversion.py run_walk_forward_mean_reversion_v2.py run_walk_forward_mean_reversion_v3.py run_walk_forward_mean_reversion_v4.py run_walk_forward_mean_reversion_v5.py run_paper_monitor.py tests
       - run: pytest -q
         env:
           PYTHONPATH: "."
