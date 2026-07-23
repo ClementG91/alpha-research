@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="430" viewBox="0 0 900 430" role="img" aria-labelledby="title desc">
+  <title id="title">Forward paper monitor</title>
+  <desc id="desc">The frozen strategy had zero trades from 2 July to 23 July 2026, so equity remained flat and validation is still collecting.</desc>
+  <rect width="900" height="430" fill="white"/>
+  <g font-family="Arial, sans-serif" fill="#111">
+    <text x="450" y="34" text-anchor="middle" font-size="22" font-weight="700">Forward paper monitor</text>
+    <text x="450" y="58" text-anchor="middle" font-size="13" fill="#555">Frozen parameters · 2 July–23 July 2026 · 21 calendar days</text>
+    <line x1="90" y1="330" x2="850" y2="330" stroke="#222"/>
+    <line x1="90" y1="90" x2="90" y2="330" stroke="#222"/>
+    <line x1="110" y1="210" x2="830" y2="210" stroke="#444" stroke-width="3"/>
+    <circle cx="110" cy="210" r="5" fill="#444"/><circle cx="830" cy="210" r="5" fill="#444"/>
+    <text x="78" y="214" text-anchor="end" font-size="12">10,000</text>
+    <text x="110" y="360" text-anchor="middle" font-size="13">2 Jul</text>
+    <text x="830" y="360" text-anchor="middle" font-size="13">23 Jul</text>
+    <text x="450" y="185" text-anchor="middle" font-size="16">0 trades · 0% return</text>
+    <rect x="315" y="275" width="270" height="42" rx="8" fill="#eee" stroke="#aaa"/>
+    <text x="450" y="302" text-anchor="middle" font-size="15">COLLECTING — not validated</text>
+    <text x="450" y="400" text-anchor="middle" font-size="12" fill="#555">Required: at least 90 days and 20 trades</text>
+  </g>
+</svg>
