@@ -13,7 +13,7 @@ on:
     - cron: "17 3 * * 0"
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: manifold-mcp-${{ github.event.pull_request.number || github.ref }}
@@ -27,7 +27,6 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.head_ref || github.ref_name }}
-          fetch-depth: 0
 
       - uses: actions/setup-python@v5
         with:
@@ -45,23 +44,11 @@ jobs:
           rm -rf results/manifold
           python run_manifold_research.py --output results/manifold
 
-      - name: Publish report and plots to the branch
-        if: success()
-        shell: bash
+      - name: Print Manifold report or fatal error
+        if: always()
         run: |
-          if [ "${{ github.event_name }}" = "pull_request" ] && [ "${{ github.event.pull_request.head.repo.full_name }}" != "${{ github.repository }}" ]; then
-            echo "Fork PR: results remain available as an artifact because the token is read-only."
-            exit 0
-          fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add results/manifold
-          if git diff --cached --quiet; then
-            echo "No result changes"
-            exit 0
-          fi
-          git commit -m "record ManifoldBT MCP research outputs [skip ci]"
-          git push origin HEAD:${{ github.head_ref || github.ref_name }}
+          test ! -f results/manifold/REPORT.md || cat results/manifold/REPORT.md
+          test ! -f results/manifold/FATAL.txt || cat results/manifold/FATAL.txt
 
       - name: Upload raw MCP payloads and SVG plots
         if: always()
