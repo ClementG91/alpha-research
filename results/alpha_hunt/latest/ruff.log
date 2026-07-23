@@ -1,14 +1,1 @@
-F841 Local variable `report` is assigned to but never used
-   --> alpha_hunt.py:649:9
-    |
-647 |     args = parser.parse_args()
-648 |     try:
-649 |         report = run(args)
-    |         ^^^^^^
-650 |         print((args.output / "REPORT.md").read_text(encoding="utf-8"))
-651 |         return 0
-    |
-help: Remove assignment to unused variable `report`
-
-Found 1 error.
-No fixes available (1 hidden fix can be enabled with the `--unsafe-fixes` option).
+All checks passed!
