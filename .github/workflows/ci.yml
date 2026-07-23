@@ -38,6 +38,7 @@ jobs:
             quant_research \
             run_quant_research.py \
             run_advanced_quant_research.py \
+            run_advanced_quant_research_v2.py \
             tests
 
       - name: Compile
@@ -46,6 +47,7 @@ jobs:
             quant_research \
             run_quant_research.py \
             run_advanced_quant_research.py \
+            run_advanced_quant_research_v2.py \
             tests
 
       - name: Anti-lookahead and allocation tests
