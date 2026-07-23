@@ -1,11 +1,10 @@
-name: Manifold research CI
+name: Research CI
 
 on:
   pull_request:
     branches: [main]
     paths:
-      - "manifold_research.py"
-      - "run_manifold_research.py"
+      - "*.py"
       - "tests/**"
       - "requirements-*.txt"
       - ".github/workflows/**"
@@ -30,8 +29,8 @@ jobs:
           cache: pip
           cache-dependency-path: requirements-dev.txt
       - run: python -m pip install --upgrade pip && pip install -r requirements-dev.txt
-      - run: ruff check --select E9,F manifold_research.py run_manifold_research.py tests
-      - run: python -m compileall -q manifold_research.py run_manifold_research.py tests
+      - run: ruff check --select E9,F .
+      - run: python -m compileall -q .
       - run: pytest -q
         env:
           PYTHONPATH: "."

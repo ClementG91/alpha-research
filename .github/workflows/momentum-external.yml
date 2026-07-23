@@ -1,0 +1,44 @@
+name: Archived daily momentum experiment
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements-cross-asset.txt
+      - run: python -m pip install --upgrade pip && pip install -r requirements-cross-asset.txt
+      - uses: actions/cache@v4
+        with:
+          path: data/cache/stooq
+          key: market-daily-v2-${{ runner.os }}
+      - name: Reproduce rejected experiment
+        env:
+          LSE_API_KEY: ${{ secrets.LSE_API_KEY }}
+        run: |
+          rm -rf results/momentum_external
+          set +e
+          python cross_asset_momentum.py --output results/momentum_external --cost-bps 5
+          code=$?
+          set -e
+          if [ "$code" -eq 1 ]; then
+            exit 1
+          fi
+      - name: Upload reproduction artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: archived-momentum-${{ github.run_number }}
+          path: results/momentum_external/
+          if-no-files-found: warn
+          retention-days: 30

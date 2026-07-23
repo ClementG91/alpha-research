@@ -1,0 +1,90 @@
+name: Fixed multi-premia cross-asset ensemble
+
+# Final fixed protocol: no parameter search and equal sleeve weights.
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "cross_asset_research.py"
+      - "cross_asset_research_v2.py"
+      - "cross_asset_research_v3.py"
+      - "cross_asset_momentum.py"
+      - "cross_asset_persistent.py"
+      - "cross_asset_ensemble.py"
+      - "requirements-cross-asset.txt"
+      - "tests/test_cross_asset_ensemble.py"
+      - ".github/workflows/cross-asset-ensemble.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: cross-asset-ensemble-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+          cache-dependency-path: requirements-cross-asset.txt
+      - run: python -m pip install --upgrade pip && pip install -r requirements-cross-asset.txt
+      - run: ruff check --select E9,F cross_asset_ensemble.py tests/test_cross_asset_ensemble.py
+      - run: python -m compileall -q cross_asset_ensemble.py tests/test_cross_asset_ensemble.py
+      - run: pytest -q tests/test_cross_asset_ensemble.py
+        env:
+          PYTHONPATH: "."
+
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements-cross-asset.txt
+      - run: python -m pip install --upgrade pip && pip install -r requirements-cross-asset.txt
+      - uses: actions/cache@v4
+        with:
+          path: data/cache/stooq
+          key: market-daily-v2-${{ runner.os }}
+      - name: Run fixed ensemble without parameter search
+        env:
+          LSE_API_KEY: ${{ secrets.LSE_API_KEY }}
+        run: |
+          rm -rf results/ensemble
+          set +e
+          python cross_asset_ensemble.py --output results/ensemble
+          code=$?
+          set -e
+          if [ "$code" -eq 1 ]; then
+            exit 1
+          fi
+      - name: Print report or fatal diagnostics
+        if: always()
+        run: |
+          test ! -f results/ensemble/REPORT.md || cat results/ensemble/REPORT.md
+          test ! -f results/ensemble/FATAL.txt || cat results/ensemble/FATAL.txt
+      - name: Upload ensemble artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cross-asset-ensemble-${{ github.run_number }}
+          path: results/ensemble/
+          if-no-files-found: warn
+          retention-days: 90
