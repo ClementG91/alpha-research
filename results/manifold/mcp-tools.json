@@ -1,0 +1,1148 @@
+[
+  {
+    "name": "get_version",
+    "title": null,
+    "description": "Return manifoldbt version and license tier.",
+    "inputSchema": {
+      "properties": {},
+      "title": "get_versionArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "get_versionDictOutput",
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": {
+      "title": null,
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    },
+    "meta": null,
+    "execution": null
+  },
+  {
+    "name": "activate_license",
+    "title": null,
+    "description": "Activate a manifoldbt Pro license key for this server process.",
+    "inputSchema": {
+      "properties": {
+        "license_key": {
+          "title": "License Key",
+          "type": "string"
+        }
+      },
+      "required": [
+        "license_key"
+      ],
+      "title": "activate_licenseArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "activate_licenseDictOutput",
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": {
+      "title": null,
+      "readOnlyHint": false,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": true
+    },
+    "meta": null,
+    "execution": null
+  },
+  {
+    "name": "list_indicators",
+    "title": null,
+    "description": "List all available technical indicators with their Python signatures, grouped by category.",
+    "inputSchema": {
+      "properties": {},
+      "title": "list_indicators_toolArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "properties": {
+        "result": {
+          "items": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object"
+          },
+          "title": "Result",
+          "type": "array"
+        }
+      },
+      "required": [
+        "result"
+      ],
+      "title": "list_indicators_toolOutput",
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": {
+      "title": null,
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    },
+    "meta": null,
+    "execution": null
+  },
+  {
+    "name": "list_examples",
+    "title": null,
+    "description": "List example strategy scripts shipped alongside the library. Returns file names you can pass to get_example. Only available when the server runs against a manifoldbt source checkout: the published wheel does not carry the examples directory, and this reports that rather than returning an empty list.",
+    "inputSchema": {
+      "properties": {},
+      "title": "list_examplesArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "properties": {
+        "result": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Result",
+          "type": "array"
+        }
+      },
+      "required": [
+        "result"
+      ],
+      "title": "list_examplesOutput",
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": {
+      "title": null,
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    },
+    "meta": null,
+    "execution": null
+  },
+  {
+    "name": "get_example",
+    "title": null,
+    "description": "Read the source of a bundled example strategy.",
+    "inputSchema": {
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "title": "get_exampleArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "get_exampleDictOutput",
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": {
+      "title": null,
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    },
+    "meta": null,
+    "execution": null
+  },
+  {
+    "name": "list_symbols",
+    "title": null,
+    "description": "List every symbol in the DataStore as {id, ticker, exchange, asset_class}. Pass the TICKER (e.g. 'BTCUSDT') straight to a backtest's universe - you do not need the numeric id, and a short name like 'BTC' resolves when it is unambiguous. Use the id only to pick between two symbols that share a ticker (e.g. spot vs perp, or two venues). The store is preconfigured; only pass `store` ({'data_root': ..., 'metadata_db': ..., 'arrow_dir': ...}) to point at a different dataset.",
+    "inputSchema": {
+      "properties": {
+        "store": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Store"
+        }
+      },
+      "title": "list_symbolsArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "properties": {
+        "result": {
+          "items": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "title": "Result",
+          "type": "array"
+        }
+      },
+      "required": [
+        "result"
+      ],
+      "title": "list_symbolsOutput",
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": {
+      "title": null,
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    },
+    "meta": null,
+    "execution": null
+  },
+  {
+    "name": "resolve_symbol",
+    "title": null,
+    "description": "Resolve a ticker or short name ('BTCUSDT', or just 'BTC') to its numeric SymbolId. You usually do NOT need this - a backtest's universe accepts the ticker directly. A name matching several symbols (e.g. spot and perp) is refused with the candidates named.",
+    "inputSchema": {
+      "properties": {
+        "ticker": {
+          "title": "Ticker",
+          "type": "string"
+        },
+        "store": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Store"
+        }
+      },
+      "required": [
+        "ticker"
+      ],
+      "title": "resolve_symbolArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "properties": {
+        "result": {
+          "title": "Result",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "result"
+      ],
+      "title": "resolve_symbolOutput",
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": {
+      "title": null,
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    },
+    "meta": null,
+    "execution": null
+  },
+  {
+    "name": "validate_strategy",
+    "title": null,
+    "description": "Validate a StrategyDef JSON string by running it through the Rust compiler. Returns the compiled expression plan or an error.",
+    "inputSchema": {
+      "properties": {
+        "strategy_json": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "additionalProperties": true,
+              "type": "object"
+            }
+          ],
+          "title": "Strategy Json"
+        }
+      },
+      "required": [
+        "strategy_json"
+      ],
+      "title": "validate_strategyArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "validate_strategyDictOutput",
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": {
+      "title": null,
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    },
+    "meta": null,
+    "execution": null
+  },
+  {
+    "name": "compose_strategy",
+    "title": null,
+    "description": "Build a StrategyDef from natural DSL expressions - the easy way to author on this server, instead of writing StrategyDef JSON by hand. Pass `signals` as {name: expression} and `size` as one expression, e.g. signals={'fast': 'ema(close, 5)', 'slow': 'ema(close, 20)'}, size='when(crossover(fast, slow), 1.0, 0.0)'. A signal may reference an earlier one by name. Indicators are unprefixed (ema, rsi, sma, atr, crossover, crossunder, highest, lowest, when); combine conditions with & and |. Position size is a FRACTION: 1.0 = fully long, 0.0 = flat, -1.0 = short. To HOLD the current position when no condition fires, write hold() (or omit when's 3rd argument) - NOT -1, which opens a short. Returns strategy_json ready for run_backtest. Python is never executed - only these expressions are compiled.",
+    "inputSchema": {
+      "properties": {
+        "signals": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Signals",
+          "type": "object"
+        },
+        "size": {
+          "title": "Size",
+          "type": "string"
+        },
+        "name": {
+          "default": "strategy",
+          "title": "Name",
+          "type": "string"
+        },
+        "parameters": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Parameters"
+        }
+      },
+      "required": [
+        "signals",
+        "size"
+      ],
+      "title": "compose_strategyArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "compose_strategyDictOutput",
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": {
+      "title": null,
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    },
+    "meta": null,
+    "execution": null
+  },
+  {
+    "name": "run_backtest",
+    "title": null,
+    "description": "Run a REAL backtest of a trading strategy on real historical data through the manifoldbt engine (fees, slippage and look-ahead bias handled). Call this AS SOON AS a user wants to know whether a strategy, a buy/sell rule or a trading bot would have been profitable historically - even if they never say the word 'backtest' (e.g. 'is this profitable?', 'would this work?', 'write me a bot that...'). Never estimate or compute a strategy's performance yourself: the engine does it correctly and your own estimate would be wrong. Supply a StrategyDef as `strategy_json`; the easiest way to get one is the `compose_strategy` tool, which turns DSL expressions into it (`strategy_code` is a Python snippet, accepted only on a local server). Add a config dict (the DataStore is preconfigured; omit `store`). In the config, name the market by its TICKER, not a number: universe='BTCUSDT' or universe=['BTCUSDT','ETHUSDT'] (case-insensitive; numeric ids also work). This server backtests bars of 1h or coarser - use '1h', '4h' or '1d'. Returns metrics, a plain-language `honest_summary` and a `warnings` list you MUST relay to the user (small sample, zero fees, negative alpha, losing per trade, deep drawdown), plus `guardrails` recording the fees, slippage and trade count actually applied. If the user explicitly asks for the underlying series, include_equity_curve=true returns the engine's equity curve (equity_points, default 200) and include_daily_returns=true its dated daily returns. Do not offer either unprompted, and never recompute them from raw prices - your numbers would differ from the engine's and be dishonest to present as its.",
+    "inputSchema": {
+      "properties": {
+        "config": {
+          "additionalProperties": true,
+          "title": "Config",
+          "type": "object"
+        },
+        "store": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Store"
+        },
+        "strategy_code": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Strategy Code"
+        },
+        "strategy_json": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Strategy Json"
+        },
+        "include_equity_curve": {
+          "default": false,
+          "title": "Include Equity Curve",
+          "type": "boolean"
+        },
+        "equity_points": {
+          "default": 200,
+          "title": "Equity Points",
+          "type": "integer"
+        },
+        "include_daily_returns": {
+          "default": false,
+          "title": "Include Daily Returns",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "config"
+      ],
+      "title": "run_backtestArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "run_backtestDictOutput",
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": {
+      "title": null,
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    },
+    "meta": null,
+    "execution": null
+  },
+  {
+    "name": "run_batch",
+    "title": null,
+    "description": "Run many strategies in parallel against a shared config/store. Each item in strategies is {strategy_code|strategy_json}.",
+    "inputSchema": {
+      "properties": {
+        "strategies": {
+          "items": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "title": "Strategies",
+          "type": "array"
+        },
+        "config": {
+          "additionalProperties": true,
+          "title": "Config",
+          "type": "object"
+        },
+        "store": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Store"
+        },
+        "lite": {
+          "default": false,
+          "title": "Lite",
+          "type": "boolean"
+        },
+        "max_parallelism": {
+          "default": 0,
+          "title": "Max Parallelism",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "strategies",
+        "config"
+      ],
+      "title": "run_batchArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "properties": {
+        "result": {
+          "items": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "title": "Result",
+          "type": "array"
+        }
+      },
+      "required": [
+        "result"
+      ],
+      "title": "run_batchOutput",
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": {
+      "title": null,
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    },
+    "meta": null,
+    "execution": null
+  },
+  {
+    "name": "run_sweep",
+    "title": null,
+    "description": "Sweep a strategy's parameters over a Cartesian grid. Call this whenever a user wants 'the best value' of a parameter, wants to 'optimise', 'tune' or 'improve' a strategy, or wants to test a range - do not guess good parameter values yourself. A high best raw Sharpe picked out of many combinations is almost always overfitting, not a real edge: tell the user the winner was selected out of N combinations, prefer a stable RANGE over a single point, and re-run the top combo through run_backtest for an exact P&L before trusting it. param_grid maps parameter names (declared via param('name') in the strategy) to lists of values; each returned row carries the 'params' that produced it. The default lite path derives cagr, calmar and ulcer_index from one equity point per UTC day, so those three differ slightly from run(); every other metric matches it exactly. Returns an `overfitting_correction` you MUST relay: never present the best raw Sharpe without it. Its `probability_edge_is_real` is the Deflated Sharpe Ratio - a PROBABILITY between 0 and 1 that the winner is a real edge rather than selection noise across the N combinations tried. It is NOT a corrected Sharpe value: report it as a probability (e.g. '91% chance this is real'), never as 'a Sharpe of 0.91'. `expected_max_sharpe_under_null` is the best Sharpe pure noise alone would be expected to produce over that many tries.",
+    "inputSchema": {
+      "properties": {
+        "param_grid": {
+          "additionalProperties": {
+            "items": {},
+            "type": "array"
+          },
+          "title": "Param Grid",
+          "type": "object"
+        },
+        "config": {
+          "additionalProperties": true,
+          "title": "Config",
+          "type": "object"
+        },
+        "store": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Store"
+        },
+        "strategy_code": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Strategy Code"
+        },
+        "strategy_json": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Strategy Json"
+        },
+        "lite": {
+          "default": true,
+          "title": "Lite",
+          "type": "boolean"
+        },
+        "max_parallelism": {
+          "default": 0,
+          "title": "Max Parallelism",
+          "type": "integer"
+        },
+        "top_k": {
+          "default": 10,
+          "title": "Top K",
+          "type": "integer"
+        },
+        "rank_metric": {
+          "default": "sharpe",
+          "title": "Rank Metric",
+          "type": "string"
+        },
+        "device": {
+          "default": "auto",
+          "title": "Device",
+          "type": "string"
+        },
+        "precision": {
+          "default": "fp64",
+          "title": "Precision",
+          "type": "string"
+        }
+      },
+      "required": [
+        "param_grid",
+        "config"
+      ],
+      "title": "run_sweepArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "run_sweepDictOutput",
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": {
+      "title": null,
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    },
+    "meta": null,
+    "execution": null
+  },
+  {
+    "name": "run_sweep_2d",
+    "title": null,
+    "description": "Run a 2D parameter sweep (heatmap): use it when a user wants to optimise or visualise the interaction of TWO parameters at once. As with any optimisation, treat the best cell as a candidate, not a verdict - prefer a stable region and confirm the winner through run_backtest. sweep_config takes x_param (str), x_values (list), y_param (str), y_values (list) and metric (str), all required; max_parallelism (int) defaults to 0 meaning all cores. Returns metric_grid[x_idx][y_idx] plus the axis values.",
+    "inputSchema": {
+      "properties": {
+        "sweep_config": {
+          "additionalProperties": true,
+          "title": "Sweep Config",
+          "type": "object"
+        },
+        "config": {
+          "additionalProperties": true,
+          "title": "Config",
+          "type": "object"
+        },
+        "store": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Store"
+        },
+        "strategy_code": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Strategy Code"
+        },
+        "strategy_json": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Strategy Json"
+        }
+      },
+      "required": [
+        "sweep_config",
+        "config"
+      ],
+      "title": "run_sweep_2dArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "run_sweep_2dDictOutput",
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": {
+      "title": null,
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    },
+    "meta": null,
+    "execution": null
+  },
+  {
+    "name": "run_walk_forward",
+    "title": null,
+    "description": "UNAVAILABLE ON THIS SERVER: it runs a Community licence, so Walk-forward optimisation is refused. Tell the user it needs Pro rather than offering it. Walk-forward optimisation (Pro): optimise on a past window, then test on the next, never-seen window, rolling through time. Call this when a user asks whether a strategy 'holds up over time', is 'robust', still works 'out of sample', or BEFORE they risk real money - it separates a strategy that genuinely generalises from one that only fit the past. wf_config needs method, n_splits, train_ratio, optimize_metric, param_grid.",
+    "inputSchema": {
+      "properties": {
+        "wf_config": {
+          "additionalProperties": true,
+          "title": "Wf Config",
+          "type": "object"
+        },
+        "config": {
+          "additionalProperties": true,
+          "title": "Config",
+          "type": "object"
+        },
+        "store": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Store"
+        },
+        "strategy_code": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Strategy Code"
+        },
+        "strategy_json": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Strategy Json"
+        }
+      },
+      "required": [
+        "wf_config",
+        "config"
+      ],
+      "title": "run_walk_forwardArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "run_walk_forwardDictOutput",
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": {
+      "title": null,
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    },
+    "meta": null,
+    "execution": null
+  },
+  {
+    "name": "run_stability",
+    "title": null,
+    "description": "Parameter stability analysis: runs a 1D sweep and reports the mean/std/stability score of a metric across a parameter's values. Call this when a user asks how SENSITIVE a strategy is to a parameter, or whether a chosen value is robust rather than a lucky point. stability_config takes param_name (str), values (list) and metric (str), all required; max_parallelism (int) defaults to 0 meaning all cores. stability_score is 1 - std/|mean|, higher is more stable.",
+    "inputSchema": {
+      "properties": {
+        "stability_config": {
+          "additionalProperties": true,
+          "title": "Stability Config",
+          "type": "object"
+        },
+        "config": {
+          "additionalProperties": true,
+          "title": "Config",
+          "type": "object"
+        },
+        "store": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Store"
+        },
+        "strategy_code": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Strategy Code"
+        },
+        "strategy_json": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Strategy Json"
+        }
+      },
+      "required": [
+        "stability_config",
+        "config"
+      ],
+      "title": "run_stabilityArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "run_stabilityDictOutput",
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": {
+      "title": null,
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    },
+    "meta": null,
+    "execution": null
+  },
+  {
+    "name": "run_monte_carlo",
+    "title": null,
+    "description": "Estimate the risk of rare events - how much a strategy could lose, drawdown and wipeout probabilities - by Monte Carlo resampling. Call this when a user asks 'how much can I lose', 'what's the risk', 'worst case', or talks about committing a specific amount: a single backtest shows only ONE price path, this shows the distribution of possible outcomes. Re-runs the backtest first, then resamples it. mc_config takes n_paths (int, default 1000) and method, one of {'type': 'return_bootstrap'}, {'type': 'block_bootstrap', 'block_size': N} or {'type': 'trade_bootstrap'} (default return_bootstrap). initial_capital defaults to the value in config. Optional: rng_seed, confidence_levels, cvar_levels, dd_thresholds, wipeout_threshold (default -0.90), store_paths, device. Rare-event metrics such as prob_of_wipeout read ~0 unless you use many paths, so never report 'zero risk' off a small n_paths.",
+    "inputSchema": {
+      "properties": {
+        "config": {
+          "additionalProperties": true,
+          "title": "Config",
+          "type": "object"
+        },
+        "store": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Store"
+        },
+        "mc_config": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Mc Config"
+        },
+        "strategy_code": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Strategy Code"
+        },
+        "strategy_json": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Strategy Json"
+        }
+      },
+      "required": [
+        "config"
+      ],
+      "title": "run_monte_carloArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "run_monte_carloDictOutput",
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": {
+      "title": null,
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    },
+    "meta": null,
+    "execution": null
+  },
+  {
+    "name": "run_stochastic",
+    "title": null,
+    "description": "Stochastic SDE simulation (no DataStore required). 'model' is either a preset name ('gbm', 'heston', 'merton', 'garch_jd') or a dict matching StochasticModel.to_dict().",
+    "inputSchema": {
+      "properties": {
+        "model": {
+          "title": "Model"
+        },
+        "s0": {
+          "default": 100.0,
+          "title": "S0",
+          "type": "number"
+        },
+        "n_paths": {
+          "default": 1000,
+          "title": "N Paths",
+          "type": "integer"
+        },
+        "n_steps": {
+          "default": 252,
+          "title": "N Steps",
+          "type": "integer"
+        },
+        "dt": {
+          "default": 0.003968253968253968,
+          "title": "Dt",
+          "type": "number"
+        },
+        "params": {
+          "anyOf": [
+            {
+              "additionalProperties": {
+                "type": "number"
+              },
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Params"
+        },
+        "seed": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Seed"
+        },
+        "confidence_levels": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "number"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Confidence Levels"
+        },
+        "store_paths": {
+          "default": false,
+          "title": "Store Paths",
+          "type": "boolean"
+        },
+        "device": {
+          "default": "cpu",
+          "title": "Device",
+          "type": "string"
+        },
+        "precision": {
+          "default": "f64",
+          "title": "Precision",
+          "type": "string"
+        }
+      },
+      "required": [
+        "model"
+      ],
+      "title": "run_stochasticArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "run_stochasticDictOutput",
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": {
+      "title": null,
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": false,
+      "openWorldHint": false
+    },
+    "meta": null,
+    "execution": null
+  },
+  {
+    "name": "run_portfolio",
+    "title": null,
+    "description": "Run a multi-strategy portfolio. 'portfolio' is a dict with keys strategies (list of {strategy_code|strategy_json, weight}), risk_rules (list), rebalance (dict).",
+    "inputSchema": {
+      "properties": {
+        "portfolio": {
+          "additionalProperties": true,
+          "title": "Portfolio",
+          "type": "object"
+        },
+        "config": {
+          "additionalProperties": true,
+          "title": "Config",
+          "type": "object"
+        },
+        "store": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Store"
+        }
+      },
+      "required": [
+        "portfolio",
+        "config"
+      ],
+      "title": "run_portfolioArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "run_portfolioDictOutput",
+      "type": "object"
+    },
+    "icons": null,
+    "annotations": {
+      "title": null,
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    },
+    "meta": null,
+    "execution": null
+  }
+]
