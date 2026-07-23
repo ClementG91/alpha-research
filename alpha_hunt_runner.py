@@ -2,12 +2,15 @@ from __future__ import annotations
 
 import math
 from collections.abc import Iterable
+from typing import Any
 
 import numpy as np
 import pandas as pd
 
 import alpha_hunt
 
+
+_ORIGINAL_LOAD_MARKET_DATA = alpha_hunt.load_market_data
 
 ANCHOR_PREFERENCES: dict[str, tuple[str, ...]] = {
     "us_equity": ("QQQ", "VTI", "IWM", "RSP", "MDY", "IJR", "VOO", "VB"),
@@ -20,6 +23,46 @@ ANCHOR_PREFERENCES: dict[str, tuple[str, ...]] = {
     "equity_factors": ("QUAL", "MTUM", "USMV", "VLUE"),
     "equity_styles": ("IWF", "IWD", "VTV", "VUG", "VBR"),
 }
+
+
+def normalize_session_frame(frame: pd.DataFrame) -> pd.DataFrame:
+    """Collapse provider-specific daily timestamps onto the UTC session date.
+
+    London Strategic Edge may label a daily bar at the market open while Stooq
+    labels the same session at midnight. Normalising only the index prevents a
+    false two-calendar panel without changing any observed OHLCV value.
+    """
+    work = frame.copy().sort_index()
+    parsed = pd.to_datetime(work.index, utc=True, errors="coerce")
+    valid = ~parsed.isna()
+    work = work.loc[valid].copy()
+    work.index = parsed[valid].tz_convert(None).normalize()
+    aggregations: dict[str, Any] = {}
+    for column in work.columns:
+        lower = str(column).lower()
+        if lower == "open":
+            aggregations[column] = "first"
+        elif lower == "high":
+            aggregations[column] = "max"
+        elif lower == "low":
+            aggregations[column] = "min"
+        elif lower in {"close", "adj close", "adjusted_close"}:
+            aggregations[column] = "last"
+        elif lower == "volume":
+            aggregations[column] = "sum"
+        else:
+            aggregations[column] = "last"
+    daily = work.groupby(level=0, sort=True).agg(aggregations)
+    return daily.loc[~daily.index.duplicated(keep="last")]
+
+
+def normalised_load_market_data(*args: Any, **kwargs: Any) -> tuple[dict[str, pd.DataFrame], dict[str, Any]]:
+    data, provenance = _ORIGINAL_LOAD_MARKET_DATA(*args, **kwargs)
+    normalised = {symbol: normalize_session_frame(frame) for symbol, frame in data.items()}
+    provenance = dict(provenance)
+    provenance["session_index_normalised"] = True
+    provenance["session_timezone"] = "UTC date"
+    return normalised, provenance
 
 
 def _first_available(preferences: Iterable[str], available: set[str]) -> str | None:
@@ -173,6 +216,7 @@ def hedged_target_weights(
     return weights.astype(float)
 
 
+alpha_hunt.load_market_data = normalised_load_market_data
 alpha_hunt.target_weights = hedged_target_weights
 
 if __name__ == "__main__":
