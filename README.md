@@ -1,28 +1,45 @@
 # Alpha Research
 
-Reproducible crypto strategy research powered by the remote ManifoldBT MCP server at `https://mcp.manifoldbt.com/mcp`.
+Leakage-resistant, reproducible research for multi-asset quantitative portfolios.
 
 ## Current result
 
-Seven research generations were executed through GitHub Actions with a strict train / validation / frozen out-of-sample process.
+The current pipeline no longer treats an indicator crossover as a quant strategy. It combines:
+
+- pooled cross-sectional Ridge and shallow gradient-boosting forecasts at 1/3/6-month horizons;
+- statistical trend measured with regression slope t-statistics;
+- PCA residual momentum;
+- a defensive macro risk-parity sleeve;
+- Gaussian-mixture regime detection;
+- Ledoit-Wolf covariance shrinkage and volatility-aware allocation.
+
+The universe combines global equities, real estate, government bonds, gold, commodities, USD and capped BTC/ETH exposure over the maximum available history.
 
 - Required target: net OOS Sharpe >= 1.5.
-- Best verified result: OOS Sharpe **1.318**.
-- Status: **research candidate only — target not validated**.
+- Best final 36-month holdout Sharpe: **1.247**.
+- Full walk-forward Sharpe: **0.834**.
+- Anti-lookahead audit: **PASS**.
+- Status: **not validated as alpha >= 1.5**.
 
-See [`RESULTS.md`](./RESULTS.md) for the full result and [`strategies/ema_return_vol_overlay_verified.json`](./strategies/ema_return_vol_overlay_verified.json) for the frozen StrategyDef.
+See [`QUANT_RESULTS.md`](./QUANT_RESULTS.md) for the methodology, metrics, stress tests, Monte Carlo and rejection reasons.
 
-## Research standard
+The previous ManifoldBT EMA experiments are retained only for reproducibility and are deprecated as the primary research result.
 
-A candidate is only considered viable when it meets all of the following:
+## Validation standard
 
-- net Sharpe ratio >= 1.5 on an untouched out-of-sample period;
-- realistic Binance perpetual fees and non-zero slippage;
-- one-bar signal delay to avoid same-bar look-ahead;
-- enough trades to avoid a small-sample illusion;
-- parameter-neighbour robustness rather than a single sharp optimum;
-- Monte Carlo stress testing before any paper-trading recommendation.
+A candidate is accepted only when it passes all of the following:
 
-The repository stores the strategy source, configurations and reproducible research runners for every generation.
+- purged expanding walk-forward with horizon-specific embargoes;
+- point-in-time asset eligibility and next-period execution;
+- mutation tests proving future data cannot alter historical weights;
+- a genuinely untouched final holdout;
+- explicit transaction costs and doubled-cost stress;
+- delayed-execution and no-crypto stress tests;
+- block-bootstrap Monte Carlo;
+- cross-sectional permutation testing;
+- Probabilistic and Deflated Sharpe analysis;
+- stable performance across multiple independent sleeves.
 
-> Research only. A historical backtest is not a guarantee of future performance.
+CI runs deterministic anti-lookahead and allocation tests on Python 3.11 and 3.12. The full market-data research workflow is separate, scheduled weekly and available manually.
+
+> Research only. Historical simulations are not a guarantee of future performance.
