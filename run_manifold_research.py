@@ -15,7 +15,6 @@ _original_families = engine.families
 
 
 def compiler_safe_families() -> list[dict[str, Any]]:
-    """Rewrite nested DSL expressions into named direct-call signals."""
     docs = _original_families()
     for family in docs:
         name = family["name"]
@@ -106,7 +105,12 @@ def non_aborting_validation_gate(row: dict[str, Any]) -> bool:
 
 async def logging_call(session: Any, name: str, args: dict[str, Any]) -> Any:
     try:
-        return await _original_call(session, name, args)
+        payload = await _original_call(session, name, args)
+        if name == "list_indicators":
+            path = Path("results/manifold/indicators.json")
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text(json.dumps(payload, indent=2, default=str), encoding="utf-8")
+        return payload
     except Exception as exc:
         path = Path("results/manifold/call-errors.jsonl")
         path.parent.mkdir(parents=True, exist_ok=True)
