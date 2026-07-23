@@ -45,4 +45,4 @@ FAILED tests/test_alpha_hunt.py::test_signal_enters_at_next_open_and_costs_use_t
  +    where sum = S00    0.0\nS01    0.0\nS02    0.0\nS03    0.0\nS04    0.0\nS05    0.0\nS06    0.0\nS07    0.0\nS08    0.0\nS09    0.0\nS10    0...\nS13    0.0\nS14    0.0\nS15    0.0\nS16    0.0\nS17    0.0\nS18    0.0\nS19    0.0\nName: 2020-01-16 00:00:00, dtype: float64.sum
  +      where S00    0.0\nS01    0.0\nS02    0.0\nS03    0.0\nS04    0.0\nS05    0.0\nS06    0.0\nS07    0.0\nS08    0.0\nS09    0.0\nS10    0...\nS13    0.0\nS14    0.0\nS15    0.0\nS16    0.0\nS17    0.0\nS18    0.0\nS19    0.0\nName: 2020-01-16 00:00:00, dtype: float64 = abs()
  +        where abs = S00    0.0\nS01    0.0\nS02    0.0\nS03    0.0\nS04    0.0\nS05    0.0\nS06    0.0\nS07    0.0\nS08    0.0\nS09    0.0\nS10    0...\nS13    0.0\nS14    0.0\nS15    0.0\nS16    0.0\nS17    0.0\nS18    0.0\nS19    0.0\nName: 2020-01-16 00:00:00, dtype: float64.abs
-2 failed, 3 passed in 3.17s
+2 failed, 3 passed in 3.05s
