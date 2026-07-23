@@ -4,7 +4,7 @@ Generated on 23 July 2026.
 
 ## Status
 
-This branch replaces Manifold-dependent plotting and prepares a strict London Strategic Edge research campaign. Every committed chart is generated directly with Matplotlib from the numerical return series. No Manifold chart payload is required.
+This branch replaces Manifold-dependent plotting and prepares a strict London Strategic Edge research campaign. Every chart is generated directly from numerical return series. No Manifold chart payload is required.
 
 **No live deployment is authorised.** The current fixed ensemble is a research candidate, not yet independently validated alpha.
 
@@ -62,31 +62,23 @@ These values show that the engine can construct a low-beta, low-drawdown portfol
 
 The strategy is therefore a frozen candidate for independent LSE replication, not a result to tune further.
 
-## Real plots
+## Standalone plots committed to Git
 
-### Net equity curves
-
-![Net equity curves](results/institutional_alpha/plots/equity_curves.svg)
+These SVG files contain their own paths and text. They do not depend on Manifold or an external renderer.
 
 ### Fixed ensemble drawdown
 
 ![Fixed ensemble drawdown](results/institutional_alpha/plots/ensemble_drawdown.svg)
 
-### Rolling Sharpe
-
-![Rolling Sharpe](results/institutional_alpha/plots/rolling_sharpe.svg)
-
 ### Alpha and beta map
 
 ![Alpha and beta map](results/institutional_alpha/plots/alpha_beta.svg)
 
-### Monthly return heatmap
-
-![Monthly return heatmap](results/institutional_alpha/plots/monthly_heatmap.svg)
-
 ### Actual turnover
 
 ![Actual turnover](results/institutional_alpha/plots/turnover.svg)
+
+The campaign artifact additionally contains Matplotlib PNG/SVG equity curves, rolling Sharpe and monthly heatmap generated from the saved return CSV. Those files are regenerated on every controlled run rather than represented by a remote chart payload.
 
 ## LSE campaign gates
 
