@@ -4,6 +4,7 @@ import numpy as np
 import pandas as pd
 
 import alpha_hunt
+import alpha_hunt_runner  # noqa: F401  # installs the sparse target-weight implementation
 
 
 def test_candidate_protocol_is_small_and_frozen() -> None:
@@ -23,12 +24,24 @@ def test_prior_zscore_is_unchanged_by_future_mutation() -> None:
     pd.testing.assert_frame_equal(original.iloc[:420], changed.iloc[:420])
 
 
+def test_sparse_book_remains_class_and_beta_neutral() -> None:
+    symbols = [f"S{i:02d}" for i in range(20)]
+    classes = pd.Series({symbol: f"class_{index // 5}" for index, symbol in enumerate(symbols)})
+    score = pd.Series(np.tile([-2.0, -1.0, 0.0, 1.0, 2.0], 4), index=symbols)
+    beta = pd.Series(np.tile([-0.5, -0.2, 0.0, 0.2, 0.5], 4), index=symbols)
+    weights = alpha_hunt_runner.sparse_class_neutral_weights(score, beta, classes, 0.20)
+    assert weights.abs().sum() > 0.99
+    assert abs(float((weights * beta).sum())) < 1e-10
+    for class_name in classes.unique():
+        assert abs(float(weights.loc[classes == class_name].sum())) < 1e-10
+
+
 def test_signal_enters_at_next_open_and_costs_use_turnover() -> None:
     dates = pd.date_range("2020-01-01", periods=40, freq="B")
     symbols = [f"S{i:02d}" for i in range(20)]
     classes = pd.Series({symbol: f"class_{index // 5}" for index, symbol in enumerate(symbols)})
     score = pd.DataFrame(np.nan, index=dates, columns=symbols)
-    score.loc[dates[10]] = np.arange(len(symbols), dtype=float)
+    score.loc[dates[10]] = np.tile([-2.0, -1.0, 0.0, 1.0, 2.0], 4)
     beta = pd.DataFrame(0.0, index=dates, columns=symbols)
     execution = pd.DataFrame(0.0, index=dates, columns=symbols)
     candidate = alpha_hunt.Candidate("auction_flow_reversal", 1, 0.20, 1.0)
