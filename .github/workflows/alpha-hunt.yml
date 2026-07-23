@@ -76,13 +76,20 @@ jobs:
       - name: Run predeclared alpha campaign
         if: steps.lint.outcome == 'success' && steps.compile.outcome == 'success' && steps.tests.outcome == 'success'
         continue-on-error: true
+        shell: bash
         run: |
           rm -rf /tmp/alpha_hunt/research
+          mkdir -p /tmp/alpha_hunt/research
+          set +e
           python alpha_hunt_runner.py \
             --prefer-lse \
             --start 2006-01-01 \
-            --output /tmp/alpha_hunt/research
+            --output /tmp/alpha_hunt/research \
+            > >(tee /tmp/alpha_hunt/research.log) \
+            2> >(tee -a /tmp/alpha_hunt/research.log >&2)
+          code=$?
           cp -a /tmp/alpha_hunt/research/. /tmp/alpha_hunt/
+          exit "$code"
       - name: Print final report
         if: always()
         run: |
@@ -105,7 +112,7 @@ jobs:
           allowed = {
               'REPORT.md', 'summary.json', 'selected_returns.csv',
               'core_candidate_returns.csv', 'external_candidate_returns.csv',
-              'ruff.log', 'compile.log', 'pytest.log',
+              'ruff.log', 'compile.log', 'pytest.log', 'research.log',
           }
           for name in allowed:
               candidate = source / name
