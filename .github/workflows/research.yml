@@ -1,6 +1,12 @@
 name: Multi-asset quant research
 
 on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "quant_research/**"
+      - "run_quant_research.py"
+      - "requirements-quant.txt"
   workflow_dispatch:
     inputs:
       monte_carlo_paths:
