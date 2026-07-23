@@ -1,0 +1,85 @@
+{
+  "generated_at": "2026-07-23T17:38:39.285813+00:00",
+  "status": "rejected_historical_gate",
+  "validated_alpha": false,
+  "historically_qualified": false,
+  "winner_family": "dual_garch_exhaustion",
+  "winner_params": {
+    "horizon": 6,
+    "entry": 0.015,
+    "min_vol_ratio": 1.1,
+    "risk_cut": 1.5,
+    "size": 0.08
+  },
+  "aggregate": {
+    "median_sharpe": 0.16541732618890204,
+    "minimum_sharpe": -0.5274837830718221,
+    "mean_sharpe": 0.2076420960899892,
+    "median_alpha": 0.0030860344565253766,
+    "median_alpha_tstat": 0.06907630094088153,
+    "maximum_abs_beta": 0.008408326881835088,
+    "positive_sharpe_folds": 2,
+    "positive_alpha_folds": 2,
+    "total_trades": 156,
+    "parameter_drift": 0.2,
+    "passed": false
+  },
+  "folds": [
+    {
+      "name": "2022",
+      "sharpe": 0.16541732618890204,
+      "alpha": 0.0030860344565253766,
+      "beta": -0.005463509860978618,
+      "alpha_tstat": 0.06907630094088153,
+      "return": 0.00635369004993902,
+      "max_drawdown": -0.05437815395120249,
+      "trades": 23
+    },
+    {
+      "name": "2023",
+      "sharpe": 0.9849927451528877,
+      "alpha": 0.039021454287573226,
+      "beta": -0.008408326881835088,
+      "alpha_tstat": 1.2462122953370192,
+      "return": 0.03060077249860016,
+      "max_drawdown": -0.0216920867473972,
+      "trades": 44
+    },
+    {
+      "name": "2024",
+      "sharpe": -0.5274837830718221,
+      "alpha": -0.010869815663159896,
+      "beta": -0.0020692121608200105,
+      "alpha_tstat": -0.4418018307691603,
+      "return": -0.013070108351282417,
+      "max_drawdown": -0.04049857153842451,
+      "trades": 89
+    }
+  ],
+  "legacy_audit": {
+    "sharpe": -0.0893051323206467,
+    "alpha": -0.0021036695950061267,
+    "beta": -0.0022911862300815165,
+    "return": -0.0022690799346790635,
+    "max_drawdown": -0.014945699626958353,
+    "trades": 7
+  },
+  "paper": {
+    "start": "2026-07-02",
+    "end": "2026-07-23",
+    "calendar_days": 21,
+    "trades": 0,
+    "status": "collecting"
+  },
+  "monte_carlo": {
+    "n_paths": 1000,
+    "prob_of_ruin": 0.447,
+    "prob_of_wipeout_observed": 0.0,
+    "mean_terminal_return": 0.01581238364307003,
+    "return_cvar_95": -0.24114845181229844,
+    "return_cvar_99": -0.31211378648365273,
+    "mean_max_drawdown": 0.13174030716418272,
+    "max_drawdown_p95": 0.26325593391773916,
+    "max_drawdown_p99": 0.3262535789866798
+  }
+}
