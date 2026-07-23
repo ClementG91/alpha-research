@@ -1,8 +1,47 @@
 from __future__ import annotations
 
+from typing import Any
+
 import pandas as pd
 
 import lse_institutional_campaign as campaign
+
+
+def paged_candles(client: Any, symbol: str, timeframe: str, start: str, end: str) -> pd.DataFrame:
+    """Page LSE candles using the endpoint's exact date contract.
+
+    Daily and slower endpoints accept only YYYY-MM-DD. Intraday endpoints retain
+    full ISO timestamps. Pagination advances strictly beyond the last returned bar.
+    """
+    pages: list[pd.DataFrame] = []
+    cursor = pd.Timestamp(start, tz="UTC")
+    end_timestamp = pd.Timestamp(end, tz="UTC")
+    daily = timeframe in {"1d", "1w", "1mo"}
+    step = pd.Timedelta(days=1) if daily else pd.Timedelta(seconds=1)
+    for _ in range(30):
+        start_arg = cursor.date().isoformat() if daily else cursor.isoformat()
+        end_arg = end_timestamp.date().isoformat() if daily else end_timestamp.isoformat()
+        rows = campaign.safe_call(
+            client.candles,
+            symbol,
+            timeframe,
+            start=start_arg,
+            end=end_arg,
+            limit=5000,
+            order="asc",
+        )
+        page = campaign.standardise_candles(rows)
+        if page.empty:
+            break
+        pages.append(page)
+        last = pd.Timestamp(page.index.max())
+        last = last.tz_localize("UTC") if last.tzinfo is None else last.tz_convert("UTC")
+        if last >= end_timestamp or len(page) < 5000:
+            break
+        cursor = last.normalize() + step if daily else last + step
+    if not pages:
+        return pd.DataFrame(columns=["open", "high", "low", "close", "volume"])
+    return pd.concat(pages).sort_index().loc[lambda frame: ~frame.index.duplicated(keep="last")]
 
 
 def cot_relative_value(
@@ -38,6 +77,7 @@ def cot_relative_value(
     )
 
 
+campaign.paged_candles = paged_candles
 campaign.cot_relative_value = cot_relative_value
 
 if __name__ == "__main__":
