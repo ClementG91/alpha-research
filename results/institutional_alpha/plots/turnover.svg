@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 520" role="img">
+<rect width="100%" height="100%" fill="white"/>
+<text x="500.0" y="24" text-anchor="middle" font-family="Arial" font-size="18" font-weight="700">Average monthly one-way turnover</text>
+<text x="18" y="260.0" transform="rotate(-90 18 260.0)" text-anchor="middle" font-family="Arial" font-size="12">Percent</text>
+<line x1="70" y1="465" x2="965" y2="465" stroke="#333"/>
+<line x1="70" y1="35" x2="70" y2="465" stroke="#333"/>
+<line x1="70" y1="465.0" x2="965" y2="465.0" stroke="#ddd"/><text x="62" y="469.0" text-anchor="end" font-family="Arial" font-size="11">0.00</text>
+<line x1="70" y1="357.5" x2="965" y2="357.5" stroke="#ddd"/><text x="62" y="361.5" text-anchor="end" font-family="Arial" font-size="11">8.54</text>
+<line x1="70" y1="250.0" x2="965" y2="250.0" stroke="#ddd"/><text x="62" y="254.0" text-anchor="end" font-family="Arial" font-size="11">17.07</text>
+<line x1="70" y1="142.5" x2="965" y2="142.5" stroke="#ddd"/><text x="62" y="146.5" text-anchor="end" font-family="Arial" font-size="11">25.61</text>
+<line x1="70" y1="35.0" x2="965" y2="35.0" stroke="#ddd"/><text x="62" y="39.0" text-anchor="end" font-family="Arial" font-size="11">34.15</text>
+<rect x="96.1" y="91.1" width="97.0" height="373.9" rx="3" fill="#5B7FF5"/><text x="144.6" y="483" text-anchor="middle" font-family="Arial" font-size="10">tsmom</text>
+<rect x="245.3" y="217.5" width="97.0" height="247.5" rx="3" fill="#D97706"/><text x="293.8" y="483" text-anchor="middle" font-family="Arial" font-size="10">defensive</text>
+<rect x="394.4" y="321.1" width="97.0" height="143.9" rx="3" fill="#10B981"/><text x="442.9" y="483" text-anchor="middle" font-family="Arial" font-size="10">cross_sectional</text>
+<rect x="543.6" y="235.2" width="97.0" height="229.8" rx="3" fill="#EC4899"/><text x="592.1" y="483" text-anchor="middle" font-family="Arial" font-size="10">pca_residual</text>
+<rect x="692.8" y="236.0" width="97.0" height="229.0" rx="3" fill="#8B5CF6"/><text x="741.2" y="483" text-anchor="middle" font-family="Arial" font-size="10">crisis_convexity</text>
+<rect x="841.9" y="465.0" width="97.0" height="0.0" rx="3" fill="#111827"/><text x="890.4" y="483" text-anchor="middle" font-family="Arial" font-size="10">ensemble</text>
+</svg>
