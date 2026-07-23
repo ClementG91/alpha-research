@@ -1,0 +1,23 @@
+{
+  "name": "dual_garch_exhaustion",
+  "signals": {
+    "fast_vol": "garch(close, 0.000001, 0.18, 0.75)",
+    "slow_vol": "garch(close, 0.000001, 0.05, 0.93)",
+    "vol_ratio": "fast_vol / (slow_vol + 0.000000001)",
+    "risk_multiplier": "when(vol_ratio > param('risk_cut', default=1.25), 0.50, 1.0)",
+    "risk_size": "param('size', default=0.08) * risk_multiplier",
+    "shock": "roc(close, param('horizon', default=3))"
+  },
+  "size": "when((shock < (0.0 - param('entry', default=0.04))) & (vol_ratio > param('min_vol_ratio', default=0.0)), risk_size, when((shock > param('entry', default=0.04)) & (vol_ratio > param('min_vol_ratio', default=0.0)), 0.0 - risk_size, 0.0))",
+  "params": {
+    "horizon": 6,
+    "entry": 0.015,
+    "min_vol_ratio": 1.1,
+    "risk_cut": 1.5,
+    "size": 0.08
+  },
+  "interval": "4h",
+  "selected_without_legacy_audit": true,
+  "paper_start": "2026-07-02",
+  "status": "historical_gate_failed_paper_collecting"
+}
