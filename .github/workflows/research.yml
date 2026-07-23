@@ -28,16 +28,19 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Syntax check
-        run: python -m py_compile research.py
+        run: python -m py_compile research.py run_research.py
 
       - name: Run ManifoldBT MCP research
-        run: python research.py
+        run: python run_research.py
 
       - name: Print research summary
         if: always()
         run: |
           if [ -f results/REPORT.md ]; then
             cat results/REPORT.md
+          fi
+          if [ -f results/FATAL.txt ]; then
+            cat results/FATAL.txt
           fi
 
       - name: Persist research results on main
