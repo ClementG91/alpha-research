@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 520" role="img">
+<rect width="100%" height="100%" fill="white"/>
+<text x="500.0" y="24" text-anchor="middle" font-family="Arial" font-size="18" font-weight="700">Annual alpha versus SPY beta</text>
+<text x="18" y="260.0" transform="rotate(-90 18 260.0)" text-anchor="middle" font-family="Arial" font-size="12">Annual alpha (%)</text>
+<line x1="70" y1="465" x2="965" y2="465" stroke="#333"/>
+<line x1="70" y1="35" x2="70" y2="465" stroke="#333"/>
+<line x1="70" y1="465.0" x2="965" y2="465.0" stroke="#ddd"/>
+<text x="62" y="469.0" text-anchor="end" font-family="Arial" font-size="11">-1.08</text>
+<line x1="70" y1="357.5" x2="965" y2="357.5" stroke="#ddd"/>
+<text x="62" y="361.5" text-anchor="end" font-family="Arial" font-size="11">0.95</text>
+<line x1="70" y1="250.0" x2="965" y2="250.0" stroke="#ddd"/>
+<text x="62" y="254.0" text-anchor="end" font-family="Arial" font-size="11">2.99</text>
+<line x1="70" y1="142.5" x2="965" y2="142.5" stroke="#ddd"/>
+<text x="62" y="146.5" text-anchor="end" font-family="Arial" font-size="11">5.02</text>
+<line x1="70" y1="35.0" x2="965" y2="35.0" stroke="#ddd"/>
+<text x="62" y="39.0" text-anchor="end" font-family="Arial" font-size="11">7.05</text>
+<circle cx="367.8" cy="179.9" r="5.1" fill="#5B7FF5" fill-opacity=".75"/><text x="374.8" y="172.9" font-family="Arial" font-size="10">crisis_convexity</text>
+<circle cx="313.1" cy="344.1" r="4.0" fill="#D97706" fill-opacity=".75"/><text x="320.1" y="337.1" font-family="Arial" font-size="10">cross_sectional</text>
+<circle cx="883.8" cy="144.9" r="6.7" fill="#10B981" fill-opacity=".75"/><text x="890.8" y="137.9" font-family="Arial" font-size="10">defensive</text>
+<circle cx="408.1" cy="295.7" r="7.6" fill="#EC4899" fill-opacity=".75"/><text x="415.1" y="288.7" font-family="Arial" font-size="10">ensemble</text>
+<circle cx="379.0" cy="438.6" r="4.0" fill="#8B5CF6" fill-opacity=".75"/><text x="386.0" y="431.6" font-family="Arial" font-size="10">pca_residual</text>
+<circle cx="151.2" cy="61.4" r="7.4" fill="#111827" fill-opacity=".75"/><text x="158.2" y="54.4" font-family="Arial" font-size="10">tsmom</text>
+</svg>

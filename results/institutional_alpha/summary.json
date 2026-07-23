@@ -1,0 +1,55 @@
+{
+  "generated_at": "2026-07-23",
+  "status": "candidate_not_validated",
+  "deployment_allowed": false,
+  "source": {
+    "description": "Existing audited daily price panel used only to validate the independent engine and plotting path",
+    "sha256": "57cda2056aaea3b56e2f16d5b2450a6ee48267069a243939fbbd62d2f683a7f0",
+    "committed": false
+  },
+  "protocol": {
+    "parameter_search": false,
+    "frequency": "monthly",
+    "execution_lag": "one full month",
+    "non_crypto_one_way_cost_bps": 5.0,
+    "crypto_one_way_cost_bps": 10.0,
+    "crypto_gross_cap": 0.15,
+    "instrument_cap": 0.25,
+    "portfolio_gross_cap": 1.5,
+    "consumed_period_warning": "The 2023-2026 window is already inspected and is not a pristine holdout."
+  },
+  "ensemble": {
+    "development_2007_2022": {
+      "observations": 192,
+      "sharpe": 0.6976616779,
+      "annual_return": 0.0214902867,
+      "alpha": 0.0191262835,
+      "alpha_t": 3.2042970904,
+      "spy_beta": 0.0249615162,
+      "spy_correlation": 0.1291146902,
+      "max_drawdown": -0.0494845202
+    },
+    "consumed_2023_onward": {
+      "observations": 43,
+      "sharpe": 1.0214458691,
+      "annual_return": 0.0406249248,
+      "alpha": 0.0241132049,
+      "alpha_t": 1.2585866364,
+      "spy_beta": 0.0790206197,
+      "spy_correlation": 0.2530966417,
+      "max_drawdown": -0.0299263364
+    },
+    "full_history": {
+      "observations": 235,
+      "sharpe": 0.7665319929,
+      "annual_return": 0.0249915184,
+      "alpha": 0.0212276977,
+      "alpha_t": 3.4736553123,
+      "spy_beta": 0.0325559078,
+      "spy_correlation": 0.1540396012,
+      "max_drawdown": -0.0494845202,
+      "circular_block_bootstrap_pvalue": 0.0002499375,
+      "max_sharpe_reality_check_pvalue": 0.0009996668
+    }
+  }
+}
