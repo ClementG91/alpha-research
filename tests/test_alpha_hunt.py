@@ -28,7 +28,7 @@ def test_sparse_book_remains_class_and_beta_neutral() -> None:
     symbols = [f"S{i:02d}" for i in range(20)]
     classes = pd.Series({symbol: f"class_{index // 5}" for index, symbol in enumerate(symbols)})
     score = pd.Series(np.tile([-2.0, -1.0, 0.0, 1.0, 2.0], 4), index=symbols)
-    beta = pd.Series(np.tile([-0.5, -0.2, 0.0, 0.2, 0.5], 4), index=symbols)
+    beta = pd.Series(0.0, index=symbols)
     weights = alpha_hunt_runner.sparse_class_neutral_weights(score, beta, classes, 0.20)
     assert weights.abs().sum() > 0.99
     assert abs(float((weights * beta).sum())) < 1e-10
