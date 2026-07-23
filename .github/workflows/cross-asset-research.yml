@@ -1,0 +1,88 @@
+name: Cross-asset statistical-arbitrage research
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "cross_asset_research.py"
+      - "requirements-cross-asset.txt"
+      - "tests/test_cross_asset_research.py"
+      - ".github/workflows/cross-asset-research.yml"
+  workflow_dispatch:
+  schedule:
+    - cron: "37 3 * * 0"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: cross-asset-research-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+          cache-dependency-path: requirements-cross-asset.txt
+      - run: python -m pip install --upgrade pip && pip install -r requirements-cross-asset.txt
+      - run: ruff check --select E9,F cross_asset_research.py tests/test_cross_asset_research.py
+      - run: python -m compileall -q cross_asset_research.py tests/test_cross_asset_research.py
+      - run: pytest -q tests/test_cross_asset_research.py
+        env:
+          PYTHONPATH: "."
+
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements-cross-asset.txt
+      - run: python -m pip install --upgrade pip && pip install -r requirements-cross-asset.txt
+      - uses: actions/cache@v4
+        with:
+          path: data/cache/stooq
+          key: stooq-daily-v1-${{ runner.os }}
+      - name: Run nested walk-forward research
+        id: research
+        env:
+          LSE_API_KEY: ${{ secrets.LSE_API_KEY }}
+        run: |
+          rm -rf results/cross_asset
+          set +e
+          python cross_asset_research.py --output results/cross_asset --cost-bps 5
+          code=$?
+          set -e
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          if [ "$code" -eq 1 ]; then
+            exit 1
+          fi
+      - name: Print report or fatal diagnostics
+        if: always()
+        run: |
+          test ! -f results/cross_asset/REPORT.md || cat results/cross_asset/REPORT.md
+          test ! -f results/cross_asset/FATAL.txt || cat results/cross_asset/FATAL.txt
+      - name: Upload data provenance, results and plots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cross-asset-research-${{ github.run_number }}
+          path: results/cross_asset/
+          if-no-files-found: warn
+          retention-days: 90
