@@ -6,8 +6,7 @@ on:
     paths:
       - "manifold_research.py"
       - "run_manifold_research.py"
-      - "run_market_neutral_research.py"
-      - "run_symbolref_research.py"
+      - "run_beta_neutral_mean_reversion.py"
       - "requirements-manifold.txt"
       - ".github/workflows/research.yml"
   workflow_dispatch:
@@ -39,12 +38,12 @@ jobs:
       - name: Install MCP research dependencies
         run: python -m pip install --upgrade pip && pip install -r requirements-manifold.txt
 
-      - name: Run market-neutral mean-reversion research through ManifoldBT MCP
+      - name: Run beta-neutral mean-reversion research through ManifoldBT MCP
         env:
           MANIFOLDBT_MCP_URL: https://mcp.manifoldbt.com/mcp
         run: |
           rm -rf results/manifold
-          python run_symbolref_research.py --output results/manifold
+          python run_beta_neutral_mean_reversion.py --output results/manifold
 
       - name: Print Manifold report or fatal error
         if: always()
