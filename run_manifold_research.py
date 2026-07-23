@@ -1,6 +1,8 @@
 from __future__ import annotations
 
+import json
 import math
+from pathlib import Path
 from typing import Any
 
 import manifold_research as engine
@@ -8,6 +10,7 @@ import manifold_research as engine
 
 _original_gate = engine.validation_gate
 _original_research = engine.research
+_original_call = engine.call
 
 
 def typed_scalar(value: Any) -> float:
@@ -19,9 +22,24 @@ def typed_scalar(value: Any) -> float:
 
 
 def non_aborting_validation_gate(row: dict[str, Any]) -> bool:
-    """Record the strict gate result but keep rejected candidates reportable."""
     row["passed_validation_gate"] = bool(_original_gate(row))
     return True
+
+
+async def logging_call(session: Any, name: str, args: dict[str, Any]) -> Any:
+    try:
+        return await _original_call(session, name, args)
+    except Exception as exc:
+        path = Path("results/manifold/call-errors.jsonl")
+        path.parent.mkdir(parents=True, exist_ok=True)
+        record = {
+            "tool": name,
+            "error": str(exc),
+            "strategy_name": ((args.get("strategy_json") or {}).get("name") if isinstance(args.get("strategy_json"), dict) else None),
+        }
+        with path.open("a", encoding="utf-8") as handle:
+            handle.write(json.dumps(record, default=str) + "\n")
+        raise
 
 
 async def research_with_gate_diagnostics(output: Any) -> dict[str, Any]:
@@ -52,6 +70,7 @@ def plots(report: dict[str, Any], output: Any) -> None:
 
 def main() -> int:
     engine.validation_gate = non_aborting_validation_gate
+    engine.call = logging_call
     engine.research = research_with_gate_diagnostics
     engine._raw_plots = engine.plots
     engine.plots = plots
