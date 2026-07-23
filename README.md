@@ -1,83 +1,53 @@
-# Alpha Research — ManifoldBT MCP only
+# Alpha Research
 
-Every market calculation in the active pipeline is executed by the remote **ManifoldBT MCP engine**. Python only orchestrates the MCP calls, preserves the raw payloads and renders SVG files from the numerical series returned by ManifoldBT.
-
-The previous `yfinance`/scikit-learn multi-asset engine is no longer part of the active research path.
+This repository records systematic strategy research with explicit rejection gates. It does not promote a strategy merely because one backtest is positive.
 
 ## Current reviewed result — 23 July 2026
 
-ManifoldBT Community 0.14.0 selected the `return_vol_long_cash` family on BTCUSDT, ETHUSDT, SOLUSDT, BNBUSDT and XRPUSDT using 4-hour bars.
+The active research cycle moved beyond the ManifoldBT-only crypto dataset and evaluated **118 unique liquid ETFs** across equities, international markets, rates, credit, commodities, currencies, sectors, themes and styles.
 
-| Period | Sharpe | Return | Max drawdown | Trades |
-|---|---:|---:|---:|---:|
-| Train 2021–2023 | 1.480 | +359.19% | -46.43% | 271 |
-| Validation 2024 | 0.959 | +26.27% | -25.31% | 96 |
-| Frozen holdout 2025–1 Jul 2026 | **0.320** | +7.14% | -22.81% | 130 |
-| 2025 | 0.895 | +21.01% | -13.40% | 76 |
-| 2026 YTD | **-1.007** | **-4.90%** | -7.31% | 30 |
+Four increasingly conservative experiments were completed:
 
-**Decision: rejected.** The required net holdout Sharpe of 1.5 is not reached and the 2026 subperiod is negative.
+| Experiment | External observations | Trades | Sharpe | Alpha t-stat | SPY beta | Decision |
+|---|---:|---:|---:|---:|---:|---|
+| Daily residual mean reversion | 389 | 1,551 | -4.765 | -6.20 | 0.008 | Rejected |
+| Daily residual momentum on different ETFs | 388 | 2,856 | -4.121 | -5.08 | -0.011 | Rejected |
+| Persistent turnover-aware residual strategies | 388 | 1,252 | -0.283 | -0.58 | 0.049 | Rejected |
+| Fixed multi-premia ensemble | 388 | 1,959 | -0.204 | -0.51 | 0.028 | Rejected |
 
-Frozen parameters: `fast=12`, `slow=240`, `vol_window=120`, `risk_z=1.25`, `base_long=0.15`, `risk_long=0.15`, with no short exposure.
+The sample-size objection is resolved: the final conclusions are based on thousands of instrument trades and approximately 388–389 daily portfolio observations. Inference uses daily returns with HAC standard errors and block bootstrap rather than falsely treating simultaneous positions as independent samples.
 
-## Manifold-derived plots
+**Final decision: no statistically validated alpha was found. Live deployment is prohibited.**
 
-These SVG files are rendered only from ManifoldBT MCP payloads. The complete source payload is committed as [`results/manifold/raw.json`](results/manifold/raw.json).
+Read the complete reviewed report: [`CROSS_ASSET_RESULTS.md`](CROSS_ASSET_RESULTS.md).
 
-### Frozen holdout equity
+![External Sharpe comparison](results/cross_asset_review/external_sharpe.svg)
 
-![Frozen holdout equity](results/manifold/plots/equity_curve.svg)
+## Active cross-asset infrastructure
 
-### Frozen holdout drawdown
+- resilient market-data loading with London Strategic Edge CSV/Parquet and API hooks;
+- public adjusted-data fallback with recorded per-symbol provenance;
+- 51-ETF development universe and separate 68-ETF replication universe;
+- class, dollar and rolling SPY-beta neutralisation;
+- causal signal tests and one-day execution lag;
+- transaction costs applied to actual turnover;
+- expanding walk-forward folds;
+- HAC/Newey-West alpha statistics;
+- block-bootstrap significance;
+- multiple-testing correction for searched families;
+- doubled-cost, extra-delay and inverted-signal stress tests;
+- CI on Python 3.11 and 3.12.
 
-![Frozen holdout drawdown](results/manifold/plots/drawdown.svg)
+## Research rule after this review
 
-### Sharpe by chronological period
+The inspected 2025–2026 range must not be reused as a new untouched holdout. Future work needs either:
 
-![Sharpe by period](results/manifold/plots/period_metrics.svg)
+- data arriving after the frozen research date;
+- a genuinely independent dataset with different information content;
+- or a new hypothesis defined before its evaluation.
 
-### Training parameter surface
+Relevant next datasets include futures term structure, carry, funding, basis, options volatility surfaces and macro-release surprises. Parameter tuning against the current ETF window is explicitly disallowed.
 
-![Parameter heatmap](results/manifold/plots/parameter_heatmap.svg)
+## Historical ManifoldBT research
 
-### Validation parameter stability
-
-![Parameter stability](results/manifold/plots/stability.svg)
-
-The tested `risk_z` values all returned approximately 0.964 validation Sharpe. That flat line is not automatically proof of robustness; it may mean the parameter did not materially alter positions over this validation window.
-
-### Monte Carlo risk
-
-![Monte Carlo risk](results/manifold/plots/monte_carlo.svg)
-
-Manifold's 1,000-path block bootstrap reports:
-
-- mean terminal return: +11.32%;
-- `prob_of_ruin`: 39.9%;
-- 95th-percentile maximum drawdown: 35.20%;
-- 99th-percentile maximum drawdown: 42.19%;
-- no wipeout observed in 1,000 paths, which must not be read as zero wipeout risk.
-
-## What actually comes from ManifoldBT
-
-- strategy validation;
-- symbol discovery from the server datastore;
-- parameter sweeps and overfitting correction;
-- train, validation and frozen holdout backtests;
-- equity curve and daily returns;
-- two-dimensional parameter surface;
-- parameter stability analysis;
-- Monte Carlo risk simulation.
-
-The CI runs Ruff, compilation and tests on Python 3.11 and 3.12. The research workflow uploads a complete artifact; committing a new result snapshot remains a reviewed, explicit action rather than an automatic bot mutation.
-
-## Real blocking limitations
-
-- The server reports the **Community** licence and refuses native `run_walk_forward`, which requires Pro.
-- The exposed MCP toolset has no `ingest_data`, so this pipeline cannot add equities, futures or custom datasets.
-- The preloaded datastore contains 50 Binance **CryptoSpot** proxies, not complete perpetual-contract history.
-- Historical funding, basis, open interest and liquidation data are unavailable.
-- Community Monte Carlo is capped at 1,000 paths.
-- The `binance_perps` fee preset can model fees, but it does not turn spot proxy bars into genuine perpetual-market data.
-
-The chronological train/validation/holdout split is genuinely separated, but it is orchestrated through independent MCP calls rather than ManifoldBT's native Pro walk-forward engine.
+The earlier ManifoldBT-only crypto research is retained for auditability under [`MANIFOLD_RESULTS.md`](MANIFOLD_RESULTS.md) and `results/manifold/`. It was rejected because the holdout Sharpe was 0.320, 2026 was negative and the available dataset lacked the breadth and market information needed for the requested alpha objective.
