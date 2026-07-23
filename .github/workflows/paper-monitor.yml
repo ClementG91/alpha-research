@@ -1,6 +1,12 @@
 name: Frozen strategy paper monitor
 
 on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "run_paper_monitor.py"
+      - "results/walk_forward/locked_strategy.json"
+      - ".github/workflows/paper-monitor.yml"
   workflow_dispatch:
   schedule:
     - cron: "17 4 * * *"
@@ -9,7 +15,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: manifold-paper-monitor
+  group: manifold-paper-monitor-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -18,6 +24,8 @@ jobs:
     timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
 
       - uses: actions/setup-python@v5
         with:
