@@ -1,0 +1,63 @@
+{
+  "generated_at": "2026-07-23",
+  "decision": "rejected",
+  "deployment_allowed": false,
+  "data": {
+    "core_assets": 51,
+    "external_assets": 68,
+    "unique_symbols": 118,
+    "reviewed_source": "yahoo-public-adjusted",
+    "london_strategic_edge_adapter": true
+  },
+  "experiments": {
+    "daily_mean_reversion": {
+      "candidates": 52,
+      "external_observations": 389,
+      "external_trades": 1551,
+      "sharpe": -4.765,
+      "alpha_t": -6.20,
+      "beta": 0.008,
+      "correlation_spy": 0.088,
+      "bootstrap_p": 1.0,
+      "decision": "rejected"
+    },
+    "daily_momentum_external_assets": {
+      "candidates": 112,
+      "external_observations": 388,
+      "external_trades": 2856,
+      "sharpe": -4.121,
+      "alpha_t": -5.08,
+      "beta": -0.011,
+      "correlation_spy": -0.102,
+      "bootstrap_p": 1.0,
+      "decision": "rejected"
+    },
+    "persistent_turnover_aware": {
+      "candidates": 180,
+      "external_observations": 388,
+      "external_trades": 1252,
+      "sharpe": -0.283,
+      "alpha_t": -0.58,
+      "beta": 0.049,
+      "correlation_spy": 0.186,
+      "bootstrap_p": 0.6225,
+      "decision": "rejected"
+    },
+    "fixed_multi_premia_ensemble": {
+      "candidates": 1,
+      "external_observations": 388,
+      "external_trades": 1959,
+      "sharpe": -0.204,
+      "alpha_t": -0.51,
+      "beta": 0.028,
+      "correlation_spy": 0.215,
+      "bootstrap_p": 0.6263,
+      "decision": "rejected",
+      "sleeves": {
+        "multi_horizon_trend": {"sharpe": 0.689, "alpha_t": 0.41, "annual_return": 0.0219},
+        "low_volatility": {"sharpe": -0.751, "alpha_t": -0.85, "annual_return": -0.0229},
+        "residual_trend": {"sharpe": -0.283, "alpha_t": -0.58, "annual_return": -0.0131}
+      }
+    }
+  }
+}
