@@ -1,0 +1,44 @@
+name: Quant CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: quant-ci-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+          cache-dependency-path: requirements-dev.txt
+
+      - name: Install deterministic test dependencies
+        run: python -m pip install --upgrade pip && pip install -r requirements-dev.txt
+
+      - name: Ruff
+        run: ruff check quant_research run_quant_research.py tests
+
+      - name: Compile
+        run: python -m compileall -q quant_research run_quant_research.py tests
+
+      - name: Anti-lookahead and allocation tests
+        env:
+          PYTHONHASHSEED: "0"
+        run: pytest -q
