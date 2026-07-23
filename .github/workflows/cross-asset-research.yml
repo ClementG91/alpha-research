@@ -7,6 +7,7 @@ on:
       - "cross_asset_research.py"
       - "cross_asset_research_v2.py"
       - "cross_asset_research_v3.py"
+      - "cross_asset_research_v4.py"
       - "requirements-cross-asset.txt"
       - "tests/test_cross_asset_research.py"
       - ".github/workflows/cross-asset-research.yml"
@@ -38,8 +39,8 @@ jobs:
           cache: pip
           cache-dependency-path: requirements-cross-asset.txt
       - run: python -m pip install --upgrade pip && pip install -r requirements-cross-asset.txt
-      - run: ruff check --select E9,F cross_asset_research.py cross_asset_research_v2.py cross_asset_research_v3.py tests/test_cross_asset_research.py
-      - run: python -m compileall -q cross_asset_research.py cross_asset_research_v2.py cross_asset_research_v3.py tests/test_cross_asset_research.py
+      - run: ruff check --select E9,F cross_asset_research.py cross_asset_research_v2.py cross_asset_research_v3.py cross_asset_research_v4.py tests/test_cross_asset_research.py
+      - run: python -m compileall -q cross_asset_research.py cross_asset_research_v2.py cross_asset_research_v3.py cross_asset_research_v4.py tests/test_cross_asset_research.py
       - run: pytest -q tests/test_cross_asset_research.py
         env:
           PYTHONPATH: "."
@@ -68,7 +69,7 @@ jobs:
         run: |
           rm -rf results/cross_asset
           set +e
-          python cross_asset_research_v3.py --output results/cross_asset --cost-bps 5
+          python cross_asset_research_v4.py --output results/cross_asset --cost-bps 5
           code=$?
           set -e
           echo "exit_code=$code" >> "$GITHUB_OUTPUT"
