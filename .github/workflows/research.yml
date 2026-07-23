@@ -32,19 +32,19 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Syntax check
-        run: python -m py_compile campaign.py generation5.py generation5_fast.py
+        run: python -m py_compile campaign.py generation6.py
 
-      - name: Run focused volatility momentum campaign
+      - name: Run asymmetric trend and risk overlay campaign
         run: |
           rm -rf results
           mkdir -p results
-          python generation5_fast.py
+          python generation6.py
 
       - name: Print research summary
         if: always()
         run: |
-          if [ -f results/GENERATION5.md ]; then
-            cat results/GENERATION5.md
+          if [ -f results/GENERATION6.md ]; then
+            cat results/GENERATION6.md
           fi
           if [ -f results/FATAL.txt ]; then
             cat results/FATAL.txt
