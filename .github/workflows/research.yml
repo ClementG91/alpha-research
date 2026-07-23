@@ -28,19 +28,19 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Syntax check
-        run: python -m py_compile remote_research.py
+        run: python -m py_compile campaign.py
 
-      - name: Run native ManifoldBT MCP alpha campaign
+      - name: Run rate-limited ManifoldBT MCP alpha campaign
         run: |
           rm -rf results
           mkdir -p results
-          python remote_research.py
+          python campaign.py
 
       - name: Print research summary
         if: always()
         run: |
-          if [ -f results/REMOTE_REPORT.md ]; then
-            cat results/REMOTE_REPORT.md
+          if [ -f results/CAMPAIGN.md ]; then
+            cat results/CAMPAIGN.md
           fi
           if [ -f results/FATAL.txt ]; then
             cat results/FATAL.txt
