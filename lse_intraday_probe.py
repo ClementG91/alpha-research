@@ -25,9 +25,24 @@ def describe_frame(frame: Any) -> dict[str, Any]:
     }
 
 
+def sample_records(frame: Any, columns: tuple[str, ...], rows: int = 5) -> list[dict[str, Any]]:
+    selected = [column for column in columns if column in frame.columns]
+    if frame.empty or not selected:
+        return []
+    sample = frame[selected].reset_index().head(rows)
+    return json.loads(sample.to_json(orient="records", date_format="iso"))
+
+
 def run(output: Path) -> dict[str, Any]:
     client = official_client()
-    report: dict[str, Any] = {"candles": {}, "calendars": {}, "errors": []}
+    report: dict[str, Any] = {
+        "candles": {},
+        "calendars": {},
+        "calendar_samples": {},
+        "yields": {},
+        "yield_samples": {},
+        "errors": [],
+    }
     try:
         catalog_payload = safe_call(client.catalog)
         catalog = (
@@ -64,8 +79,23 @@ def run(output: Path) -> dict[str, Any]:
                     )
                 )
                 report["calendars"][region] = describe_frame(frame)
+                report["calendar_samples"][region] = sample_records(
+                    frame,
+                    ("time", "datetime", "region_code", "event", "actual", "forecast", "consensus", "created_at", "updated_at"),
+                )
             except Exception as exc:
                 report["errors"].append({"dataset": f"calendar:{region}", "error": str(exc)})
+        for series in ("US2Y", "US10Y", "DE2Y", "GB2Y", "JP2Y"):
+            try:
+                frame = ensure_utc_index(
+                    rows_to_frame(
+                        safe_call(client.bond_yields, series, start="2020-01-01", end="2026-07-24")
+                    )
+                )
+                report["yields"][series] = describe_frame(frame)
+                report["yield_samples"][series] = sample_records(frame, ("value", "yield", "rate", "close"), rows=3)
+            except Exception as exc:
+                report["errors"].append({"dataset": f"yield:{series}", "error": str(exc)})
     finally:
         close = getattr(client, "close", None) or getattr(client, "disconnect", None)
         if callable(close):
