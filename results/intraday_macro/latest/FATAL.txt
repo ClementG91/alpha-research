@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/home/runner/work/alpha-research/alpha-research/lse_intraday_macro_alpha.py", line 740, in main
+    result = run(args.output)
+             ^^^^^^^^^^^^^^^^
+  File "/home/runner/work/alpha-research/alpha-research/lse_intraday_macro_alpha.py", line 598, in run
+    raise RuntimeError("SPY intraday benchmark is required")
+RuntimeError: SPY intraday benchmark is required
