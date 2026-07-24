@@ -55,7 +55,7 @@ def date_window_candles(
 
 
 def release_timestamp(index_value: Any, date_value: Any, time_value: Any) -> pd.Timestamp:
-    """Combine LSE's separate release date and time fields without guessing ahead."""
+    """Combine LSE's separate release date and UTC time fields exactly."""
     date_source = date_value if pd.notna(date_value) else index_value
     day = pd.to_datetime(date_source, errors="coerce", utc=True)
     if pd.isna(day):
@@ -63,9 +63,14 @@ def release_timestamp(index_value: Any, date_value: Any, time_value: Any) -> pd.
     if time_value is None or pd.isna(time_value) or not str(time_value).strip():
         return pd.Timestamp(day)
     time_text = str(time_value).strip()
-    if time_text.count(":") == 1:
+    upper = time_text.upper()
+    if "AM" not in upper and "PM" not in upper and time_text.count(":") == 1:
         time_text += ":00"
-    combined = pd.to_datetime(f"{pd.Timestamp(day).date()} {time_text}", errors="coerce", utc=True)
+    combined = pd.to_datetime(
+        f"{pd.Timestamp(day).date()} {time_text}",
+        errors="coerce",
+        utc=True,
+    )
     return pd.Timestamp(combined) if not pd.isna(combined) else pd.Timestamp(day)
 
 
