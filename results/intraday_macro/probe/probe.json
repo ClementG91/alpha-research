@@ -1,0 +1,301 @@
+{
+  "calendars": {
+    "AU": {
+      "columns": [
+        "id",
+        "time",
+        "datetime",
+        "region_code",
+        "event",
+        "period_hint",
+        "actual",
+        "previous",
+        "consensus",
+        "forecast",
+        "actual_revised",
+        "previous_revised",
+        "consensus_revised",
+        "forecast_revised",
+        "created_at",
+        "updated_at"
+      ],
+      "first": "2025-01-01 00:00:00+00:00",
+      "last": "2026-07-23 00:00:00+00:00",
+      "rows": 289
+    },
+    "CA": {
+      "columns": [
+        "id",
+        "time",
+        "datetime",
+        "region_code",
+        "event",
+        "period_hint",
+        "actual",
+        "previous",
+        "consensus",
+        "forecast",
+        "actual_revised",
+        "previous_revised",
+        "consensus_revised",
+        "forecast_revised",
+        "created_at",
+        "updated_at"
+      ],
+      "first": "2025-01-02 00:00:00+00:00",
+      "last": "2026-07-23 00:00:00+00:00",
+      "rows": 323
+    },
+    "EU": {
+      "columns": [
+        "id",
+        "time",
+        "datetime",
+        "region_code",
+        "event",
+        "period_hint",
+        "actual",
+        "previous",
+        "consensus",
+        "forecast",
+        "actual_revised",
+        "previous_revised",
+        "consensus_revised",
+        "forecast_revised",
+        "created_at",
+        "updated_at"
+      ],
+      "first": "2025-09-17 00:00:00+00:00",
+      "last": "2026-07-23 00:00:00+00:00",
+      "rows": 138
+    },
+    "GB": {
+      "columns": [
+        "id",
+        "time",
+        "datetime",
+        "region_code",
+        "event",
+        "period_hint",
+        "actual",
+        "previous",
+        "consensus",
+        "forecast",
+        "actual_revised",
+        "previous_revised",
+        "consensus_revised",
+        "forecast_revised",
+        "created_at",
+        "updated_at"
+      ],
+      "first": "2025-01-02 00:00:00+00:00",
+      "last": "2026-02-06 00:00:00+00:00",
+      "rows": 228
+    },
+    "JP": {
+      "columns": [
+        "id",
+        "time",
+        "datetime",
+        "region_code",
+        "event",
+        "period_hint",
+        "actual",
+        "previous",
+        "consensus",
+        "forecast",
+        "actual_revised",
+        "previous_revised",
+        "consensus_revised",
+        "forecast_revised",
+        "created_at",
+        "updated_at"
+      ],
+      "first": "2025-01-06 00:00:00+00:00",
+      "last": "2026-07-23 00:00:00+00:00",
+      "rows": 368
+    },
+    "NZ": {
+      "columns": [],
+      "first": null,
+      "last": null,
+      "rows": 0
+    },
+    "US": {
+      "columns": [
+        "id",
+        "time",
+        "datetime",
+        "region_code",
+        "event",
+        "period_hint",
+        "actual",
+        "previous",
+        "consensus",
+        "forecast",
+        "actual_revised",
+        "previous_revised",
+        "consensus_revised",
+        "forecast_revised",
+        "created_at",
+        "updated_at"
+      ],
+      "first": "2025-01-02 00:00:00+00:00",
+      "last": "2026-03-11 00:00:00+00:00",
+      "rows": 318
+    }
+  },
+  "candles": {
+    "AUD/USD": {
+      "columns": [
+        "open",
+        "high",
+        "low",
+        "close",
+        "volume"
+      ],
+      "first": "2026-01-01 21:00:00+00:00",
+      "last": "2026-02-13 21:45:00+00:00",
+      "rows": 2980
+    },
+    "ES.F": {
+      "columns": [
+        "open",
+        "high",
+        "low",
+        "close",
+        "volume"
+      ],
+      "first": "2026-01-01 23:00:00+00:00",
+      "last": "2026-02-13 21:45:00+00:00",
+      "rows": 2836
+    },
+    "EUR/USD": {
+      "columns": [
+        "open",
+        "high",
+        "low",
+        "close",
+        "volume"
+      ],
+      "first": "2026-01-01 21:00:00+00:00",
+      "last": "2026-02-13 21:45:00+00:00",
+      "rows": 2980
+    },
+    "GBP/USD": {
+      "columns": [
+        "open",
+        "high",
+        "low",
+        "close",
+        "volume"
+      ],
+      "first": "2026-01-01 21:00:00+00:00",
+      "last": "2026-02-13 21:45:00+00:00",
+      "rows": 2980
+    },
+    "GC.F": {
+      "columns": [
+        "open",
+        "high",
+        "low",
+        "close",
+        "volume"
+      ],
+      "first": "2026-01-01 23:00:00+00:00",
+      "last": "2026-02-13 21:45:00+00:00",
+      "rows": 2842
+    },
+    "NQ.F": {
+      "columns": [
+        "open",
+        "high",
+        "low",
+        "close",
+        "volume"
+      ],
+      "first": "2026-01-01 23:00:00+00:00",
+      "last": "2026-02-13 21:45:00+00:00",
+      "rows": 2836
+    },
+    "NZD/USD": {
+      "columns": [
+        "open",
+        "high",
+        "low",
+        "close",
+        "volume"
+      ],
+      "first": "2026-01-01 21:00:00+00:00",
+      "last": "2026-02-13 21:45:00+00:00",
+      "rows": 2980
+    },
+    "SI.F": {
+      "columns": [
+        "open",
+        "high",
+        "low",
+        "close",
+        "volume"
+      ],
+      "first": "2026-01-01 23:00:00+00:00",
+      "last": "2026-02-13 21:45:00+00:00",
+      "rows": 2842
+    },
+    "SPY": {
+      "columns": [
+        "open",
+        "high",
+        "low",
+        "close",
+        "volume"
+      ],
+      "first": "2026-01-02 14:30:00+00:00",
+      "last": "2026-02-13 20:45:00+00:00",
+      "rows": 780
+    },
+    "USD/CAD": {
+      "columns": [
+        "open",
+        "high",
+        "low",
+        "close",
+        "volume"
+      ],
+      "first": "2026-01-01 21:00:00+00:00",
+      "last": "2026-02-13 21:45:00+00:00",
+      "rows": 2980
+    },
+    "USD/CHF": {
+      "columns": [
+        "open",
+        "high",
+        "low",
+        "close",
+        "volume"
+      ],
+      "first": "2026-01-01 21:00:00+00:00",
+      "last": "2026-02-13 21:45:00+00:00",
+      "rows": 2980
+    },
+    "USD/JPY": {
+      "columns": [
+        "open",
+        "high",
+        "low",
+        "close",
+        "volume"
+      ],
+      "first": "2026-01-01 21:00:00+00:00",
+      "last": "2026-02-13 21:45:00+00:00",
+      "rows": 2980
+    }
+  },
+  "errors": [],
+  "futures_mapping": {
+    "ES": "ES.F",
+    "GC": "GC.F",
+    "NQ": "NQ.F",
+    "SI": "SI.F"
+  }
+}
