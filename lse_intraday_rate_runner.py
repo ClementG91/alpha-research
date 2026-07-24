@@ -6,6 +6,8 @@ import pandas as pd
 import lse_intraday_macro_alpha as base
 import lse_intraday_rate_alpha as campaign
 
+ORIGINAL_BUILD_BACKTEST = campaign.build_backtest
+
 
 def relative_class_neutral_targets(
     raw: pd.DataFrame,
@@ -42,7 +44,32 @@ def relative_class_neutral_targets(
     return result
 
 
+def build_without_event_calendar(
+    candidate: campaign.RateCandidate,
+    market: dict[str, pd.DataFrame],
+    regimes: pd.DataFrame,
+    calendar: pd.DataFrame,
+    cost_multiplier: float = 1.0,
+    extra_delay: int = 0,
+) -> campaign.RateBacktest:
+    """Prevent backfilled 2025+ event records from affecting candidate returns.
+
+    The calendar remains available to the separate event-diagnostic report, but
+    the rate-regime selection path always receives an empty calendar.
+    """
+    del calendar
+    return ORIGINAL_BUILD_BACKTEST(
+        candidate,
+        market,
+        regimes,
+        pd.DataFrame(),
+        cost_multiplier=cost_multiplier,
+        extra_delay=extra_delay,
+    )
+
+
 base.normalise_targets = relative_class_neutral_targets
+campaign.build_backtest = build_without_event_calendar
 
 if __name__ == "__main__":
     raise SystemExit(campaign.main())
