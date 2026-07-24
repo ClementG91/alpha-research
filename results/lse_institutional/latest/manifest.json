@@ -22,110 +22,110 @@
     {
       "category": "futures_candles",
       "first": "2016-05-29 00:00:00+00:00",
-      "last": "2026-07-22 00:00:00+00:00",
+      "last": "2026-07-23 00:00:00+00:00",
       "name": "ES.F",
       "path": "data/futures_candles/ES.F.parquet",
-      "rows": 3160,
-      "sha256": "2dcbe8188ced6afaaef79915433e934eace810ee016ed8ceca3a63b988d77c6c"
+      "rows": 3161,
+      "sha256": "0a32bc8783c5189069458402fb6de716d25c9b22760e95a36fa4a1300aa8fc6a"
     },
     {
       "category": "futures_candles",
       "first": "2016-05-29 00:00:00+00:00",
-      "last": "2026-07-22 00:00:00+00:00",
+      "last": "2026-07-23 00:00:00+00:00",
       "name": "NQ.F",
       "path": "data/futures_candles/NQ.F.parquet",
-      "rows": 3157,
-      "sha256": "637b317b3e5eb786bedd29c4b069d2131bbed09e7731dcbef43c6e0b36c012c6"
+      "rows": 3158,
+      "sha256": "cfb1ff820932b530cc2a7b0e108eb077005eda3918cf6472d2fdf4cee702f901"
     },
     {
       "category": "futures_candles",
       "first": "2016-05-01 00:00:00+00:00",
-      "last": "2026-07-22 00:00:00+00:00",
+      "last": "2026-07-23 00:00:00+00:00",
       "name": "GC.F",
       "path": "data/futures_candles/GC.F.parquet",
-      "rows": 3180,
-      "sha256": "c6657890df28d3ba68f11f5c476d8abf1aa2538d116a0275899e6f20d9e87c64"
+      "rows": 3181,
+      "sha256": "0eeed9ecbeb83ebff94e6455e92f6e99b02e842714199a38e10b38f8a65d054a"
     },
     {
       "category": "futures_candles",
       "first": "2016-03-27 00:00:00+00:00",
-      "last": "2026-07-22 00:00:00+00:00",
+      "last": "2026-07-23 00:00:00+00:00",
       "name": "SI.F",
       "path": "data/futures_candles/SI.F.parquet",
-      "rows": 3209,
-      "sha256": "e9ceef2813db9080cb0de75fa599f0d0c66c79451a3ce071d5ae5e972cbee0c4"
+      "rows": 3210,
+      "sha256": "f5156e938dca918fa853ea155f635dce9123fb212dc3519712994866b85f2c0b"
     },
     {
       "category": "benchmark_candles",
       "first": "2004-01-02 00:00:00+00:00",
-      "last": "2026-07-22 00:00:00+00:00",
+      "last": "2026-07-23 00:00:00+00:00",
       "name": "SPY",
       "path": "data/benchmark_candles/SPY.parquet",
-      "rows": 5683,
-      "sha256": "562cf522f06468a940783772c20b26f47210918aa944edcefa3d6c64b66678ee"
+      "rows": 5684,
+      "sha256": "c394e6c86b885fe1f5c71d3440037a9f8e56fac1e195ac1b92893db8fe590162"
     },
     {
       "category": "fx_candles",
       "first": "2004-01-01 00:00:00+00:00",
-      "last": "2026-07-22 00:00:00+00:00",
+      "last": "2026-07-23 00:00:00+00:00",
       "name": "EUR/USD",
       "path": "data/fx_candles/EUR_USD.parquet",
-      "rows": 7209,
-      "sha256": "02d48a0638f644e90b1c0da1d9f45e011baa6a5c11fa35c4a406fc7a9aa8e39d"
+      "rows": 7210,
+      "sha256": "60cf0da23513a37f43d1041515369f769bdf54744b2fb1123818d4eeed2e0a7e"
     },
     {
       "category": "fx_candles",
       "first": "2004-01-01 00:00:00+00:00",
-      "last": "2026-07-22 00:00:00+00:00",
+      "last": "2026-07-23 00:00:00+00:00",
       "name": "GBP/USD",
       "path": "data/fx_candles/GBP_USD.parquet",
-      "rows": 7184,
-      "sha256": "01fa56e58d11c2d1d3eab542dbccd44ccc6877025b8bedde4ec4348c41d56f9d"
+      "rows": 7185,
+      "sha256": "7dace6c3b350ad6299553e694c2ba037eb30c28520c964acf6cff38babe18b17"
     },
     {
       "category": "fx_candles",
       "first": "2004-01-01 00:00:00+00:00",
-      "last": "2026-07-22 00:00:00+00:00",
+      "last": "2026-07-23 00:00:00+00:00",
       "name": "USD/JPY",
       "path": "data/fx_candles/USD_JPY.parquet",
-      "rows": 7184,
-      "sha256": "aae5b8600c94ff66d25edb5d7b576167662ed81437a4354f93553d69392fffe6"
+      "rows": 7185,
+      "sha256": "0f62ffda2fd18ac81f31ff328ed0ca46531eb3005effb7dffbdee66d2b0c6067"
     },
     {
       "category": "fx_candles",
       "first": "2004-01-01 00:00:00+00:00",
-      "last": "2026-07-22 00:00:00+00:00",
+      "last": "2026-07-23 00:00:00+00:00",
       "name": "AUD/USD",
       "path": "data/fx_candles/AUD_USD.parquet",
-      "rows": 7190,
-      "sha256": "f37ad014b86c78282f26bdc33c01c4f1026ad61009cd8fcf3ea8f708c82b45b3"
+      "rows": 7191,
+      "sha256": "12cc5542eb09b7941e5a3d2b8314123e92462853b98a541f2b72d3beaee915d9"
     },
     {
       "category": "fx_candles",
       "first": "2004-01-01 00:00:00+00:00",
-      "last": "2026-07-22 00:00:00+00:00",
+      "last": "2026-07-23 00:00:00+00:00",
       "name": "USD/CAD",
       "path": "data/fx_candles/USD_CAD.parquet",
-      "rows": 7170,
-      "sha256": "58918fa2a929a7e1b6db1f6bcec8bd1c633fc807387d8761b1519df8c09c24aa"
+      "rows": 7171,
+      "sha256": "9daebe1ced8fe4c999e920709db5d983665a672d17b2da8da4c04f636b22722f"
     },
     {
       "category": "fx_candles",
       "first": "2004-01-01 00:00:00+00:00",
-      "last": "2026-07-22 00:00:00+00:00",
+      "last": "2026-07-23 00:00:00+00:00",
       "name": "USD/CHF",
       "path": "data/fx_candles/USD_CHF.parquet",
-      "rows": 7234,
-      "sha256": "1d4cbb6329b2f44d5532b2a6192f4166b1b726462dca889fcbc8b5f6855ce2dc"
+      "rows": 7235,
+      "sha256": "87aab25721d394483459e98c58d13ffc54b14b1a40aae54f1a98df453c12d48e"
     },
     {
       "category": "fx_candles",
       "first": "2004-01-01 00:00:00+00:00",
-      "last": "2026-07-22 00:00:00+00:00",
+      "last": "2026-07-23 00:00:00+00:00",
       "name": "NZD/USD",
       "path": "data/fx_candles/NZD_USD.parquet",
-      "rows": 7174,
-      "sha256": "b45b55ab8955ab25ae1c79067723a26cf0c55abb3a3694ab2fe8711c4b3959a9"
+      "rows": 7175,
+      "sha256": "ee99918043ea6925cd0ffbeb3ba404be0465c013ab407d555546a81c2d941123"
     },
     {
       "category": "cot",
@@ -301,11 +301,11 @@
     {
       "category": "economic_calendar",
       "first": "2025-09-17 00:00:00+00:00",
-      "last": "2026-07-21 00:00:00+00:00",
+      "last": "2026-07-23 00:00:00+00:00",
       "name": "EU",
       "path": "data/economic_calendar/EU.parquet",
-      "rows": 137,
-      "sha256": "7b80a8229da4e0658c073673d81917811e24e121b2acf06e9198dc2c22db2caa"
+      "rows": 138,
+      "sha256": "d38f0503a2499854a442a217fcf4372e4017ade3ce913a92f309e8a68e08b049"
     },
     {
       "category": "economic_calendar",
@@ -318,23 +318,23 @@
     },
     {
       "category": "options_flow",
-      "first": "2026-07-22 20:08:59.260780+00:00",
-      "last": "2026-07-22 20:15:00.231558+00:00",
+      "first": "2026-07-23 20:09:30.221088+00:00",
+      "last": "2026-07-23 20:15:16.122782+00:00",
       "name": "SPY",
       "path": "data/options_flow/SPY.parquet",
       "rows": 5000,
-      "sha256": "361bec4a15c6daef2930949c1bcbfa5e1b176a1f597e66197a5e89b78099b302"
+      "sha256": "2a345bacbf1debc33301a8e8849c69aab9ea333c7c4a26bcda6d78d9c87f932c"
     },
     {
       "category": "options_flow",
-      "first": "2026-07-22 20:05:43.144033+00:00",
-      "last": "2026-07-22 20:15:01.126503+00:00",
+      "first": "2026-07-23 20:07:45.106764+00:00",
+      "last": "2026-07-23 20:15:15.380617+00:00",
       "name": "QQQ",
       "path": "data/options_flow/QQQ.parquet",
       "rows": 5000,
-      "sha256": "46b47089645c1a2bab6aae4aa53036b8d3b6bc7502ae7b4f2e4145aecff140e4"
+      "sha256": "9284c0dfe15875414ab95c0ca2c29f576f5fe2a7ff077c51cff9a90d3fb00cad"
     }
   ],
   "strict_lse_only": true,
-  "total_rows": 142139
+  "total_rows": 142152
 }

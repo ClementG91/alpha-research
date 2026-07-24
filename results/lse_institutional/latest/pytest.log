@@ -5,4 +5,4 @@ tests/test_lse_vault.py::test_daily_candle_request_uses_plain_dates
     step = pd.Timedelta(days=1) if daily else pd.Timedelta(seconds=1)
 
 -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
-8 passed, 1 warning in 3.19s
+8 passed, 1 warning in 5.05s
