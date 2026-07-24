@@ -1,0 +1,66 @@
+name: LSE intraday contract probe
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "lse_intraday_probe.py"
+      - "lse_intraday_macro_alpha.py"
+      - "lse_intraday_macro_runner.py"
+      - ".github/workflows/intraday-probe.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: lse-intraday-probe
+  cancel-in-progress: true
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      LSE_API_KEY: ${{ secrets.LSE_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements-institutional.txt
+      - run: python -m pip install --upgrade pip
+      - run: pip install -r requirements-institutional.txt
+      - name: Run probe
+        continue-on-error: true
+        run: |
+          rm -rf results/intraday_macro/probe
+          if [ -z "${LSE_API_KEY:-}" ]; then
+            mkdir -p results/intraday_macro/probe
+            printf 'LSE_API_KEY GitHub Actions secret is missing.\n' > results/intraday_macro/probe/FATAL.txt
+          else
+            python lse_intraday_probe.py
+          fi
+      - name: Publish probe
+        if: always()
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from lse_vault import assert_secret_absent, redact
+
+          root = Path('results/intraday_macro/probe')
+          fatal = root / 'FATAL.txt'
+          if fatal.exists():
+              fatal.write_text(redact(fatal.read_text(encoding='utf-8')), encoding='utf-8')
+          assert_secret_absent(root)
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add results/intraday_macro/probe
+          if git diff --cached --quiet; then
+            echo "No probe change"
+          else
+            git commit -m "publish LSE intraday probe [skip ci]"
+            git push origin HEAD:main
+          fi
