@@ -1,0 +1,161 @@
+name: LSE intraday macro alpha
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "lse_intraday_macro_alpha.py"
+      - "tests/test_lse_intraday_macro_alpha.py"
+      - "lse_vault.py"
+      - "lse_institutional_campaign.py"
+      - "quant_validation.py"
+      - "requirements-institutional.txt"
+      - ".github/workflows/intraday-macro-alpha.yml"
+  workflow_dispatch:
+  schedule:
+    - cron: "41 4 * * 0"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: lse-intraday-macro-alpha
+  cancel-in-progress: true
+
+jobs:
+  campaign:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    env:
+      LSE_API_KEY: ${{ secrets.LSE_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements-dev.txt
+      - run: python -m pip install --upgrade pip
+      - run: pip install -r requirements-dev.txt
+      - uses: actions/cache@v4
+        with:
+          path: /tmp/lse_intraday_macro/data
+          key: lse-intraday-15m-v1-${{ runner.os }}-${{ github.run_id }}
+          restore-keys: |
+            lse-intraday-15m-v1-${{ runner.os }}-
+
+      - id: lint
+        continue-on-error: true
+        shell: bash
+        run: |
+          mkdir -p /tmp/intraday_diagnostics
+          ruff check --select E9,F lse_intraday_macro_alpha.py tests/test_lse_intraday_macro_alpha.py 2>&1 | tee /tmp/intraday_diagnostics/ruff.txt
+      - id: compile
+        continue-on-error: true
+        shell: bash
+        run: |
+          python -m compileall -q lse_intraday_macro_alpha.py tests/test_lse_intraday_macro_alpha.py 2>&1 | tee /tmp/intraday_diagnostics/compile.txt
+      - id: tests
+        continue-on-error: true
+        shell: bash
+        env:
+          PYTHONPATH: "."
+        run: |
+          pytest -q tests/test_lse_intraday_macro_alpha.py 2>&1 | tee /tmp/intraday_diagnostics/pytest.txt
+
+      - name: Run strict 15-minute campaign
+        if: steps.lint.outcome == 'success' && steps.compile.outcome == 'success' && steps.tests.outcome == 'success'
+        continue-on-error: true
+        shell: bash
+        run: |
+          mkdir -p /tmp/lse_intraday_macro
+          if [ -z "${LSE_API_KEY:-}" ]; then
+            printf 'LSE_API_KEY GitHub Actions secret is missing. No public-data fallback was used.\n' > /tmp/lse_intraday_macro/FATAL.txt
+          else
+            python lse_intraday_macro_alpha.py \
+              --phase full \
+              --start 2020-01-01 \
+              --output /tmp/lse_intraday_macro
+          fi
+
+      - name: Record quality-gate failure
+        if: steps.lint.outcome != 'success' || steps.compile.outcome != 'success' || steps.tests.outcome != 'success'
+        shell: bash
+        run: |
+          mkdir -p /tmp/lse_intraday_macro
+          {
+            echo "Intraday macro campaign did not run because a code-quality gate failed."
+            echo "Ruff: ${{ steps.lint.outcome }}"
+            echo "Compile: ${{ steps.compile.outcome }}"
+            echo "Pytest: ${{ steps.tests.outcome }}"
+            echo
+            cat /tmp/intraday_diagnostics/ruff.txt || true
+            cat /tmp/intraday_diagnostics/compile.txt || true
+            cat /tmp/intraday_diagnostics/pytest.txt || true
+          } > /tmp/lse_intraday_macro/FATAL.txt
+
+      - name: Print verdict
+        if: always()
+        run: |
+          test ! -f /tmp/lse_intraday_macro/REPORT.md || cat /tmp/lse_intraday_macro/REPORT.md
+          test ! -f /tmp/lse_intraday_macro/FATAL.txt || cat /tmp/lse_intraday_macro/FATAL.txt
+
+      - name: Publish sanitized verdict to main
+        if: always()
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from lse_vault import assert_secret_absent, redact
+
+          source = Path('/tmp/lse_intraday_macro')
+          target = Path('results/intraday_macro/latest')
+          target.mkdir(parents=True, exist_ok=True)
+          for path in sorted(target.rglob('*'), reverse=True):
+              if path.is_file():
+                  path.unlink()
+          allowed = {
+              'REPORT.md', 'summary.json', 'collection_errors.json',
+              'selected_daily_returns.csv', 'core_candidate_daily_returns.csv',
+              'external_candidate_daily_returns.csv', 'manifest.json',
+          }
+          for name in allowed:
+              candidate = source / name
+              if candidate.exists():
+                  (target / name).write_bytes(candidate.read_bytes())
+          plots = source / 'plots'
+          if plots.exists():
+              for plot in plots.iterdir():
+                  if plot.suffix in {'.svg', '.png'}:
+                      destination = target / 'plots' / plot.name
+                      destination.parent.mkdir(parents=True, exist_ok=True)
+                      destination.write_bytes(plot.read_bytes())
+          fatal = source / 'FATAL.txt'
+          if fatal.exists():
+              (target / 'FATAL.txt').write_text(
+                  redact(fatal.read_text(encoding='utf-8')), encoding='utf-8'
+              )
+          if not any(path.is_file() for path in target.rglob('*')):
+              (target / 'FATAL.txt').write_text(
+                  'Intraday macro campaign produced no publishable result.\n', encoding='utf-8'
+              )
+          assert_secret_absent(target)
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add results/intraday_macro/latest
+          if git diff --cached --quiet; then
+            echo "No result change to commit"
+          else
+            git commit -m "publish latest intraday macro verdict [skip ci]"
+            git push origin HEAD:main
+          fi
+
+      - name: Upload complete research artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lse-intraday-macro-${{ github.run_number }}
+          path: /tmp/lse_intraday_macro/
+          if-no-files-found: error
+          retention-days: 90
