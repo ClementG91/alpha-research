@@ -1,4 +1,4 @@
-name: LSE intraday macro alpha
+name: LSE intraday rate-regime alpha
 
 on:
   push:
@@ -6,7 +6,10 @@ on:
     paths:
       - "lse_intraday_macro_alpha.py"
       - "lse_intraday_macro_runner.py"
+      - "lse_intraday_rate_alpha.py"
+      - "lse_intraday_rate_runner.py"
       - "tests/test_lse_intraday_macro_alpha.py"
+      - "tests/test_lse_intraday_rate_alpha.py"
       - "lse_vault.py"
       - "lse_institutional_campaign.py"
       - "quant_validation.py"
@@ -20,7 +23,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: lse-intraday-macro-alpha
+  group: lse-intraday-rate-alpha
   cancel-in-progress: true
 
 jobs:
@@ -41,41 +44,63 @@ jobs:
       - uses: actions/cache@v4
         with:
           path: /tmp/lse_intraday_macro/data
-          key: lse-intraday-15m-v2-${{ runner.os }}-${{ github.run_id }}
+          key: lse-intraday-15m-v3-${{ runner.os }}-${{ github.run_id }}
           restore-keys: |
-            lse-intraday-15m-v2-${{ runner.os }}-
+            lse-intraday-15m-v3-${{ runner.os }}-
 
       - id: lint
         continue-on-error: true
         shell: bash
         run: |
           mkdir -p /tmp/intraday_diagnostics
-          ruff check --select E9,F lse_intraday_macro_alpha.py lse_intraday_macro_runner.py tests/test_lse_intraday_macro_alpha.py 2>&1 | tee /tmp/intraday_diagnostics/ruff.txt
+          ruff check --select E9,F \
+            lse_intraday_macro_alpha.py \
+            lse_intraday_macro_runner.py \
+            lse_intraday_rate_alpha.py \
+            lse_intraday_rate_runner.py \
+            tests/test_lse_intraday_macro_alpha.py \
+            tests/test_lse_intraday_rate_alpha.py \
+            2>&1 | tee /tmp/intraday_diagnostics/ruff.txt
       - id: compile
         continue-on-error: true
         shell: bash
         run: |
-          python -m compileall -q lse_intraday_macro_alpha.py lse_intraday_macro_runner.py tests/test_lse_intraday_macro_alpha.py 2>&1 | tee /tmp/intraday_diagnostics/compile.txt
+          python -m compileall -q \
+            lse_intraday_macro_alpha.py \
+            lse_intraday_macro_runner.py \
+            lse_intraday_rate_alpha.py \
+            lse_intraday_rate_runner.py \
+            tests/test_lse_intraday_macro_alpha.py \
+            tests/test_lse_intraday_rate_alpha.py \
+            2>&1 | tee /tmp/intraday_diagnostics/compile.txt
       - id: tests
         continue-on-error: true
         shell: bash
         env:
           PYTHONPATH: "."
         run: |
-          pytest -q tests/test_lse_intraday_macro_alpha.py 2>&1 | tee /tmp/intraday_diagnostics/pytest.txt
+          pytest -q \
+            tests/test_lse_intraday_macro_alpha.py \
+            tests/test_lse_intraday_rate_alpha.py \
+            2>&1 | tee /tmp/intraday_diagnostics/pytest.txt
 
-      - name: Run strict 15-minute campaign
+      - name: Collect strict LSE data and run rate-regime campaign
         if: steps.lint.outcome == 'success' && steps.compile.outcome == 'success' && steps.tests.outcome == 'success'
         continue-on-error: true
         shell: bash
         run: |
+          rm -rf /tmp/lse_intraday_macro
           mkdir -p /tmp/lse_intraday_macro
           if [ -z "${LSE_API_KEY:-}" ]; then
             printf 'LSE_API_KEY GitHub Actions secret is missing. No public-data fallback was used.\n' > /tmp/lse_intraday_macro/FATAL.txt
           else
             python lse_intraday_macro_runner.py \
-              --phase full \
+              --phase collect \
               --start 2020-01-01 \
+              --output /tmp/lse_intraday_macro
+            rm -f /tmp/lse_intraday_macro/FATAL.txt
+            python lse_intraday_rate_runner.py \
+              --input /tmp/lse_intraday_macro \
               --output /tmp/lse_intraday_macro
           fi
 
@@ -85,7 +110,7 @@ jobs:
         run: |
           mkdir -p /tmp/lse_intraday_macro
           {
-            echo "Intraday macro campaign did not run because a code-quality gate failed."
+            echo "Intraday rate-regime campaign did not run because a code-quality gate failed."
             echo "Ruff: ${{ steps.lint.outcome }}"
             echo "Compile: ${{ steps.compile.outcome }}"
             echo "Pytest: ${{ steps.tests.outcome }}"
@@ -138,7 +163,8 @@ jobs:
               )
           if not any(path.is_file() for path in target.rglob('*')):
               (target / 'FATAL.txt').write_text(
-                  'Intraday macro campaign produced no publishable result.\n', encoding='utf-8'
+                  'Intraday rate-regime campaign produced no publishable result.\n',
+                  encoding='utf-8',
               )
           assert_secret_absent(target)
           PY
@@ -148,7 +174,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "No result change to commit"
           else
-            git commit -m "publish latest intraday macro verdict [skip ci]"
+            git commit -m "publish latest intraday rate verdict [skip ci]"
             git push origin HEAD:main
           fi
 
@@ -156,7 +182,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: lse-intraday-macro-${{ github.run_number }}
+          name: lse-intraday-rate-${{ github.run_number }}
           path: /tmp/lse_intraday_macro/
           if-no-files-found: error
           retention-days: 90
