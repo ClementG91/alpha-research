@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - "lse_intraday_macro_alpha.py"
+      - "lse_intraday_macro_runner.py"
       - "tests/test_lse_intraday_macro_alpha.py"
       - "lse_vault.py"
       - "lse_institutional_campaign.py"
@@ -40,21 +41,21 @@ jobs:
       - uses: actions/cache@v4
         with:
           path: /tmp/lse_intraday_macro/data
-          key: lse-intraday-15m-v1-${{ runner.os }}-${{ github.run_id }}
+          key: lse-intraday-15m-v2-${{ runner.os }}-${{ github.run_id }}
           restore-keys: |
-            lse-intraday-15m-v1-${{ runner.os }}-
+            lse-intraday-15m-v2-${{ runner.os }}-
 
       - id: lint
         continue-on-error: true
         shell: bash
         run: |
           mkdir -p /tmp/intraday_diagnostics
-          ruff check --select E9,F lse_intraday_macro_alpha.py tests/test_lse_intraday_macro_alpha.py 2>&1 | tee /tmp/intraday_diagnostics/ruff.txt
+          ruff check --select E9,F lse_intraday_macro_alpha.py lse_intraday_macro_runner.py tests/test_lse_intraday_macro_alpha.py 2>&1 | tee /tmp/intraday_diagnostics/ruff.txt
       - id: compile
         continue-on-error: true
         shell: bash
         run: |
-          python -m compileall -q lse_intraday_macro_alpha.py tests/test_lse_intraday_macro_alpha.py 2>&1 | tee /tmp/intraday_diagnostics/compile.txt
+          python -m compileall -q lse_intraday_macro_alpha.py lse_intraday_macro_runner.py tests/test_lse_intraday_macro_alpha.py 2>&1 | tee /tmp/intraday_diagnostics/compile.txt
       - id: tests
         continue-on-error: true
         shell: bash
@@ -72,7 +73,7 @@ jobs:
           if [ -z "${LSE_API_KEY:-}" ]; then
             printf 'LSE_API_KEY GitHub Actions secret is missing. No public-data fallback was used.\n' > /tmp/lse_intraday_macro/FATAL.txt
           else
-            python lse_intraday_macro_alpha.py \
+            python lse_intraday_macro_runner.py \
               --phase full \
               --start 2020-01-01 \
               --output /tmp/lse_intraday_macro
