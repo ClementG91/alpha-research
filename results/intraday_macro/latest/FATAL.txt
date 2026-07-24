@@ -1,7 +1,51 @@
-Traceback (most recent call last):
-  File "/home/runner/work/alpha-research/alpha-research/lse_intraday_macro_alpha.py", line 740, in main
-    result = run(args.output)
-             ^^^^^^^^^^^^^^^^
-  File "/home/runner/work/alpha-research/alpha-research/lse_intraday_macro_alpha.py", line 598, in run
-    raise RuntimeError("SPY intraday benchmark is required")
-RuntimeError: SPY intraday benchmark is required
+Intraday rate-regime campaign did not run because a code-quality gate failed.
+Ruff: failure
+Compile: success
+Pytest: success
+
+F401 [*] `numpy` imported but unused
+ --> tests/test_lse_intraday_rate_alpha.py:3:17
+  |
+1 | from __future__ import annotations
+2 |
+3 | import numpy as np
+  |                 ^^
+4 | import pandas as pd
+  |
+help: Remove unused import: `numpy`
+  |
+2 |
+  - import numpy as np
+3 | import pandas as pd
+  |
+
+Found 1 error.
+[*] 1 fixable with the `--fix` option.
+.............                                                            [100%]
+=============================== warnings summary ===============================
+lse_intraday_macro_alpha.py:39
+  /home/runner/work/alpha-research/alpha-research/lse_intraday_macro_alpha.py:39: DeprecationWarning: The 'generic' unit for NumPy timedelta is deprecated, and will raise an error in the future. This includes implicit conversion of bare integers (e.g. `+ 1`).Please use a specific unit instead.
+    BAR_DELTA = pd.Timedelta(minutes=15)
+
+tests/test_lse_intraday_macro_alpha.py::test_date_window_pagination_uses_api_accepted_dates
+tests/test_lse_intraday_macro_alpha.py::test_date_window_pagination_uses_api_accepted_dates
+  /home/runner/work/alpha-research/alpha-research/lse_intraday_macro_runner.py:33: DeprecationWarning: The 'generic' unit for NumPy timedelta is deprecated, and will raise an error in the future. This includes implicit conversion of bare integers (e.g. `+ 1`).Please use a specific unit instead.
+    window_end = min(cursor + pd.Timedelta(days=44), end_timestamp)
+
+tests/test_lse_intraday_macro_alpha.py::test_date_window_pagination_uses_api_accepted_dates
+tests/test_lse_intraday_macro_alpha.py::test_date_window_pagination_uses_api_accepted_dates
+  /home/runner/work/alpha-research/alpha-research/lse_intraday_macro_runner.py:49: DeprecationWarning: The 'generic' unit for NumPy timedelta is deprecated, and will raise an error in the future. This includes implicit conversion of bare integers (e.g. `+ 1`).Please use a specific unit instead.
+    cursor = window_end + pd.Timedelta(days=1)
+
+tests/test_lse_intraday_rate_alpha.py::test_rate_regime_is_lagged_one_full_observation
+  /home/runner/work/alpha-research/alpha-research/tests/test_lse_intraday_rate_alpha.py:38: DeprecationWarning: The 'generic' unit for NumPy timedelta is deprecated, and will raise an error in the future. This includes implicit conversion of bare integers (e.g. `+ 1`).Please use a specific unit instead.
+    intraday = pd.date_range(dates[68], dates[73] + pd.Timedelta(hours=23), freq="15min", tz="UTC")
+
+tests/test_lse_intraday_rate_alpha.py::test_rate_regime_is_lagged_one_full_observation
+tests/test_lse_intraday_rate_alpha.py::test_future_yield_mutation_does_not_change_past_regimes
+tests/test_lse_intraday_rate_alpha.py::test_future_yield_mutation_does_not_change_past_regimes
+  /home/runner/work/alpha-research/alpha-research/lse_intraday_rate_alpha.py:120: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+    ].fillna(False).astype(bool)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+13 passed, 9 warnings in 9.62s
