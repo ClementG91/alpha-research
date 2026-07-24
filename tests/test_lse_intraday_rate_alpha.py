@@ -4,7 +4,7 @@ import pandas as pd
 
 import lse_intraday_macro_alpha as base
 import lse_intraday_rate_alpha as research
-import lse_intraday_rate_runner as runner  # noqa: F401  # installs class-neutral targets
+import lse_intraday_rate_runner as runner  # noqa: F401  # installs strict selection adapters
 
 
 def synthetic_yields() -> dict[str, pd.DataFrame]:
@@ -64,6 +64,25 @@ def test_relative_value_targets_are_zero_net_by_class() -> None:
         members = classes.index[classes == class_name]
         assert abs(float(weights.loc[index[0], members].sum())) < 1e-12
     assert weights.loc[index[0], "GC"] == 0.0  # no second commodity hedge exists
+
+
+def test_backfilled_calendar_is_excluded_from_rate_selection(monkeypatch) -> None:
+    captured: dict[str, bool] = {}
+
+    def fake_build(candidate, market, regimes, calendar, cost_multiplier=1.0, extra_delay=0):
+        del candidate, market, regimes, cost_multiplier, extra_delay
+        captured["empty"] = calendar.empty
+        return "sentinel"
+
+    monkeypatch.setattr(runner, "ORIGINAL_BUILD_BACKTEST", fake_build)
+    result = runner.build_without_event_calendar(
+        research.RateCandidate("unconditional_reversal", 2),
+        {},
+        pd.DataFrame(),
+        pd.DataFrame({"event": ["CPI"]}),
+    )
+    assert result == "sentinel"
+    assert captured["empty"]
 
 
 def test_us_open_mask_handles_new_york_dst() -> None:
