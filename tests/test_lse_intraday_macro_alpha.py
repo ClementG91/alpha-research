@@ -4,6 +4,7 @@ import numpy as np
 import pandas as pd
 
 import lse_intraday_macro_alpha as research
+import lse_intraday_macro_runner as runner  # noqa: F401  # installs date-window pagination
 
 
 def synthetic_market(periods: int = 2400) -> dict[str, pd.DataFrame]:
@@ -28,6 +29,24 @@ def test_candidate_protocol_is_small_and_frozen() -> None:
         "macro_overreaction_reversal",
         "liquidity_shock_reversal",
     }
+
+
+def test_date_window_pagination_uses_api_accepted_dates() -> None:
+    class FakeClient:
+        def __init__(self) -> None:
+            self.calls: list[dict[str, str]] = []
+
+        def candles(self, symbol: str, timeframe: str, **kwargs: str) -> list[dict[str, object]]:
+            self.calls.append({"symbol": symbol, "timeframe": timeframe, **kwargs})
+            timestamp = f"{kwargs['start']} 00:00:00.000000"
+            return [{"ts": timestamp, "open": 1.0, "high": 1.1, "low": 0.9, "close": 1.0, "volume": 10.0}]
+
+    client = FakeClient()
+    frame = runner.date_window_candles(client, "EUR/USD", "15m", "2020-01-01", "2020-03-01")
+    assert not frame.empty
+    assert len(client.calls) == 2
+    assert all("T" not in call["start"] and len(call["start"]) == 10 for call in client.calls)
+    assert all("T" not in call["end"] and len(call["end"]) == 10 for call in client.calls)
 
 
 def test_parse_numeric_handles_calendar_units() -> None:
