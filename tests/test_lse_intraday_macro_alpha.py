@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 
 import lse_intraday_macro_alpha as research
-import lse_intraday_macro_runner as runner  # noqa: F401  # installs date-window pagination
+import lse_intraday_macro_runner as runner  # noqa: F401  # installs strict adapters
 
 
 def synthetic_market(periods: int = 2400) -> dict[str, pd.DataFrame]:
@@ -47,6 +47,14 @@ def test_date_window_pagination_uses_api_accepted_dates() -> None:
     assert len(client.calls) == 2
     assert all("T" not in call["start"] and len(call["start"]) == 10 for call in client.calls)
     assert all("T" not in call["end"] and len(call["end"]) == 10 for call in client.calls)
+
+
+def test_release_timestamp_combines_calendar_date_and_time() -> None:
+    index_value = pd.Timestamp("2025-01-02", tz="UTC")
+    assert runner.release_timestamp(index_value, "2025-01-02", "13:30") == pd.Timestamp(
+        "2025-01-02 13:30:00", tz="UTC"
+    )
+    assert runner.release_timestamp(index_value, "2025-01-02", None) == index_value
 
 
 def test_parse_numeric_handles_calendar_units() -> None:
